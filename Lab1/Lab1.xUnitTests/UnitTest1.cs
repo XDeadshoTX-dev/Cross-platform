@@ -6,12 +6,11 @@ namespace Lab1.xUnitTests
         public void Test1()
         {
             // Arrange
-            string p1 = "???";
-            string p2 = "abc";
+            string[] inputLines = new string[] { "???", "abc" };
             int expected = 64;
 
             // Act
-            int actual = Program.GetResult(p1, p2);
+            int actual = Program.GetResult(inputLines);
 
             // Assert
             Assert.Equal(expected, actual);
@@ -20,12 +19,11 @@ namespace Lab1.xUnitTests
         public void Test2()
         {
             // Arrange
-            string p1 = "???";
-            string p2 = "000";
+            string[] inputLines = new string[] { "???", "000" };
             int expected = 1;
 
             // Act
-            int actual = Program.GetResult(p1, p2);
+            int actual = Program.GetResult(inputLines);
 
             // Assert
             Assert.Equal(expected, actual);
@@ -34,12 +32,11 @@ namespace Lab1.xUnitTests
         public void Test3()
         {
             // Arrange
-            string p1 = "abc";
-            string p2 = "999";
+            string[] inputLines = new string[] { "abc", "999" };
             int expected = 0;
 
             // Act
-            int actual = Program.GetResult(p1, p2);
+            int actual = Program.GetResult(inputLines);
 
             // Assert
             Assert.Equal(expected, actual);

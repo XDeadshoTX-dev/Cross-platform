@@ -12,24 +12,8 @@ namespace Lab1
             try
             {
                 string[] inputLines = File.ReadAllLines("INPUT.TXT");
-                string p1 = inputLines[0].ToLower();
-                string p2 = inputLines[1].ToLower();
-                int sizeP1 = p1.Length;
-                int sizeP2 = p2.Length;
 
-                Console.WriteLine($"[Input] p1: {p1} (Length: {sizeP1}), p2: {p2} (Length: {sizeP2})");
-
-                if (sizeP2 > 9 || sizeP2 > 9)
-                {
-                    throw new ArgumentException("More than 9 characters!");
-                }
-                else if(sizeP1 != sizeP2)
-                {
-                    throw new ArgumentException("Length of characters is not equal!");
-                }
-                Console.WriteLine("[Ok] Length of characters is ok");
-
-                int commonStrings = GetResult(p1, p2);
+                int commonStrings = GetResult(inputLines);
 
                 Console.WriteLine($"[Output] Common strings count: {commonStrings}");
                 File.WriteAllText("OUTPUT.TXT", commonStrings.ToString());
@@ -39,8 +23,26 @@ namespace Lab1
                 Console.WriteLine($"[Error] {ex.Message}");
             }
         }
-        public static int GetResult(string p1, string p2)
+        public static int GetResult(string[] inputLines)
         {
+            // Перевірка на помилки
+            string p1 = inputLines[0].ToLower();
+            string p2 = inputLines[1].ToLower();
+            int sizeP1 = p1.Length;
+            int sizeP2 = p2.Length;
+
+            Console.WriteLine($"[Input] p1: {p1} (Length: {sizeP1}), p2: {p2} (Length: {sizeP2})");
+
+            if (sizeP1 > 9 || sizeP2 > 9)
+            {
+                throw new ArgumentException("More than 9 characters!");
+            }
+            else if (sizeP1 != sizeP2)
+            {
+                throw new ArgumentException("Length of characters is not equal!");
+            }
+            Console.WriteLine("[Ok] Length of characters is ok");
+
             // Конвертація символів
             List<char[]> buffer1 = new List<char[]>();
             List<char[]> buffer2 = new List<char[]>();
