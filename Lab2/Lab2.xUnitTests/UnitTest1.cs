@@ -8,15 +8,27 @@ namespace Lab2.xUnitTests
         public void Test1()
         {
             // Arrange
-            string p1 = "???";
-            string p2 = "abc";
-            int expected = 64;
+            int n = 2;
+            int expected = 2;
 
             // Act
-            //int actual = Program.GetResult(p1, p2);
+            int actual = Program.GetResult(n);
 
             // Assert
-            //Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual);
+        }
+        [Fact]
+        public void Test2()
+        {
+            // Arrange
+            int n = 9;
+            int expected = 10;
+
+            // Act
+            int actual = Program.GetResult(n);
+
+            // Assert
+            Assert.Equal(expected, actual);
         }
     }
 }
