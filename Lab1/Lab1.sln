@@ -8,9 +8,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab1.xUnitTests", "Lab1.xUnitTests\Lab1.xUnitTests.csproj", "{9D1B38F4-772F-471D-8C15-8500039E589C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{E035C0F5-02ED-4264-9285-075BD3FC7EDB}"
-	ProjectSection(SolutionItems) = preProject
-		build.proj = build.proj
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
