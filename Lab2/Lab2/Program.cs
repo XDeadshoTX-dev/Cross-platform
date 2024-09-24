@@ -4,8 +4,31 @@
     {
         static void Main(string[] args)
         {
-            int n = int.Parse(File.ReadAllText("INPUT.TXT"));
+            try
+            {
+                int n = int.Parse(File.ReadAllText("INPUT.TXT"));
+                Console.WriteLine("[INPUT.TXT] OK");
 
+                if(n > 0 && n <= 10000)
+                {
+                    string result = GetResult(n).ToString();
+
+                    File.WriteAllText("OUTPUT.TXT", result);
+                    Console.WriteLine("[OUTPUT.TXT] OK");
+                }
+                else
+                {
+                    throw new ArgumentException("The number must be 0 < n <= 10000");
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine($"[Error] {ex.Message}");
+            }
+        }
+
+        public static int GetResult(int n)
+        {
             List<int> list = new List<int>() { 1 };
 
             int current = 0;
@@ -20,8 +43,7 @@
 
                 list.Sort();
             }
-
-            File.WriteAllText("OUTPUT.TXT", current.ToString());
+            return current;
         }
 
         static void AddToList(List<int> list, int value)
