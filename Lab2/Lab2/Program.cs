@@ -6,12 +6,12 @@
         {
             try
             {
-                int n = int.Parse(File.ReadAllText("INPUT.TXT"));
-                Console.WriteLine("[INPUT.TXT] OK");
+                int n = int.Parse(File.ReadAllText("Lab2/INPUT.TXT"));
+                Console.WriteLine($"[INPUT.TXT] {n}");
                 string result = GetResult(n).ToString();
 
-                File.WriteAllText("OUTPUT.TXT", result);
-                Console.WriteLine("[OUTPUT.TXT] OK");
+                File.WriteAllText("Lab2/OUTPUT.TXT", result);
+                Console.WriteLine($"[OUTPUT.TXT] {result}");
             }
             catch(Exception ex)
             {

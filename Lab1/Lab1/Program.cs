@@ -11,12 +11,12 @@ namespace Lab1
         {
             try
             {
-                string[] inputLines = File.ReadAllLines("INPUT.TXT");
+                string[] inputLines = File.ReadAllLines("Lab1/INPUT.TXT");
 
                 int commonStrings = GetResult(inputLines);
 
                 Console.WriteLine($"[Output] Common strings count: {commonStrings}");
-                File.WriteAllText("OUTPUT.TXT", commonStrings.ToString());
+                File.WriteAllText("Lab1/OUTPUT.TXT", commonStrings.ToString());
             }
             catch (Exception ex)
             {
