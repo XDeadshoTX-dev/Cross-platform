@@ -7,6 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab3", "Lab3\Lab3.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3.xUnitTests", "Lab3.xUnitTests\Lab3.xUnitTests.csproj", "{D4E943AA-59B6-46B3-9F9F-B2FEBE896E3F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{363C3D9B-48D8-465E-B326-958B8C642DBB}"
+	ProjectSection(SolutionItems) = preProject
+		..\msbuild.proj = ..\msbuild.proj
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

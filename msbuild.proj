@@ -1,14 +1,17 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Target Name="RunTests">
     <Exec Command="dotnet test Lab1/Lab1.xUnitTests/Lab1.xUnitTests.csproj" />
-	<Exec Command="dotnet test Lab2/Lab2.xUnitTests/Lab2.xUnitTests.csproj" />
+	  <Exec Command="dotnet test Lab2/Lab2.xUnitTests/Lab2.xUnitTests.csproj" />
+    <Exec Command="dotnet test Lab3/Lab3.xUnitTests/Lab3.xUnitTests.csproj" />
   </Target>
 
   <Target Name="BuildAndRun">
     <Exec Command="dotnet build Lab1/Lab1/Lab1.csproj" />
     <Exec Command="dotnet run --project Lab1/Lab1/Lab1.csproj" />
-	<Exec Command="dotnet build Lab2/Lab2/Lab2.csproj" />
+	  <Exec Command="dotnet build Lab2/Lab2/Lab2.csproj" />
     <Exec Command="dotnet run --project Lab2/Lab2/Lab2.csproj" />
+    <Exec Command="dotnet build Lab3/Lab3/Lab3.csproj" />
+    <Exec Command="dotnet run --project Lab3/Lab3/Lab3.csproj" />
   </Target>
 
   <Target Name="All" DependsOnTargets="RunTests;BuildAndRun" />
