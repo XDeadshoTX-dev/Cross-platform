@@ -6,7 +6,7 @@
         {
             Console.WriteLine("Hello, World!");
         }
-        public static int GetResult()
+        public static int GetResult(int N, int x1, int y1, int x2, int y2)
         {
             return 0;
         }
