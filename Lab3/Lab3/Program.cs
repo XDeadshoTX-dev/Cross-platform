@@ -6,7 +6,7 @@
         {
             try
             {
-                string[] lines = File.ReadAllLines("INPUT.TXT");
+                string[] lines = File.ReadAllLines("Lab3/INPUT.TXT");
                 Console.Write($"[INPUT.TXT] ");
 
                 foreach (var line in lines)
