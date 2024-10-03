@@ -4,9 +4,48 @@
     {
         static void Main(string[] args)
         {
-            int N = 5;
-            int x1 = 1, y1 = 1, x2 = 3, y2 = 1;
-            Console.WriteLine(GetResult(N, x1, y1, x2, y2));
+            try
+            {
+                string[] lines = File.ReadAllLines("INPUT.TXT");
+                Console.Write($"[INPUT.TXT] ");
+
+                foreach (var line in lines)
+                {
+                    if (lines.Length <= 5)
+                    {
+                        Console.Write($"{line} ");
+                    }
+                    else
+                    {
+                        Console.WriteLine(line);
+                    }
+                }
+                Console.WriteLine();
+                string[] data = lines[0].Split(' ');
+
+                int N, x1, y1, x2, y2;
+
+                if (!int.TryParse(data[0], out N) ||
+                    !int.TryParse(data[1], out x1) ||
+                    !int.TryParse(data[2], out y1) ||
+                    !int.TryParse(data[3], out x2) ||
+                    !int.TryParse(data[4], out y2))
+                {
+                    throw new ArgumentException("All values must be integers");
+                }
+
+                if (data.Length != 5) throw new ArgumentException("Input file must contain 5 lines");
+
+                int result = GetResult(N, x1, y1, x2, y2);
+
+                Console.WriteLine($"[OUTPUT.TXT] {result}");
+
+                File.WriteAllText("OUTPUT.TXT", result.ToString());
+            }
+            catch (Exception ex) 
+            { 
+                Console.WriteLine("[Error] " + ex.Message); 
+            }
         }
         private static bool IsValid(int x, int y, int N)
         {
