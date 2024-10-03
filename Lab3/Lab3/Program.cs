@@ -40,7 +40,7 @@
 
                 Console.WriteLine($"[OUTPUT.TXT] {result}");
 
-                File.WriteAllText("OUTPUT.TXT", result.ToString());
+                File.WriteAllText("Lab3/OUTPUT.TXT", result.ToString());
             }
             catch (Exception ex) 
             { 
