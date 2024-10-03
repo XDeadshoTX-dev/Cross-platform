@@ -13,6 +13,7 @@ namespace Lab3.xUnitTests
             int y1 = 1;
             int x2 = 3;
             int y2 = 1;
+
             int expected = 2;
             // Act
             int actual = Program.GetResult(N, x1, y1, x2, y2);
