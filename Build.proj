@@ -1,0 +1,13 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="Build">
+    <Exec Command="dotnet build $(Solution)/$(Solution)/$(Solution).csproj" />
+  </Target>
+
+  <Target Name="Run">
+    <Exec Command="dotnet run --project $(Solution)/$(Solution)/$(Solution).csproj" />
+  </Target>
+
+  <Target Name="Test">
+    <Exec Command="dotnet test $(Solution)/$(Solution).xUnitTests/$(Solution).xUnitTests.csproj" />
+  </Target>
+</Project>
