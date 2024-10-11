@@ -86,20 +86,23 @@ config.vm.define "windows" do |windows|
         dotnet --list-sdks
         dotnet --list-runtimes
 		
-	    dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Build
-		dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Test
-		dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Run
-		dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Build
-		dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Test
-		dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Run
-		dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Build
-		dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Test
-		dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Run
+        # Run the dotnet build commands
+        & {
+            dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Build
+            dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Test
+            dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Run
+            dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Build
+            dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Test
+            dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Run
+            dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Build
+            dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Test
+            dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Run
+        }
     } else {
         Write-Host ".NET Core 8 is not installed, retrying installation..."
-		choco install dotnet-8.0-sdk -y
 
-        # Install .NET Core 8 Runtime for ASP.NET and Desktop using Chocolatey
+        # Install .NET Core 8 SDK and Runtime using Chocolatey
+        choco install dotnet-8.0-sdk -y
         choco install dotnet-8.0-runtime -y
 
         # Verify installation again
@@ -108,20 +111,23 @@ config.vm.define "windows" do |windows|
             dotnet --list-sdks
             dotnet --list-runtimes
 			
-			dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Build
-			dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Test
-			dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Run
-			dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Build
-			dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Test
-			dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Run
-			dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Build
-			dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Test
-			dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Run
+            & {
+                dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Build
+                dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Test
+                dotnet build C:/vagrant/Build.proj -p:Solution=Lab1 -t:Run
+                dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Build
+                dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Test
+                dotnet build C:/vagrant/Build.proj -p:Solution=Lab2 -t:Run
+                dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Build
+                dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Test
+                dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Run
+            }
         } else {
             Write-Host ".NET Core 8 installation failed again. Manual intervention required."
         }
     }
-  SHELL
+SHELL
+
 end
 
 
@@ -174,6 +180,7 @@ end
 	  
 	  sudo git clone https://github.com/XDeadshoTX-dev/Cross-platform.git /Users/vagrant/Desktop/Cross-platform
 	  
+	  sudo dotnet build /Users/vagrant/Desktop/Cross-platform/Build.proj -p:Solution=Lab1 -t:Build
 	  sudo dotnet build /Users/vagrant/Desktop/Cross-platform/Build.proj -p:Solution=Lab1 -t:Build
 	  sudo dotnet build /Users/vagrant/Desktop/Cross-platform/Build.proj -p:Solution=Lab1 -t:Test
 	  sudo dotnet build /Users/vagrant/Desktop/Cross-platform/Build.proj -p:Solution=Lab1 -t:Run
