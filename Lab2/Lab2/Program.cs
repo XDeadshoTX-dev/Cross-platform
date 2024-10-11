@@ -1,4 +1,6 @@
-﻿namespace Lab2
+﻿using System.Collections.Generic;
+
+namespace Lab2
 {
     public class Program
     {
