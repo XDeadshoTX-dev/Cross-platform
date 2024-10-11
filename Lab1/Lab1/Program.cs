@@ -81,7 +81,16 @@ namespace Lab1
         {
             switch (symbol)
             {
-                case '0' or '1' or '2' or '3' or '4' or '5' or '6' or '7' or '8' or '9':
+                case '0':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
                     return new char[] { symbol };
                 case 'a':
                     return "0123".ToCharArray();
@@ -103,5 +112,6 @@ namespace Lab1
                     throw new ArgumentException($"Unknown symbol: {symbol}");
             }
         }
+
     }
 }
