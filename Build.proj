@@ -1,43 +1,13 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <OSName>Unknown</OSName>
-    <IsMacOS>false</IsMacOS>
-  </PropertyGroup>
-
-  <Target Name="CheckOS" Condition="'$(OS)' == 'Unix'">
-    <Exec Command="uname" ConsoleToMSBuild="true">
-      <Output TaskParameter="ConsoleOutput" PropertyName="OSName" />
-    </Exec>
-
-    <PropertyGroup>
-      <IsMacOS Condition="'$(OSName.Trim())' == 'Darwin'">true</IsMacOS>
-    </PropertyGroup>
-
-    <Message Text="Detected OS: $(OSName)" Importance="High" />
-	<Message Text="Is macOS: $(IsMacOS)" Importance="High" />
+  <Target Name="Build">
+    <Exec Command="dotnet build $(Solution)/$(Solution)/$(Solution).csproj" />
   </Target>
 
-  <Target Name="Build" DependsOnTargets="CheckOS">
-  <PropertyGroup>
-    <BuildCommand Condition="'$(IsMacOS)' == 'true'">dotnet build $(Solution)/$(Solution)/$(Solution).csproj --framework netcoreapp2.2</BuildCommand>
-    <BuildCommand Condition="'$(IsMacOS)' != 'true'">dotnet build $(Solution)/$(Solution)/$(Solution).csproj</BuildCommand>
-  </PropertyGroup>
-    <Exec Command="$(BuildCommand)" />
+  <Target Name="Run">
+    <Exec Command="dotnet run --project $(Solution)/$(Solution)/$(Solution).csproj" />
   </Target>
 
-  <Target Name="Run" DependsOnTargets="CheckOS">
-  <PropertyGroup>
-    <RunCommand Condition="'$(IsMacOS)' == 'true'">dotnet run --project $(Solution)/$(Solution)/$(Solution).csproj --framework netcoreapp2.2</RunCommand>
-    <RunCommand Condition="'$(IsMacOS)' != 'true'">dotnet run --project $(Solution)/$(Solution)/$(Solution).csproj</RunCommand>
-  </PropertyGroup>
-    <Exec Command="$(RunCommand)" />
-  </Target>
-
-  <Target Name="Test" DependsOnTargets="CheckOS">
-  <PropertyGroup>
-    <TestCommand Condition="'$(IsMacOS)' == 'true'">dotnet test $(Solution)/$(Solution).xUnitTests/$(Solution).xUnitTests.csproj --framework netcoreapp2.2</TestCommand>
-    <TestCommand Condition="'$(IsMacOS)' != 'true'">dotnet test $(Solution)/$(Solution).xUnitTests/$(Solution).xUnitTests.csproj</TestCommand>
-  </PropertyGroup>
-    <Exec Command="$(TestCommand)" />
+  <Target Name="Test">
+    <Exec Command="dotnet test $(Solution)/$(Solution).xUnitTests/$(Solution).xUnitTests.csproj" />
   </Target>
 </Project>
