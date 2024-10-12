@@ -1,7 +1,4 @@
 using Microsoft.VisualStudio.TestPlatform.TestHost;
-using System;
-using Xunit;
-using Xunit.Sdk;
 
 namespace Lab3.xUnitTests
 {

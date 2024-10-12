@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace Lab2
+﻿namespace Lab2
 {
     public class Program
     {
