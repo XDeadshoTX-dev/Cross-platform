@@ -71,16 +71,19 @@ namespace Lab4
                 case "lab1":
                     Lab1 lab1 = new Lab1();
                     lab1.Build();
+                    lab1.Test();
                     lab1.Run(inputPath, outputPath);
                     break;
                 case "lab2":
                     Lab2 lab2 = new Lab2();
                     lab2.Build();
+                    lab2.Test();
                     lab2.Run(inputPath, outputPath);
                     break;
                 case "lab3":
                     Lab3 lab3 = new Lab3();
                     lab3.Build();
+                    lab3.Test();
                     lab3.Run(inputPath, outputPath);
                     break;
                 default:
