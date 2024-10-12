@@ -63,12 +63,12 @@ namespace Lab4
             }
             public void Test()
             {
-                Console.WriteLine("Lab1 is starting...");
+                Console.WriteLine("Testing Lab1...");
                 RunCommand("dotnet build ../../Build.proj -p:Solution=Lab1 -t:Test");
             }
             public void Run(string inputFile, string outputFile)
             {
-                Console.WriteLine("Lab1 is starting...");
+                Console.WriteLine("Starting Lab1...");
                 RunCommand("dotnet build ../../Build.proj -p:Solution=Lab1 -t:Run");
             }
         }
@@ -82,12 +82,12 @@ namespace Lab4
             }
             public void Test()
             {
-                Console.WriteLine("Lab2 is starting...");
+                Console.WriteLine("Testing Lab2...");
                 RunCommand("dotnet build ../../Build.proj -p:Solution=Lab2 -t:Test");
             }
             public void Run(string inputFile, string outputFile)
             {
-                Console.WriteLine("Lab2 is starting...");
+                Console.WriteLine("Starting Lab2...");
                 RunCommand("dotnet build ../../Build.proj -p:Solution=Lab2 -t:Run");
             }
         }
@@ -101,12 +101,12 @@ namespace Lab4
             }
             public void Test()
             {
-                Console.WriteLine("Lab3 is starting...");
+                Console.WriteLine("Testing Lab3...");
                 RunCommand("dotnet build ../../Build.proj -p:Solution=Lab3 -t:Test");
             }
             public void Run(string inputFile, string outputFile)
             {
-                Console.WriteLine("Lab3 is starting...");
+                Console.WriteLine("Starting Lab3...");
                 RunCommand("dotnet build ../../Build.proj -p:Solution=Lab3 -t:Run");
             }
         }
