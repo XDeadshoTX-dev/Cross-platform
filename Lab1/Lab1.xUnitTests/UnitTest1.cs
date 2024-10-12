@@ -1,3 +1,7 @@
+using System;
+using Xunit;
+using Xunit.Sdk;
+
 namespace Lab1.xUnitTests
 {
     public class UnitTest1

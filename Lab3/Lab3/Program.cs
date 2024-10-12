@@ -1,4 +1,9 @@
-﻿namespace Lab3
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+namespace Lab3
 {
     public class Program
     {
