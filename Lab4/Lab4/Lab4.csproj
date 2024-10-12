@@ -3,8 +3,10 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFrameworks>netcoreapp2.2;net8.0</TargetFrameworks>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	<PackAsTool>true</PackAsTool>
+	<ToolCommandName>dsvynarchuk</ToolCommandName>
+	<PackageId>DSvynarchuk</PackageId>
+	<Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
