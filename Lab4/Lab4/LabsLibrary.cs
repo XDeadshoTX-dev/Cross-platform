@@ -69,7 +69,16 @@ namespace Lab4
             public void Run(string inputFile, string outputFile)
             {
                 Console.WriteLine("Starting Lab1...");
+
+                string destinationFilePath = "../../Lab1/INPUT.TXT";
+                File.Copy(inputFile, destinationFilePath, overwrite: true);
+                Console.WriteLine($"File copied successfully to: {destinationFilePath}");
+
                 RunCommand("dotnet build ../../Build.proj -p:Solution=Lab1 -t:Run");
+
+                string resultFilePath = "../../Lab1/OUTPUT.TXT";
+                File.Copy(resultFilePath, outputFile, overwrite: true);
+                Console.WriteLine($"File copied successfully to: {outputFile}");
             }
         }
 
@@ -78,7 +87,7 @@ namespace Lab4
             public void Build()
             {
                 Console.WriteLine("Building Lab2...");
-                RunCommand("dotnet build ../../Build.proj -p:Solution=Lab2 -t:Run");
+                RunCommand("dotnet build ../../Build.proj -p:Solution=Lab2 -t:Build");
             }
             public void Test()
             {
@@ -88,7 +97,16 @@ namespace Lab4
             public void Run(string inputFile, string outputFile)
             {
                 Console.WriteLine("Starting Lab2...");
+
+                string destinationFilePath = "../../Lab2/INPUT.TXT";
+                File.Copy(inputFile, destinationFilePath, overwrite: true);
+                Console.WriteLine($"File copied successfully to: {destinationFilePath}");
+
                 RunCommand("dotnet build ../../Build.proj -p:Solution=Lab2 -t:Run");
+
+                string resultFilePath = "../../Lab2/OUTPUT.TXT";
+                File.Copy(resultFilePath, outputFile, overwrite: true);
+                Console.WriteLine($"File copied successfully to: {outputFile}");
             }
         }
 
@@ -107,7 +125,16 @@ namespace Lab4
             public void Run(string inputFile, string outputFile)
             {
                 Console.WriteLine("Starting Lab3...");
+
+                string destinationFilePath = "../../Lab3/INPUT.TXT";
+                File.Copy(inputFile, destinationFilePath, overwrite: true);
+                Console.WriteLine($"File copied successfully to: {destinationFilePath}");
+
                 RunCommand("dotnet build ../../Build.proj -p:Solution=Lab3 -t:Run");
+
+                string resultFilePath = "../../Lab3/OUTPUT.TXT";
+                File.Copy(resultFilePath, outputFile, overwrite: true);
+                Console.WriteLine($"File copied successfully to: {outputFile}");
             }
         }
     }
