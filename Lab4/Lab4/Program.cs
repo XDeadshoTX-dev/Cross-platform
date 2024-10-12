@@ -69,13 +69,19 @@ namespace Lab4
             switch (Lab.ToLower())
             {
                 case "lab1":
-                    new Lab1().Run(inputPath, outputPath);
+                    Lab1 lab1 = new Lab1();
+                    lab1.Build();
+                    lab1.Run(inputPath, outputPath);
                     break;
                 case "lab2":
-                    new Lab2().Run(inputPath, outputPath);
+                    Lab2 lab2 = new Lab2();
+                    lab2.Build();
+                    lab2.Run(inputPath, outputPath);
                     break;
                 case "lab3":
-                    new Lab3().Run(inputPath, outputPath);
+                    Lab3 lab3 = new Lab3();
+                    lab3.Build();
+                    lab3.Run(inputPath, outputPath);
                     break;
                 default:
                     console.WriteLine("Invalid lab specified. Use 'lab1', 'lab2', or 'lab3'.");
