@@ -28,9 +28,9 @@ Vagrant.configure("2") do |config|
   sudo dotnet build /vagrant/Build.proj -p:Solution=Lab3 -t:Test
   sudo dotnet build /vagrant/Build.proj -p:Solution=Lab3 -t:Run
   
-  sudo dotnet run --project /vagrant/Lab4/Lab4/Lab4.csproj --framework net8.0 run lab1
-  sudo dotnet run --project /vagrant/Lab4/Lab4/Lab4.csproj --framework net8.0 run lab2
-  sudo dotnet run --project /vagrant/Lab4/Lab4/Lab4.csproj --framework net8.0 run lab3
+  sudo dotnet nuget add source http://192.168.50.62:5000/v3/index.json -n BaGet
+  sudo dotnet tool install --global DSvynarchuk --version 1.0.1
+  sudo export PATH="$PATH:/root/.dotnet/tools"
 SHELL
 
 
@@ -102,9 +102,8 @@ config.vm.define "windows" do |windows|
             dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Test
             dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Run
 			
-			dotnet run --project C:/vagrant/Lab4/Lab4/Lab4.csproj --framework net8.0 run lab1
-			dotnet run --project C:/vagrant/Lab4/Lab4/Lab4.csproj --framework net8.0 run lab2
-			dotnet run --project C:/vagrant/Lab4/Lab4/Lab4.csproj --framework net8.0 run lab3
+			dotnet nuget add source http://192.168.50.62:5000/v3/index.json -n BaGet
+			dotnet tool install --global DSvynarchuk --version 1.0.1
         }
     } else {
         Write-Host ".NET Core 8 is not installed, retrying installation..."
@@ -130,9 +129,8 @@ config.vm.define "windows" do |windows|
                 dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Test
                 dotnet build C:/vagrant/Build.proj -p:Solution=Lab3 -t:Run
 				
-				dotnet run --project C:/vagrant/Lab4/Lab4/Lab4.csproj --framework net8.0 run lab1
-				dotnet run --project C:/vagrant/Lab4/Lab4/Lab4.csproj --framework net8.0 run lab2
-				dotnet run --project C:/vagrant/Lab4/Lab4/Lab4.csproj --framework net8.0 run lab3
+				dotnet nuget add source http://192.168.50.62:5000/v3/index.json -n BaGet
+				dotnet tool install --global DSvynarchuk --version 1.0.1
             }
         } else {
             Write-Host ".NET Core 8 installation failed again. Manual intervention required."
@@ -203,9 +201,8 @@ end
 	  sudo dotnet build /Users/vagrant/Desktop/Cross-platform/Build.proj -p:Solution=Lab3 -t:Test
 	  sudo dotnet build /Users/vagrant/Desktop/Cross-platform/Build.proj -p:Solution=Lab3 -t:Run
 	  
-	  sudo dotnet run --project /Users/vagrant/Desktop/Cross-platform/Lab4/Lab4/Lab4.csproj --framework netcoreapp2.2 run lab1
-	  sudo dotnet run --project /Users/vagrant/Desktop/Cross-platform/Lab4/Lab4/Lab4.csproj --framework netcoreapp2.2 run lab2
-	  sudo dotnet run --project /Users/vagrant/Desktop/Cross-platform/Lab4/Lab4/Lab4.csproj --framework netcoreapp2.2 run lab3
+	  sudo dotnet nuget add source http://192.168.50.62:5000/v3/index.json -n BaGet
+      sudo dotnet tool install --global DSvynarchuk --version 1.0.1
     SHELL
   end
 end
