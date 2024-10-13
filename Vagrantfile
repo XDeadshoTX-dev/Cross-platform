@@ -152,29 +152,11 @@ end
 
     # Provisioning installation of .NET Core SDK from the specified URL on macOS
     macos.vm.provision "shell", run: "always", inline: <<-SHELL
-	  # Download VBoxDarwinAdditions from a third-party source
-      curl -L -o VBoxGuestAdditions.iso "https://download.virtualbox.org/virtualbox/7.0.20/VBoxGuestAdditions_7.0.20.iso"
-
-      # Mount the ISO file
-      sudo hdiutil mount VBoxGuestAdditions.iso
-
-      # Run the installer
-      sudo installer -pkg /Volumes/VBox_GAs_7.0.20/VBoxDarwinAdditions.pkg -target /
-
-      # Unmount the ISO
-      sudo hdiutil unmount /Volumes/VBox_GAs_7.0.20
-
-      # Clean up the ISO file
-      # rm VBoxGuestAdditions.iso
-	  
       # Download the .NET Core SDK package
       curl -o dotnet-sdk.pkg "https://download.visualstudio.microsoft.com/download/pr/cb2d65e1-ad90-4416-8e6a-3755f92ba39f/f498aca4950a038d6fc55cca75eca630/dotnet-sdk-2.2.207-osx-x64.pkg"
 
       # Install the package using sudo and the installer command
       sudo installer -pkg dotnet-sdk.pkg -target /
-
-      # Clean up the downloaded package
-      # rm dotnet-sdk.pkg
 
       # Set up environment variables for .NET Core
       echo 'export PATH=$PATH:$HOME/.dotnet' >> ~/.zshrc
@@ -199,7 +181,16 @@ end
 	  sudo dotnet build /Users/vagrant/Desktop/Cross-platform/Build.proj -p:Solution=Lab3 -t:Test
 	  sudo dotnet build /Users/vagrant/Desktop/Cross-platform/Build.proj -p:Solution=Lab3 -t:Run
 	  
-	  sudo dotnet nuget add source http://192.168.50.62:5000/v3/index.json -n BaGet
+	  mkdir -p ~/.nuget/NuGet
+      cat <<EOF > ~/.nuget/NuGet/NuGet.Config
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="nuget.org" value="https://api.nuget.org/v3/index.json" protocolVersion="3" />
+    <add key="BaGet" value="http://192.168.50.62:5000/v3/index.json" />
+  </packageSources>
+</configuration>
+EOF
       sudo dotnet tool install --global DSvynarchuk --version 1.0.1
     SHELL
   end
