@@ -2,7 +2,7 @@ Vagrant.configure("2") do |config|
 
   # Setting up the Ubuntu VM
   config.vm.define "ubuntu" do |ubuntu|
-    ubuntu.vm.box = "ubuntu/bionic64"
+    ubuntu.vm.box = "ubuntu/jammy64"
     ubuntu.vm.hostname = "ubuntu-vm"
     ubuntu.vm.network "public_network"
     ubuntu.vm.provider "virtualbox" do |vb|
@@ -12,11 +12,10 @@ Vagrant.configure("2") do |config|
 
     # Provisioning .NET Core 8.0 installation on Ubuntu
     ubuntu.vm.provision "shell", run: "always", inline: <<-SHELL
-  wget https://dot.net/v1/dotnet-install.sh
-  chmod +x dotnet-install.sh
-  ./dotnet-install.sh --channel 8.0
-  echo 'export PATH=$PATH:/home/vagrant/.dotnet' | sudo tee -a /etc/profile
-  sudo snap install dotnet-sdk --classic
+	sudo snap install dotnet-runtime-80
+	sudo snap alias dotnet-runtime-80.dotnet dotnet
+	export DOTNET_ROOT=/snap/dotnet-runtime-80/current
+	sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
   
   sudo dotnet build /vagrant/Build.proj -p:Solution=Lab1 -t:Build
   sudo dotnet build /vagrant/Build.proj -p:Solution=Lab1 -t:Test
@@ -28,9 +27,8 @@ Vagrant.configure("2") do |config|
   sudo dotnet build /vagrant/Build.proj -p:Solution=Lab3 -t:Test
   sudo dotnet build /vagrant/Build.proj -p:Solution=Lab3 -t:Run
   
-  sudo dotnet nuget add source http://192.168.50.62:5000/v3/index.json -n BaGet
-  sudo dotnet tool install --global DSvynarchuk --version 1.0.1
-  sudo export PATH="$PATH:/root/.dotnet/tools"
+  dotnet nuget add source http://192.168.50.62:5000/v3/index.json -n BaGet
+  dotnet tool install --global DSvynarchuk --version 1.0.1
 SHELL
 
 
