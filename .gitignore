@@ -405,3 +405,5 @@ FodyWeavers.xsd
 /Lab3/OUTPUT.TXT
 /Lab4/Lab4/INPUT.TXT
 /Lab4/Lab4/OUTPUT.TXT
+/Lab1/INPUT.TXT
+*.TXT
