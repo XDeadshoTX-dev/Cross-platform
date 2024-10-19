@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Lab5
 {
     public class Program
@@ -6,9 +9,12 @@ namespace Lab5
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
+
             var app = builder.Build();
 
+            app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -17,9 +23,8 @@ namespace Lab5
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            app.UseStaticFiles();
-
             app.Run();
+
         }
     }
 }
