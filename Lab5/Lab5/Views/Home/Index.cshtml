@@ -12,31 +12,25 @@
 </head>
 <body>
     <h2>Форма реєстрації</h2>
-    <!-- Додаємо атрибути action і method для відправки POST-запиту -->
     <form action="/Home/RegistrationAuth0" method="post">
-        <!-- Ім'я користувача (максимум 50 символів, унікальне) -->
         <label for="username">Ім'я користувача:</label><br>
         <input type="text" id="username" name="username" maxlength="50" required><br><br>
 
-        <!-- ФІО (максимум 500 символів) -->
         <label for="fullname">ФІО:</label><br>
         <input type="text" id="fullname" name="fullname" maxlength="500" required><br><br>
 
-        <!-- Пароль (з усіма вимогами) -->
         <label for="password">Пароль:</label><br>
         <input type="password" id="password" name="password"
                pattern="(?=.*\d)(?=.*[@@_$!%*?&])(?=.*[A-Z]).{8,16}"
                title="Пароль повинен містити 1 цифру, 1 спеціальний знак, 1 велику літеру і бути довжиною від 8 до 16 символів"
                required><br><br>
 
-        <!-- Підтвердження пароля -->
         <label for="passwordConfirm">Підтвердження паролю:</label><br>
         <input type="password" id="passwordConfirm" name="passwordConfirm"
                pattern="(?=.*\d)(?=.*[@@_$!%*?&])(?=.*[A-Z]).{8,16}"
                title="Пароль повинен містити 1 цифру, 1 спеціальний знак, 1 велику літеру і бути довжиною від 8 до 16 символів"
                required><br><br>
 
-        <!-- Телефон (формат України) -->
         <label for="phone">Телефон (формат Україна):</label><br>
         <input type="tel" id="phone" name="phone"
                pattern="\+?38[0-9]{10}"
@@ -44,15 +38,14 @@
                title="Введіть телефон у форматі +380XXXXXXXXX"
                required><br><br>
 
-        <!-- Електронна адреса -->
         <label for="email">Електронна адреса:</label><br>
         <input type="email" id="email" name="email" required><br><br>
 
         <input type="submit" value="Зареєструватися">
     </form>
-    @if (ViewBag.Username != null)
+    @if(ViewBag.Error != null)
     {
-        <h1>OK</h1>
+        <p style="color: red">@ViewBag.Error</p>
     }
 </body>
 </html>
