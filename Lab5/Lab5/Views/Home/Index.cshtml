@@ -11,6 +11,37 @@
     <title>@ViewData["Title"]</title>
 </head>
 <body>
-    
+    <h2>Форма реєстрації</h2>
+    <form>
+        <label for="username">Ім'я користувача:</label><br>
+        <input type="text" id="username" name="username" maxlength="50" required><br><br>
+
+        <label for="fullname">ПІБ:</label><br>
+        <input type="text" id="fullname" name="fullname" maxlength="500" required><br><br>
+
+        <label for="password">Пароль:</label><br>
+        <input type="password" id="password" name="password" 
+               pattern="(?=.*\d)(?=.*[@@_$!%*?&])(?=.*[A-Z]).{8,16}" 
+               title="Пароль повинен містити 1 цифру, 1 спеціальний знак, 1 велику літеру і бути довжиною від 8 до 16 символів"
+               required><br><br>
+
+        <label for="passwordConfirm">Підтвердження паролю:</label><br>
+        <input type="password" id="passwordConfirm" name="passwordConfirm" 
+               pattern="(?=.*\d)(?=.*[@@_$!%*?&])(?=.*[A-Z]).{8,16}" 
+               title="Пароль повинен містити 1 цифру, 1 спеціальний знак, 1 велику літеру і бути довжиною від 8 до 16 символів"
+               required><br><br>
+
+        <label for="phone">Телефон (формат Україна):</label><br>
+        <input type="tel" id="phone" name="phone" 
+               pattern="\+?38[0-9]{10}" 
+               placeholder="+380XXXXXXXXX"
+               title="Введіть телефон у форматі +380XXXXXXXXX" 
+               required><br><br>
+
+        <label for="email">Електронна адреса:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <input type="submit" value="Зареєструватися">
+    </form>
 </body>
 </html>
