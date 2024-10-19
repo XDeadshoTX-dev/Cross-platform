@@ -13,9 +13,12 @@ namespace Lab5.Controllers
         [HttpPost]
         public IActionResult RegistrationAuth0(string username, string fullname, string password, string passwordConfirm, string phone, string email)
         {
-            Console.WriteLine($"{username} {fullname} {password} {passwordConfirm} {phone} {email}");
-            ViewBag.Username = username;
-            return RedirectToAction("Index");
+            if(password != passwordConfirm)
+            {
+                ViewBag.Error = "Паролі не збігаються!";
+                return View("Index");
+            }
+            return View("Index");
         }
     }
 }
