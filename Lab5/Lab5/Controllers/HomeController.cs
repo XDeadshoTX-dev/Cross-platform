@@ -53,7 +53,7 @@ namespace Lab5.Controllers
                     return View("Index");
                 }
                 string userToken = await authManagements.GetUserTokenAsync(username, password);
-                return View("Control");
+                return Redirect("/Control");
             }
             catch(Exception ex) 
             {
