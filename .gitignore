@@ -408,3 +408,8 @@ FodyWeavers.xsd
 /Lab1/INPUT.TXT
 *.TXT
 /Lab5/Lab5/.env
+/Lab5/Lab5/Pages/Control.html
+/Lab5/Lab5/Pages/Lab1.html
+/Lab5/Lab5/Pages/Lab2.html
+/Lab5/Lab5/Pages/Lab3.html
+/Lab5/Lab5/Pages/Profile.html
