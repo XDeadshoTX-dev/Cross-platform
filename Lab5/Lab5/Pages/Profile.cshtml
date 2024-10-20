@@ -1,0 +1,41 @@
+﻿@page
+@model Lab5.Pages.ProfileModel
+@{
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/css/profile.css" />
+    <title>Профіль користувача</title>
+</head>
+<body>
+    <header>
+        <h1><a href="Control">Лабораторна робота №5</a></h1>
+        <ul>
+            <li><a href="Lab1">Лабораторна робота №1</a></li>
+            <li><a href="Lab2">Лабораторна робота №2</a></li>
+            <li><a href="Lab3">Лабораторна робота №3</a></li>
+        </ul>
+        <div id="profile-icon">
+            <a href="Profile">
+                <img src="~/images/profile-white.png" id="profile-img">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section id="user-profile">
+            <h2>Профіль користувача</h2>
+            <div class="profile-info">
+                <p><strong>Ім'я користувача:</strong> <span id="username-display">User123</span></p>
+                <p><strong>ФІО:</strong> <span id="fullname-display">Іван Іванович Іванов</span></p>
+                <p><strong>Телефон:</strong> <span id="phone-display">+380123456789</span></p>
+                <p><strong>Електронна адреса:</strong> <span id="email-display">example@example.com</span></p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
