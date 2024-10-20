@@ -16,6 +16,11 @@ namespace Lab5.Controllers
         {
             return View();
         }
+        public IActionResult Control()
+        {
+            return View();
+        }
+
         AuthManagements authManagements = new AuthManagements();
         [HttpPost]
         public async Task<IActionResult> RegistrationAuth0(string username, string fullname, string password, string passwordConfirm, string phone, string email)

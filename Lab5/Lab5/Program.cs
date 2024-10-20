@@ -11,12 +11,14 @@ namespace Lab5
 
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
+            builder.Services.AddRazorPages();
 
             var app = builder.Build();
 
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -25,6 +27,8 @@ namespace Lab5
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            app.MapRazorPages();
+             
             app.Run();
 
         }

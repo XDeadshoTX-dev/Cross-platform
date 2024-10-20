@@ -1,0 +1,34 @@
+body{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background-color: #323232;
+}
+header {
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 10px;
+    background-color: #414141;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+header > ul {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+header > ul > li > a, #profile-icon > a {
+    color: white;
+    text-decoration: none;
+}
+
+header > ul > li, header > h1 {
+    cursor: pointer;
+}
+
+main {
+    color: white;
+    text-align: center;
+}
