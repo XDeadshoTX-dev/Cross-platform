@@ -45,7 +45,31 @@ namespace Lab5.Controllers
             var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(jsonResponse);
             return tokenResponse.access_token;
         }
-        private async Task CreateUser(string username, string fullname, string password, string phone, string email, string clientToken)
+        public async Task<string> GetUserTokenAsync(string username, string password)
+        {
+            var requestData = new FormUrlEncodedContent(new[]
+                {
+                    new KeyValuePair<string, string>("grant_type", "password"),
+                    new KeyValuePair<string, string>("client_id", _clientId),
+                    new KeyValuePair<string, string>("client_secret", _clientSecret),
+                    new KeyValuePair<string, string>("username", username),
+                    new KeyValuePair<string, string>("password", password),
+                    new KeyValuePair<string, string>("audience", _audience),
+                    new KeyValuePair<string, string>("scope", "offline_access"),
+                    new KeyValuePair<string, string>("connection", "Username-Password-Authentication")
+                });
+
+            // Отправляем запрос
+            HttpResponseMessage response = await _httpClient.PostAsync($"https://{_auth0Domain}/oauth/token", requestData);
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($"Error getting user token: {response.ToString()}");
+            }
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(jsonResponse);
+            return tokenResponse.access_token;
+        }
+        private async Task CreateUserAsync(string username, string fullname, string password, string phone, string email, string clientToken)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"https://{_auth0Domain}/api/v2/users");
 
@@ -92,11 +116,29 @@ namespace Lab5.Controllers
                     return View("Index");
                 }
                 string clientToken = await GetClientTokenAsync();
-                await CreateUser(username, fullname, password, phone, email, clientToken);
+                await CreateUserAsync(username, fullname, password, phone, email, clientToken);
                 ViewBag.Message = "Користувача успішно створено!";
                 return View("Index");
             }
             catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View("Index");
+            }
+        }
+        public async Task<IActionResult> LoginAuth0(string username, string password)
+        {
+            try
+            {
+                if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                {
+                    ViewBag.Error = "Введіть логін та пароль!";
+                    return View("Index");
+                }
+                string userToken = await GetUserTokenAsync(username, password);
+                return View("Control");
+            }
+            catch(Exception ex) 
             {
                 ViewBag.Error = ex.Message;
                 return View("Index");
