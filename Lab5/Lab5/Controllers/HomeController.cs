@@ -62,7 +62,6 @@ namespace Lab5.Controllers
                 family_name = "string",
                 name = fullname,
                 nickname = "string",
-                picture = "https://crazybox.com.ua/image/catalog/exotic_fruits/ananas_gold.JPG",
                 connection = "Username-Password-Authentication",
                 password = password,
                 verify_email = false,
