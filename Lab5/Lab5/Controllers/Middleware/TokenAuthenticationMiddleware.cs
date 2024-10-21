@@ -22,7 +22,15 @@
                     return;
                 }
             }
-
+            else if (path.Contains("/"))
+            {
+                var token = context.Request.Cookies["AuthToken"];
+                if (!string.IsNullOrEmpty(token))
+                {
+                    context.Response.Redirect("/Control");
+                    return;
+                }
+            }
             await _next(context);
         }
     }
