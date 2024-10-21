@@ -16,10 +16,6 @@ namespace Lab5.Controllers
         {
             return View();
         }
-        public IActionResult Control()
-        {
-            return View();
-        }
 
         AuthManagements authManagements = new AuthManagements();
         [HttpPost]
@@ -57,9 +53,10 @@ namespace Lab5.Controllers
 
                 Response.Cookies.Append("AuthToken", userToken, new CookieOptions
                 {
-                    HttpOnly = true,
+                    HttpOnly = false,
                     Secure = true,
-                    SameSite = SameSiteMode.Strict
+                    SameSite = SameSiteMode.Strict,
+                    Expires = DateTime.UtcNow.AddHours(1)
                 });
 
                 return Redirect("/Control");
