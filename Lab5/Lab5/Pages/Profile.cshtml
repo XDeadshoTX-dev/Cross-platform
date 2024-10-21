@@ -10,6 +10,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="~/css/profile.css" />
     <title>Профіль користувача</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <header>
@@ -39,18 +40,32 @@
     </main>
 </body>
 <script>
-    const token = sessionStorage.getItem('token');
-    axios.get('/GetProfile', {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then(response => {
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    const token = getCookie('AuthToken');
+    if (token) {
+        axios.get('/Home/GetProfile', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then(response => {
             document.getElementById('username-display').innerText = response.data.username;
             document.getElementById('fullname-display').innerText = response.data.fullname;
             document.getElementById('phone-display').innerText = response.data.phone;
             document.getElementById('email-display').innerText = response.data.email;
         }).catch(error => {
-            console.error(error);
+            if (error.response && error.response.status === 302) {
+                console.log('Redirected to:', error.response.headers.location);
+            } else {
+                console.error(error);
+            }
         });
+    } else {
+        console.error('Token not found in cookies');
+    }
 </script>
 </html>
