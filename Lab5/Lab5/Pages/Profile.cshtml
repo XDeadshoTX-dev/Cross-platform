@@ -54,8 +54,8 @@
             }
         }).then(response => {
             document.getElementById('username-display').innerText = response.data.username;
-            document.getElementById('fullname-display').innerText = response.data.fullname;
-            document.getElementById('phone-display').innerText = response.data.phone;
+            document.getElementById('fullname-display').innerText = response.data.name;
+            document.getElementById('phone-display').innerText = response.data.phone_number;
             document.getElementById('email-display').innerText = response.data.email;
         }).catch(error => {
             if (error.response && error.response.status === 302) {
