@@ -54,7 +54,14 @@ namespace Lab5.Controllers
                     return View("Index");
                 }
                 string userToken = await authManagements.GetUserTokenAsync(username, password);
-                TempData["UserToken"] = userToken;
+
+                Response.Cookies.Append("AuthToken", userToken, new CookieOptions
+                {
+                    HttpOnly = true,
+                    Secure = true,
+                    SameSite = SameSiteMode.Strict
+                });
+
                 return Redirect("/Control");
             }
             catch(Exception ex) 
