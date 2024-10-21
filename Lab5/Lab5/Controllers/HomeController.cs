@@ -68,7 +68,7 @@ namespace Lab5.Controllers
             }
         }
         [HttpGet]
-        public async Task<IActionResult> GetProfile()
+        public async Task<string> GetProfile()
         {
             try
             {
@@ -83,13 +83,11 @@ namespace Lab5.Controllers
                 string userID = await authManagements.GetUserID(token);
                 string jsonResponse = await authManagements.GetUserInfo(userID);
 
-                ViewBag.Profile = jsonResponse;
-                return View("Profile");
+                return jsonResponse;
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                return View("Profile");
+                return null;
             }
         }
     }

@@ -2,6 +2,11 @@
 using System.Net.Http.Headers;
 using System.Net.Http;
 using System.Text;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
+using System.Security.Cryptography;
+
 
 namespace Lab5.Controllers.Managements
 {
@@ -104,10 +109,59 @@ namespace Lab5.Controllers.Managements
                 throw new Exception($"Error creating user: {errorResponse}");
             }
         }
+
         public async Task<string> GetUserID(string token)
         {
-            string userID = null;
-            return userID;
+            // Получаем JWKS от Auth0
+            var jwksUri = $"https://{_auth0Domain}/.well-known/jwks.json";
+            var jwks = await _httpClient.GetFromJsonAsync<Jwks>(jwksUri);
+
+            // Создаем параметры для валидации токена
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKeys = jwks.Keys.Select(key => new RsaSecurityKey(CreateRsaParameters(key))),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+            };
+
+            try
+            {
+                // Валидация токена
+                var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
+
+                var userId = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                return userId;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Token validation failed: {ex.Message}");
+            }
+        }
+
+        private RSAParameters CreateRsaParameters(JsonWebKey key)
+        {
+            return new RSAParameters
+            {
+                Modulus = Base64UrlEncoder.DecodeBytes(key.N),
+                Exponent = Base64UrlEncoder.DecodeBytes(key.E),
+            };
+        }
+
+        // Класс для десериализации JWKS
+        public class Jwks
+        {
+            public List<JsonWebKey> Keys { get; set; }
+        }
+
+        // Класс для десериализации ключа
+        public class JsonWebKey
+        {
+            public string Kty { get; set; }
+            public string Kid { get; set; }
+            public string N { get; set; } // Модуля
+            public string E { get; set; } // Экспонента
         }
         public async Task<string> GetUserInfo(string id)
         {
