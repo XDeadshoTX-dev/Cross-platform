@@ -1,3 +1,4 @@
+using Lab5.Controllers.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,6 +20,7 @@ namespace Lab5
             app.UseRouting();
             app.UseAuthorization();
 
+            app.UseMiddleware<TokenAuthenticationMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
