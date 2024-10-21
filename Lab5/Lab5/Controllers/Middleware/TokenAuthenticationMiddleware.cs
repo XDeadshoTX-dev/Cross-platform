@@ -22,7 +22,7 @@
                     return;
                 }
             }
-            else if (path.Contains("/"))
+            else if (path.ToString() == "/")
             {
                 var token = context.Request.Cookies["AuthToken"];
                 if (!string.IsNullOrEmpty(token))
