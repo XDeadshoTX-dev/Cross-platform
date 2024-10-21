@@ -30,12 +30,27 @@
         <section id="user-profile">
             <h2>Профіль користувача</h2>
             <div class="profile-info">
-                <p><strong>Ім'я користувача:</strong> <span id="username-display">User123</span></p>
-                <p><strong>ФІО:</strong> <span id="fullname-display">Іван Іванович Іванов</span></p>
-                <p><strong>Телефон:</strong> <span id="phone-display">+380123456789</span></p>
-                <p><strong>Електронна адреса:</strong> <span id="email-display">example@example.com</span></p>
+                <p><strong>Ім'я користувача:</strong> <span id="username-display"></span></p>
+                <p><strong>ФІО:</strong> <span id="fullname-display"></span></p>
+                <p><strong>Телефон:</strong> <span id="phone-display"></span></p>
+                <p><strong>Електронна адреса:</strong> <span id="email-display"></span></p>
             </div>
         </section>
     </main>
 </body>
+<script>
+    const token = sessionStorage.getItem('token');
+    axios.get('/GetProfile', {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }).then(response => {
+            document.getElementById('username-display').innerText = response.data.username;
+            document.getElementById('fullname-display').innerText = response.data.fullname;
+            document.getElementById('phone-display').innerText = response.data.phone;
+            document.getElementById('email-display').innerText = response.data.email;
+        }).catch(error => {
+            console.error(error);
+        });
+</script>
 </html>

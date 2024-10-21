@@ -2,6 +2,7 @@
 @model Lab5.Pages.ControlModel
 @{
     ViewData["Title"] = "Control";
+    var token = TempData["UserToken"] as string;
 }
 
 <!DOCTYPE html>
@@ -33,4 +34,9 @@
     </section>
 </main>
 </body>
+<script>
+    const token = '@token';
+    sessionStorage.setItem('token', token);
+    console.log('User Token:', token);
+</script>
 </html>

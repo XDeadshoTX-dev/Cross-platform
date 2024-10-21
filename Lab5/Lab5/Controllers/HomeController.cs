@@ -43,6 +43,7 @@ namespace Lab5.Controllers
                 return View("Index");
             }
         }
+        [HttpPost]
         public async Task<IActionResult> LoginAuth0(string username, string password)
         {
             try
@@ -53,12 +54,38 @@ namespace Lab5.Controllers
                     return View("Index");
                 }
                 string userToken = await authManagements.GetUserTokenAsync(username, password);
+                TempData["UserToken"] = userToken;
                 return Redirect("/Control");
             }
             catch(Exception ex) 
             {
                 ViewBag.Error = ex.Message;
                 return View("Index");
+            }
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetProfile()
+        {
+            try
+            {
+                var authHeader = HttpContext.Request.Headers["Authorization"].ToString();
+
+                if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
+                {
+                    throw new Exception("Token is missing or invalid.");
+                }
+                string token = authHeader.Substring("Bearer ".Length).Trim();
+
+                string userID = await authManagements.GetUserID(token);
+                string jsonResponse = await authManagements.GetUserInfo(userID);
+
+                ViewBag.Profile = jsonResponse;
+                return View("Profile");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return View("Profile");
             }
         }
     }

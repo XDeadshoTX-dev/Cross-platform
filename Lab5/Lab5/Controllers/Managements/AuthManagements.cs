@@ -16,6 +16,13 @@ namespace Lab5.Controllers.Managements
         {
             public string access_token { get; set; }
         }
+        private class PersonInfo
+        {
+            public string username { get; set; }
+            public string name { get; set; }
+            public string phone_number { get; set; }
+            public string email { get; set; }
+        }
         public async Task<string> GetClientTokenAsync()
         {
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, $"https://{_auth0Domain}/oauth/token");
@@ -69,6 +76,7 @@ namespace Lab5.Controllers.Managements
             var jsonContent = new
             {
                 email = email,
+                phone_number = phone,
                 user_metadata = new { },
                 blocked = false,
                 email_verified = false,
@@ -96,5 +104,39 @@ namespace Lab5.Controllers.Managements
                 throw new Exception($"Error creating user: {errorResponse}");
             }
         }
+        public async Task<string> GetUserID(string token)
+        {
+            string userID = null;
+            return userID;
+        }
+        public async Task<string> GetUserInfo(string id)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://{_auth0Domain}/api/v2/users/{id}");
+
+            string clientToken = await GetClientTokenAsync();
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", clientToken);
+
+            var response = await _httpClient.SendAsync(request);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception("Error getting user info");
+            }
+
+            var userJson = await response.Content.ReadAsStringAsync();
+
+            var userInfo = JsonConvert.DeserializeObject<PersonInfo>(userJson);
+
+            var jsonResult = JsonConvert.SerializeObject(new
+            {
+                username = userInfo.username,
+                name = userInfo.name,
+                phone_number = userInfo.phone_number,
+                email = userInfo.email
+            });
+
+            return jsonResult;
+        }
+
     }
 }
