@@ -1,4 +1,5 @@
-﻿using Lab5.Controllers.Managements;
+﻿using Lab4;
+using Lab5.Controllers.Managements;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -89,6 +90,23 @@ namespace Lab5.Controllers
             {
                 return null;
             }
+        }
+        LabsLibrary labsLibrary;
+        [HttpPost]
+        public async Task<string> StartLab(string lab)
+        {
+            try
+            {
+                labsLibrary = new LabsLibrary(lab);
+                labsLibrary.Build();
+                labsLibrary.Test();
+                labsLibrary.Run();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return null;
         }
     }
 }
