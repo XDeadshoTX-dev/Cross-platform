@@ -62,7 +62,6 @@ namespace Lab5.Controllers.Managements
                     new KeyValuePair<string, string>("connection", "Username-Password-Authentication")
                 });
 
-            // Отправляем запрос
             HttpResponseMessage response = await _httpClient.PostAsync($"https://{_auth0Domain}/oauth/token", requestData);
             if (!response.IsSuccessStatusCode)
             {
@@ -112,11 +111,9 @@ namespace Lab5.Controllers.Managements
 
         public async Task<string> GetUserID(string token)
         {
-            // Получаем JWKS от Auth0
             var jwksUri = $"https://{_auth0Domain}/.well-known/jwks.json";
             var jwks = await _httpClient.GetFromJsonAsync<Jwks>(jwksUri);
 
-            // Создаем параметры для валидации токена
             var tokenHandler = new JwtSecurityTokenHandler();
             var validationParameters = new TokenValidationParameters
             {
@@ -128,7 +125,6 @@ namespace Lab5.Controllers.Managements
 
             try
             {
-                // Валидация токена
                 var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
 
                 var userId = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -149,19 +145,17 @@ namespace Lab5.Controllers.Managements
             };
         }
 
-        // Класс для десериализации JWKS
         public class Jwks
         {
             public List<JsonWebKey> Keys { get; set; }
         }
 
-        // Класс для десериализации ключа
         public class JsonWebKey
         {
             public string Kty { get; set; }
             public string Kid { get; set; }
-            public string N { get; set; } // Модуля
-            public string E { get; set; } // Экспонента
+            public string N { get; set; }
+            public string E { get; set; }
         }
         public async Task<string> GetUserInfo(string id)
         {
