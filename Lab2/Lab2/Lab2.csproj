@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+	<NoWarn>NETSDK1138;NU1803;NU1900;NU1903;NU1902</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
