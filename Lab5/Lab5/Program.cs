@@ -1,6 +1,7 @@
 using Lab5.Controllers.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using System.Text;
 
 namespace Lab5
 {
@@ -8,6 +9,7 @@ namespace Lab5
     {
         public static void Main(string[] args)
         {
+            Console.OutputEncoding = Encoding.UTF8;
             DotNetEnv.Env.Load();
 
             var builder = WebApplication.CreateBuilder(args);
