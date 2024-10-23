@@ -9,7 +9,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="~/css/lab2.css" />
-    <title>Title</title>
+    <title>@ViewData</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <header>
@@ -66,13 +67,13 @@
                 </tr>
             </tbody>
         </table>
-        <form action="/Home/StartLab" method="post" enctype="multipart/form-data">
+        <form enctype="multipart/form-data">
             <label for="inputFile">Завантажити файл <strong>INPUT.TXT</strong>:</label>
             <input type="file" id="inputFile" name="inputFile" accept=".txt" required><br><br>
-            <input type="hidden" name="lab" value="Lab2">
+            <input type="hidden" id="lab" name="lab" value="Lab2">
             <small>Будь ласка, завантажте файл з назвою <strong>INPUT.TXT</strong>.</small><br><br>
 
-            <input type="submit" value="Обробити файл">
+            <input id="sendButton" type="submit" value="Обробити файл">
         </form>
 
         <div id="output-section" style="display: none;">
@@ -81,4 +82,30 @@
         </div>
     </main>
 </body>
+<script>
+    const sendButton = document.getElementById('sendButton');
+    sendButton.addEventListener('click', async (event) => {
+        event.preventDefault();
+
+        const inputFile = document.getElementById('inputFile').files[0];
+        const lab = document.getElementById('lab').value;
+
+        const formData = new FormData();
+        formData.append('inputFile', inputFile);
+        formData.append('lab', lab);
+
+        try {
+
+            const response = await axios.post('/Home/StartLab', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            console.log(response.data);
+        } catch (error) {
+            console.log('Error:', error);
+        }
+    });
+</script>
 </html>
