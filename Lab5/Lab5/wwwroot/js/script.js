@@ -24,11 +24,11 @@ sendButton.addEventListener('click', async (event) => {
         const runningText = data.match(/(Starting)[\s\S]*/)?.[0];
 
         const p1 = outputConsole.appendChild(document.createElement("p"));
-        p1.innerHTML = buildingText;
+        p1.innerHTML = buildingText.replace(/\n/g, '<br>');
         const p2 = outputConsole.appendChild(document.createElement("p"));
-        p2.innerHTML = testingText;
+        p2.innerHTML = testingText.replace(/\n/g, '<br>');
         const p3 = outputConsole.appendChild(document.createElement("p"));
-        p3.innerHTML = runningText;
+        p3.innerHTML = runningText.replace(/\n/g, '<br>');
 
     } catch (error) {
         const p = outputConsole.appendChild(document.createElement("p"));
