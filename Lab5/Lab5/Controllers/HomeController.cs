@@ -119,7 +119,6 @@ namespace Lab5.Controllers
             {
                 throw new Exception(ex.Message);
             }
-            return null;
         }
     }
 }
