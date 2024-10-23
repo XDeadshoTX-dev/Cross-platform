@@ -50,13 +50,6 @@ namespace Lab5.Controllers.Managements
         }
         public async Task<string> GetUserTokenAsync(string username, string password)
         {
-            Console.WriteLine(_auth0Domain);
-            Console.WriteLine(_clientId);
-            Console.WriteLine(_clientSecret);
-            Console.WriteLine(_audience);
-            Console.WriteLine(username);
-            Console.WriteLine(password);
-
             var requestData = new FormUrlEncodedContent(new[]
                 {
                     new KeyValuePair<string, string>("grant_type", "password"),
