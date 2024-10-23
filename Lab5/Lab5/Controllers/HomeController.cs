@@ -1,5 +1,6 @@
 ﻿using Lab4;
 using Lab5.Controllers.Managements;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -93,14 +94,26 @@ namespace Lab5.Controllers
         }
         LabsLibrary labsLibrary;
         [HttpPost]
-        public async Task<string> StartLab(string lab)
+        public async Task<string> StartLab(IFormFile inputFile, string lab)
         {
             try
             {
+                if (inputFile == null || inputFile.Length == 0 || inputFile.FileName != "INPUT.TXT")
+                {
+                    return "The file was not uploaded!";
+                }
+                string directory = $"../../{lab}/INPUT.TXT";
+                using (var stream = new FileStream(directory, FileMode.Create))
+                {
+                    await inputFile.CopyToAsync(stream);
+                }
+
+
                 labsLibrary = new LabsLibrary(lab);
                 labsLibrary.Build();
                 labsLibrary.Test();
                 labsLibrary.Run();
+                return labsLibrary.GetOutputConsole;
             }
             catch (Exception ex)
             {
