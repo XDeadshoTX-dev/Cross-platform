@@ -30,8 +30,6 @@ Vagrant.configure("2") do |config|
   dotnet nuget add source http://192.168.50.62:5000/v3/index.json -n BaGet
   dotnet tool install --global DSvynarchuk --version 1.0.1
 SHELL
-
-
   end
 
   # Setting up the Windows VM
@@ -193,5 +191,28 @@ end
 EOF
       sudo dotnet tool install --global DSvynarchuk --version 1.0.1
     SHELL
+  end
+  
+    config.vm.define "lab5" do |lab5|
+    lab5.vm.box = "ubuntu/jammy64"
+    lab5.vm.hostname = "lab5-vm"
+    lab5.vm.network "public_network"
+	lab5.vm.network "forwarded_port", guest: 5232, host: 5232
+    lab5.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 4
+    end
+
+    # Provisioning .NET Core 8.0 installation on Ubuntu
+    lab5.vm.provision "shell", run: "always", inline: <<-SHELL
+	sudo snap install dotnet-runtime-80
+	sudo snap alias dotnet-runtime-80.dotnet dotnet
+	export DOTNET_ROOT=/snap/dotnet-runtime-80/current
+	sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
+	
+	sudo dotnet build /vagrant/Build.proj -p:Solution=Lab5 -t:Build
+	sudo dotnet build /vagrant/Build.proj -p:Solution=Lab5 -t:Publish
+	sudo dotnet build /vagrant/Build.proj -p:Solution=Lab5 -t:RunWeb
+SHELL
   end
 end
