@@ -1,4 +1,5 @@
 ﻿const sendButton = document.getElementById('sendButton');
+const outputConsole = document.getElementById('output-section');
 sendButton.addEventListener('click', async (event) => {
     event.preventDefault();
 
@@ -17,8 +18,10 @@ sendButton.addEventListener('click', async (event) => {
             }
         });
 
-        console.log(response.data);
+        const p = outputConsole.appendChild(document.createElement("p"));
+        p.innerHTML = response.data;
     } catch (error) {
-        console.log('Error:', error);
+        const p = outputConsole.appendChild(document.createElement("p"));
+        p.innerHTML = `Error: ${error}`;
     }
 });
