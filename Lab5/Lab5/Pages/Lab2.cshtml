@@ -67,18 +67,23 @@
                 </tr>
             </tbody>
         </table>
-        <form enctype="multipart/form-data">
-            <label for="inputFile">Завантажити файл <strong>INPUT.TXT</strong>:</label>
-            <input type="file" id="inputFile" name="inputFile" accept=".txt" required><br><br>
-            <input type="hidden" id="lab" name="lab" value="Lab2">
-            <small>Будь ласка, завантажте файл з назвою <strong>INPUT.TXT</strong>.</small><br><br>
+        <div id="panel">
+            <form enctype="multipart/form-data">
+                <label for="inputFile">Завантажити файл <strong>INPUT.TXT</strong>:</label>
+                <input type="file" id="inputFile" name="inputFile" accept=".txt" required><br><br>
+                <input type="hidden" id="lab" name="lab" value="Lab2">
+                <small>Будь ласка, завантажте файл з назвою <strong>INPUT.TXT</strong>.</small><br><br>
 
-            <input id="sendButton" type="submit" value="Обробити файл">
-        </form>
+                <input id="sendButton" type="submit" value="Обробити файл">
+            </form>
+            <div id="download-section" style="display: none;">
+                <h3>Результати</h3>
+                <a href="/files/OUTPUT.TXT" download="OUTPUT.TXT">Завантажити результат (OUTPUT.TXT)</a>
+            </div>
 
-        <div id="output-section" style="display: none;">
-            <h3>Результати</h3>
-            <a href="/files/OUTPUT.TXT" download="OUTPUT.TXT">Завантажити результат (OUTPUT.TXT)</a>
+            <div id="output-section">
+                <h4>Output</h4>
+            </div>
         </div>
     </main>
 </body>
