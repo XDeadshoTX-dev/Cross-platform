@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Controllers\LabsLibrary\" />
     <Folder Include="Models\" />
-    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
