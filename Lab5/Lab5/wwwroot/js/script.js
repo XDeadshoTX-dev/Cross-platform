@@ -18,8 +18,18 @@ sendButton.addEventListener('click', async (event) => {
             }
         });
 
-        const p = outputConsole.appendChild(document.createElement("p"));
-        p.innerHTML = response.data;
+        const data = response.data;
+        const buildingText = data.match(/Building[\s\S]*?(?=Testing)/)?.[0];
+        const testingText = data.match(/Testing[\s\S]*?(?=Starting)/)?.[0];
+        const runningText = data.match(/(Starting)[\s\S]*/)?.[0];
+
+        const p1 = outputConsole.appendChild(document.createElement("p"));
+        p1.innerHTML = buildingText;
+        const p2 = outputConsole.appendChild(document.createElement("p"));
+        p2.innerHTML = testingText;
+        const p3 = outputConsole.appendChild(document.createElement("p"));
+        p3.innerHTML = runningText;
+
     } catch (error) {
         const p = outputConsole.appendChild(document.createElement("p"));
         p.innerHTML = `Error: ${error}`;
