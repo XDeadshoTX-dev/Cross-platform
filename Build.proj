@@ -16,6 +16,14 @@
     <Message Text="Detected OS: $(OSName)" Importance="High" />
 	<Message Text="Is macOS: $(IsMacOS)" Importance="High" />
   </Target>
+  
+  <Target Name="Publish" DependsOnTargets="CheckOS">
+  <PropertyGroup>
+    <BuildCommand Condition="'$(IsMacOS)' == 'true'">dotnet publish $(Solution)/$(Solution)/$(Solution).csproj --framework netcoreapp2.2</BuildCommand>
+    <BuildCommand Condition="'$(IsMacOS)' != 'true'">dotnet publish $(Solution)/$(Solution)/$(Solution).csproj --framework net8.0</BuildCommand>
+  </PropertyGroup>
+    <Exec Command="$(BuildCommand)" />
+  </Target>
 
   <Target Name="Build" DependsOnTargets="CheckOS">
   <PropertyGroup>
@@ -29,6 +37,14 @@
   <PropertyGroup>
     <RunCommand Condition="'$(IsMacOS)' == 'true'">dotnet run --project $(Solution)/$(Solution)/$(Solution).csproj --framework netcoreapp2.2</RunCommand>
     <RunCommand Condition="'$(IsMacOS)' != 'true'">dotnet run --project $(Solution)/$(Solution)/$(Solution).csproj --framework net8.0</RunCommand>
+  </PropertyGroup>
+    <Exec Command="$(RunCommand)" />
+  </Target>
+
+	<Target Name="RunWeb" DependsOnTargets="CheckOS">
+  <PropertyGroup>
+    <RunCommand Condition="'$(IsMacOS)' == 'true'">dotnet run --project $(Solution)/$(Solution)/$(Solution).csproj --framework netcoreapp2.2 --urls "http://0.0.0.0:5232"</RunCommand>
+    <RunCommand Condition="'$(IsMacOS)' != 'true'">dotnet run --project $(Solution)/$(Solution)/$(Solution).csproj --framework net8.0 --urls "http://0.0.0.0:5232"</RunCommand>
   </PropertyGroup>
     <Exec Command="$(RunCommand)" />
   </Target>
