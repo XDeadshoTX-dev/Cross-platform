@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../wwwroot/css/lab2.css" />
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <h1><a href="Control.html">Лабораторна робота №5</a></h1>
+    <ul>
+        <li><a href="Lab1.html">Лабораторна робота №1</a></li>
+        <li><a href="Lab2.html">Лабораторна робота №2</a></li>
+        <li><a href="Lab3.html">Лабораторна робота №3</a></li>
+    </ul>
+    <div id="profile-icon">
+        <a href="Profile.html">
+            <img src="../wwwroot/images/profile-white.png" id="profile-img">
+        </a>
+    </div>
+</header>
+
+<main>
+    <section id="welcome">
+        <h1>Ласкаво просимо до панелі управління!</h1>
+        <p>Ця панель управління призначена для управління різними підпрограмами та користувачами.</p>
+    </section>
+    <p>Знайдіть <strong>n</strong>-й елемент послідовності, що строго зростає, яка описується наступними правилами:</p>
+    <ol>
+        <li>Число <strong>1</strong> є елементом послідовності.</li>
+        <li>Якщо <strong>a</strong> — елемент послідовності, то <strong>2a</strong>, <strong>3a</strong>, <strong>5a</strong> також є елементами послідовності.</li>
+        <li>Послідовності належать лише елементи, задані правилами 1 та 2.</li>
+    </ol>
+
+    <h2>Вхідні дані</h2>
+    <p>Вхідний файл <strong>INPUT.TXT</strong> містить одне натуральне число <strong>n</strong> (<strong>n &lt; 10 000</strong>).</p>
+
+    <h2>Вихідні дані</h2>
+    <p>У вихідний файл <strong>OUTPUT.TXT</strong> виведіть одне число — <strong>n</strong>-й елемент послідовності.</p>
+
+    <h2>Приклади</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>№</th>
+            <th>INPUT.TXT</th>
+            <th>OUTPUT.TXT</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>9</td>
+            <td>10</td>
+        </tr>
+        </tbody>
+    </table>
+    <form action="/Home/BuildProj" method="post" enctype="multipart/form-data">
+        <label for="inputFile">Завантажити файл <strong>INPUT.TXT</strong>:</label>
+        <input type="file" id="inputFile" name="inputFile" accept=".txt" required><br><br>
+        <input type="hidden" name="lab" value="lab1">
+        <small>Будь ласка, завантажте файл з назвою <strong>INPUT.TXT</strong>.</small><br><br>
+
+        <input type="submit" value="Обробити файл">
+    </form>
+
+    <div id="output-section" style="display: none;">
+        <h3>Результати</h3>
+        <a href="/files/OUTPUT.TXT" download="OUTPUT.TXT">Завантажити результат (OUTPUT.TXT)</a>
+    </div>
+</main>
+</body>
+</html>
