@@ -86,24 +86,24 @@ namespace Lab6.Models
                 new VehicleCategory { vehicle_category_code = "TRUCK", vehicle_category_description = "Truck" },
                 new VehicleCategory { vehicle_category_code = "VAN", vehicle_category_description = "Van" },
                 new VehicleCategory { vehicle_category_code = "COUPE", vehicle_category_description = "Coupe" },
-                new VehicleCategory { vehicle_category_code = "CONVERTIBLE", vehicle_category_description = "Convertible" },
-                new VehicleCategory { vehicle_category_code = "HATCHBACK", vehicle_category_description = "Hatchback" },
+                new VehicleCategory { vehicle_category_code = "CTIBL", vehicle_category_description = "Convertibl" },
+                new VehicleCategory { vehicle_category_code = "HBACK", vehicle_category_description = "Hatchback" },
                 new VehicleCategory { vehicle_category_code = "WAGON", vehicle_category_description = "Wagon" },
-                new VehicleCategory { vehicle_category_code = "MINIVAN", vehicle_category_description = "Minivan" },
-                new VehicleCategory { vehicle_category_code = "SPORTS", vehicle_category_description = "Sports Car" } // More descriptive
+                new VehicleCategory { vehicle_category_code = "MVAN", vehicle_category_description = "Minivan" },
+                new VehicleCategory { vehicle_category_code = "SPRTS", vehicle_category_description = "Sports Car" }
             );
 
             modelBuilder.Entity<Vehicle>().HasData(
                new Vehicle { reg_number = "ABC1234567", manufacturer_code = "FORD", model_code = "MOD123", vehicle_category_code = "SEDAN", current_mileage = 50000, daily_hire_rate = 55.00M, date_mot_due = new DateTime(2025, 5, 1) },
                new Vehicle { reg_number = "XYZ9876543", manufacturer_code = "TOYO", model_code = "MOD456", vehicle_category_code = "SUV", current_mileage = 30000, daily_hire_rate = 65.00M, date_mot_due = new DateTime(2024, 11, 15) },
                new Vehicle { reg_number = "JKL1237890", manufacturer_code = "HONDA", model_code = "MOD678", vehicle_category_code = "COUPE", current_mileage = 20000, daily_hire_rate = 70.00M, date_mot_due = new DateTime(2025, 2, 20) },
-               new Vehicle { reg_number = "MNO4561234", manufacturer_code = "BMW", model_code = "MOD901", vehicle_category_code = "SPORTS", current_mileage = 10000, daily_hire_rate = 120.00M, date_mot_due = new DateTime(2024, 12, 15) },
-               new Vehicle { reg_number = "DEF4567890", manufacturer_code = "MERCEDES", model_code = "MOD234", vehicle_category_code = "CONVERTIBLE", current_mileage = 15000, daily_hire_rate = 80.00M, date_mot_due = new DateTime(2025, 1, 10) },
+               new Vehicle { reg_number = "MNO4561234", manufacturer_code = "BMW", model_code = "MOD901", vehicle_category_code = "SPRTS", current_mileage = 10000, daily_hire_rate = 120.00M, date_mot_due = new DateTime(2024, 12, 15) },
+               new Vehicle { reg_number = "DEF4567890", manufacturer_code = "MERCEDES", model_code = "MOD234", vehicle_category_code = "CTIBL", current_mileage = 15000, daily_hire_rate = 80.00M, date_mot_due = new DateTime(2025, 1, 10) },
                new Vehicle { reg_number = "GHI9876543", manufacturer_code = "AUDI", model_code = "MOD567", vehicle_category_code = "WAGON", current_mileage = 25000, daily_hire_rate = 85.00M, date_mot_due = new DateTime(2025, 6, 1) },
-               new Vehicle { reg_number = "JKL1234567", manufacturer_code = "HYUNDAI", model_code = "MOD890", vehicle_category_code = "HATCHBACK", current_mileage = 18000, daily_hire_rate = 50.00M, date_mot_due = new DateTime(2025, 3, 15) },
+               new Vehicle { reg_number = "JKL1234567", manufacturer_code = "HYUNDAI", model_code = "MOD890", vehicle_category_code = "HBACK", current_mileage = 18000, daily_hire_rate = 50.00M, date_mot_due = new DateTime(2025, 3, 15) },
                new Vehicle { reg_number = "OPQ9876543", manufacturer_code = "KIA", model_code = "MOD012", vehicle_category_code = "VAN", current_mileage = 22000, daily_hire_rate = 60.00M, date_mot_due = new DateTime(2024, 12, 30) },
                new Vehicle { reg_number = "RST1234567", manufacturer_code = "NISSAN", model_code = "MOD345", vehicle_category_code = "TRUCK", current_mileage = 8000, daily_hire_rate = 90.00M, date_mot_due = new DateTime(2025, 4, 22) },
-               new Vehicle { reg_number = "UVW9876543", manufacturer_code = "VOLVO", model_code = "MOD789", vehicle_category_code = "MINIVAN", current_mileage = 12000, daily_hire_rate = 75.00M, date_mot_due = new DateTime(2025, 7, 8) }
+               new Vehicle { reg_number = "UVW9876543", manufacturer_code = "VOLVO", model_code = "MOD789", vehicle_category_code = "MVAN", current_mileage = 12000, daily_hire_rate = 75.00M, date_mot_due = new DateTime(2025, 7, 8) }
            );
 
             modelBuilder.Entity<BookingStatus>().HasData(
@@ -114,8 +114,8 @@ namespace Lab6.Models
                 new BookingStatus { booking_status_code = "OVD", booking_status_description = "Overdue" }, // Past due date
                 new BookingStatus { booking_status_code = "PPD", booking_status_description = "Prepaid" }, // Paid in advance
                 new BookingStatus { booking_status_code = "CNF", booking_status_description = "Confirmed" },
-                new BookingStatus { booking_status_code = "CHI", booking_status_description = "Checked In" },
-                new BookingStatus { booking_status_code = "CHK", booking_status_description = "Checked Out" },
+                new BookingStatus { booking_status_code = "CHI", booking_status_description = "CheckedIn" },
+                new BookingStatus { booking_status_code = "CHK", booking_status_description = "CheckedOut" },
                 new BookingStatus { booking_status_code = "DIS", booking_status_description = "Disputed" } // For payment or other disputes
             );
 
