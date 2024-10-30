@@ -149,7 +149,5 @@ namespace Lab6.Models
         [Column(TypeName = "varchar(30)")]
         public string country { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
-
-
     }
 }
