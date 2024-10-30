@@ -14,13 +14,31 @@ namespace Lab6.Models
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<BookingStatus> BookingStatuses { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        // LocalDB connection string
-        //private readonly string _connectionString = "Server=(LocalDB)\\MSSQLLocalDB;Database=Lab6;Trusted_Connection=True;TrustServerCertificate=True;";
-        // Microsoft SQL Server connection string
-        private readonly string _connectionString = "Server=(local);Database=Lab6;Trusted_Connection=True;TrustServerCertificate=True;";
+
+        private readonly int db_choice = 3;
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_connectionString);
+            switch (db_choice)
+            {
+                case 1: // LocalDB connection string
+                    optionsBuilder.UseSqlServer(@"Server=(LocalDB)\\MSSQLLocalDB;Database=Lab6;Trusted_Connection=True;TrustServerCertificate=True;");
+                    break;
+                case 2: // Microsoft SQL Server connection string
+                    optionsBuilder.UseSqlServer(@"Server=(local);Database=Lab6;Trusted_Connection=True;TrustServerCertificate=True;");
+                    break;
+                case 3: // PostgreSQL connection string
+                    string username = Environment.GetEnvironmentVariable("PostgreSQLUsername");
+                    string password = Environment.GetEnvironmentVariable("PostgreSQLPassword");
+                    optionsBuilder.UseNpgsql(@$"Host=localhost;Username={username};Password={password};Database=Lab6");
+                    break;
+                case 4: // SQLite connection string
+                    optionsBuilder.UseSqlite("Data Source=Lab6.db");
+                    break;
+                case 5: // In-memory database
+                    optionsBuilder.UseInMemoryDatabase("Lab6");
+                    break;
+            }
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
