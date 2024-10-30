@@ -12,25 +12,22 @@ namespace Lab5
         {
             Console.OutputEncoding = Encoding.UTF8;
             DotNetEnv.Env.Load();
+            // For debugging purposes
             using (var context = new BookingContext())
             {
-                var customer = new Customer
-                {
-                    customer_name = "John Doe",
-                    customer_details = "Frequent renter",
-                    gender = "M",
-                    email_address = "john@example.com",
-                    phone_number = "123456789",
-                    address_line_1 = "123 Main St",
-                    address_line_2 = "Apt 1",
-                    address_line_3 = "Some area",
-                    town = "Sampletown",
-                    county = "Samplecounty",
-                    country = "Sampleland"
-                };
-
-                context.Customers.Add(customer);
+                BookingStatus customer = new BookingStatus { booking_status_code = "CON", booking_status_description = "Confirmed" };
+                context.BookingStatuses.Add(customer);
                 context.SaveChanges();
+            }
+            using (var context = new BookingContext())
+            {
+                var bookingStatuses = context.BookingStatuses.ToList();
+
+                Console.WriteLine("List BookingStatus:");
+                foreach (var status in bookingStatuses)
+                {
+                    Console.WriteLine($"Status code: {status.booking_status_code}, Description: {status.booking_status_description}");
+                }
             }
 
             var builder = WebApplication.CreateBuilder(args);
