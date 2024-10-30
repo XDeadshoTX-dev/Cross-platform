@@ -103,7 +103,7 @@ namespace Lab6.Models
                new Vehicle { reg_number = "JKL1234567", manufacturer_code = "HYUNDAI", model_code = "MOD890", vehicle_category_code = "HATCHBACK", current_mileage = 18000, daily_hire_rate = 50.00M, date_mot_due = new DateTime(2025, 3, 15) },
                new Vehicle { reg_number = "OPQ9876543", manufacturer_code = "KIA", model_code = "MOD012", vehicle_category_code = "VAN", current_mileage = 22000, daily_hire_rate = 60.00M, date_mot_due = new DateTime(2024, 12, 30) },
                new Vehicle { reg_number = "RST1234567", manufacturer_code = "NISSAN", model_code = "MOD345", vehicle_category_code = "TRUCK", current_mileage = 8000, daily_hire_rate = 90.00M, date_mot_due = new DateTime(2025, 4, 22) },
-               new Vehicle { reg_number = "UVW9876543", manufacturer_code = "VOLVO", model_code = "MOD678", vehicle_category_code = "MINIVAN", current_mileage = 12000, daily_hire_rate = 75.00M, date_mot_due = new DateTime(2025, 7, 8) }
+               new Vehicle { reg_number = "UVW9876543", manufacturer_code = "VOLVO", model_code = "MOD789", vehicle_category_code = "MINIVAN", current_mileage = 12000, daily_hire_rate = 75.00M, date_mot_due = new DateTime(2025, 7, 8) }
            );
 
             modelBuilder.Entity<BookingStatus>().HasData(
