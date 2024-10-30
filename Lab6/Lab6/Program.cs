@@ -1,4 +1,5 @@
 using Lab5.Controllers.Middleware;
+using Lab6.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text;
@@ -11,6 +12,8 @@ namespace Lab5
         {
             Console.OutputEncoding = Encoding.UTF8;
             DotNetEnv.Env.Load();
+            BookingContext context = new BookingContext();
+            int test = 0;
 
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
