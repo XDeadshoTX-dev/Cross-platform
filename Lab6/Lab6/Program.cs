@@ -12,8 +12,26 @@ namespace Lab5
         {
             Console.OutputEncoding = Encoding.UTF8;
             DotNetEnv.Env.Load();
-            BookingContext context = new BookingContext();
-            int test = 0;
+            using (var context = new BookingContext())
+            {
+                var customer = new Customer
+                {
+                    customer_name = "John Doe",
+                    customer_details = "Frequent renter",
+                    gender = "M",
+                    email_address = "john@example.com",
+                    phone_number = "123456789",
+                    address_line_1 = "123 Main St",
+                    address_line_2 = "Apt 1",
+                    address_line_3 = "Some area",
+                    town = "Sampletown",
+                    county = "Samplecounty",
+                    country = "Sampleland"
+                };
+
+                context.Customers.Add(customer);
+                context.SaveChanges();
+            }
 
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
