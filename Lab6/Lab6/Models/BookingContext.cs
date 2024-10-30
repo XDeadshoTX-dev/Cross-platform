@@ -14,6 +14,9 @@ namespace Lab6.Models
         public DbSet<Manufacturer> Manufacturers { get; set; }
         public DbSet<BookingStatus> BookingStatuses { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        // LocalDB connection string
+        //private readonly string _connectionString = "Server=(LocalDB)\\MSSQLLocalDB;Database=Lab6;Trusted_Connection=True;TrustServerCertificate=True;";
+        // Microsoft SQL Server connection string
         private readonly string _connectionString = "Server=(local);Database=Lab6;Trusted_Connection=True;TrustServerCertificate=True;";
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
