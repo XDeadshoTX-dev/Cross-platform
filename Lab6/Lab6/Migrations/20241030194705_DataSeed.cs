@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Lab6.Migrations
 {
     /// <inheritdoc />
-    public partial class Test : Migration
+    public partial class DataSeed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -163,8 +163,16 @@ namespace Lab6.Migrations
                 columns: new[] { "booking_status_code", "booking_status_description" },
                 values: new object[,]
                 {
+                    { "CHI", "CheckedIn" },
+                    { "CHK", "CheckedOut" },
                     { "CMP", "Completed" },
-                    { "PND", "Pending" }
+                    { "CNF", "Confirmed" },
+                    { "CNL", "Cancelled" },
+                    { "DIS", "Disputed" },
+                    { "OVD", "Overdue" },
+                    { "PND", "Pending" },
+                    { "PPD", "Prepaid" },
+                    { "RNT", "Rented" }
                 });
 
             migrationBuilder.InsertData(
@@ -172,8 +180,16 @@ namespace Lab6.Migrations
                 columns: new[] { "customer_id", "address_line_1", "address_line_2", "address_line_3", "country", "county", "customer_details", "customer_name", "email_address", "gender", "phone_number", "town" },
                 values: new object[,]
                 {
-                    { 1, "123 Main St", "6567 City", "Test City", "Sampleland", "Samplecounty", "Frequent renter", "John Doe", "john@example.com", "M", "123456789", "Sampletown" },
-                    { 2, "456 Side St", "15 city", "Berlin test", "Sampleland", "Samplecounty", "Occasional renter", "Jane Smith", "jane@example.com", "F", "987654321", "Sampletown" }
+                    { 1, "123 Main St", "Apt 101", "", "Sampleland", "Samplecounty", "Frequent renter", "John Doe", "john@example.com", "M", "123456789", "Sampletown" },
+                    { 2, "456 Side St", "Suite 202", "", "Sampleland", "Samplecounty", "Occasional renter", "Jane Smith", "jane@example.com", "F", "987654321", "Sampletown" },
+                    { 3, "789 Park Ave", "Floor 3", "", "Sampleland", "Samplecounty", "Business renter", "Alice Brown", "alice@example.com", "F", "555555555", "Big City" },
+                    { 4, "321 Hill Rd", "", "", "Sampleland", "Samplecounty", "Tourist", "Bob Green", "bob@example.com", "M", "111111111", "Hilltown" },
+                    { 5, "654 Elm St", "Building A", "", "Sampleland", "Samplecounty", "Long-term renter", "Charlie Johnson", "charlie@example.com", "M", "222222222", "Elmwood" },
+                    { 6, "321 Oak St", "Apartment 5", "", "Sampleland", "Samplecounty", "VIP customer", "Diana Prince", "diana@example.com", "F", "333333333", "Gotham" },
+                    { 7, "789 Pine St", "Unit 10", "", "Sampleland", "Samplecounty", "Adventurer", "Ethan Hunt", "ethan@example.com", "M", "444444444", "Pineville" },
+                    { 8, "222 Maple St", "", "", "Sampleland", "Samplecounty", "Family renter", "Fiona Gallagher", "fiona@example.com", "F", "555555555", "Mapleton" },
+                    { 9, "333 Birch St", "Floor 2", "", "Sampleland", "Samplecounty", "Weekend renter", "George Clark", "george@example.com", "M", "666666666", "Birchtown" },
+                    { 10, "555 Cedar St", "", "", "Sampleland", "Samplecounty", "Seasonal renter", "Hannah Adams", "hannah@example.com", "F", "777777777", "Cedarville" }
                 });
 
             migrationBuilder.InsertData(
@@ -181,8 +197,16 @@ namespace Lab6.Migrations
                 columns: new[] { "manufacturer_code", "manufacturer_details", "manufacturer_name" },
                 values: new object[,]
                 {
+                    { "AUDI", "German car manufacturer", "Audi" },
+                    { "BMW", "German car manufacturer", "BMW" },
                     { "FORD", "American car manufacturer", "Ford" },
-                    { "TOYO", "Japanese car manufacturer", "Toyota" }
+                    { "HONDA", "Japanese car manufacturer", "Honda" },
+                    { "HYUNDAI", "South Korean car manufacturer", "Hyundai" },
+                    { "KIA", "South Korean car manufacturer", "Kia" },
+                    { "MERCEDES", "German car manufacturer", "Mercedes-Benz" },
+                    { "NISSAN", "Japanese car manufacturer", "Nissan" },
+                    { "TOYO", "Japanese car manufacturer", "Toyota" },
+                    { "VOLVO", "Swedish car manufacturer", "Volvo" }
                 });
 
             migrationBuilder.InsertData(
@@ -190,8 +214,16 @@ namespace Lab6.Migrations
                 columns: new[] { "model_code", "daily_hire_rate", "model_name" },
                 values: new object[,]
                 {
+                    { "MOD012", 45.00m, "Model A" },
                     { "MOD123", 50.00m, "Model X" },
-                    { "MOD456", 60.00m, "Model Y" }
+                    { "MOD234", 40.00m, "Model E" },
+                    { "MOD345", 55.00m, "Model B" },
+                    { "MOD456", 60.00m, "Model Y" },
+                    { "MOD567", 50.00m, "Model F" },
+                    { "MOD678", 65.00m, "Model C" },
+                    { "MOD789", 70.00m, "Model Z" },
+                    { "MOD890", 60.00m, "Model G" },
+                    { "MOD901", 75.00m, "Model D" }
                 });
 
             migrationBuilder.InsertData(
@@ -199,8 +231,16 @@ namespace Lab6.Migrations
                 columns: new[] { "vehicle_category_code", "vehicle_category_description" },
                 values: new object[,]
                 {
+                    { "COUPE", "Coupe" },
+                    { "CTIBL", "Convertibl" },
+                    { "HBACK", "Hatchback" },
+                    { "MVAN", "Minivan" },
                     { "SEDAN", "Sedan" },
-                    { "SUV", "SUV" }
+                    { "SPRTS", "Sports Car" },
+                    { "SUV", "SUV" },
+                    { "TRUCK", "Truck" },
+                    { "VAN", "Van" },
+                    { "WAGON", "Wagon" }
                 });
 
             migrationBuilder.InsertData(
@@ -209,6 +249,14 @@ namespace Lab6.Migrations
                 values: new object[,]
                 {
                     { "ABC1234567", 50000, 55.00m, new DateTime(2025, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "FORD", "MOD123", "SEDAN" },
+                    { "DEF4567890", 15000, 80.00m, new DateTime(2025, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "MERCEDES", "MOD234", "CTIBL" },
+                    { "GHI9876543", 25000, 85.00m, new DateTime(2025, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AUDI", "MOD567", "WAGON" },
+                    { "JKL1234567", 18000, 50.00m, new DateTime(2025, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "HYUNDAI", "MOD890", "HBACK" },
+                    { "JKL1237890", 20000, 70.00m, new DateTime(2025, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "HONDA", "MOD678", "COUPE" },
+                    { "MNO4561234", 10000, 120.00m, new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "BMW", "MOD901", "SPRTS" },
+                    { "OPQ9876543", 22000, 60.00m, new DateTime(2024, 12, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "KIA", "MOD012", "VAN" },
+                    { "RST1234567", 8000, 90.00m, new DateTime(2025, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "NISSAN", "MOD345", "TRUCK" },
+                    { "UVW9876543", 12000, 75.00m, new DateTime(2025, 7, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "VOLVO", "MOD789", "MVAN" },
                     { "XYZ9876543", 30000, 65.00m, new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "TOYO", "MOD456", "SUV" }
                 });
 
@@ -218,7 +266,15 @@ namespace Lab6.Migrations
                 values: new object[,]
                 {
                     { 1, "PND", "Y", 1, new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "N", "ABC1234567" },
-                    { 2, "CMP", "Y", 2, new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Y", "XYZ9876543" }
+                    { 2, "CMP", "Y", 2, new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Y", "XYZ9876543" },
+                    { 3, "CNL", "Y", 3, new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), "Y", "JKL1237890" },
+                    { 4, "RNT", "N", 4, new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "N", "MNO4561234" },
+                    { 5, "OVD", "Y", 5, new DateTime(2024, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 12, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "N", "DEF4567890" },
+                    { 6, "PPD", "Y", 6, new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Y", "GHI9876543" },
+                    { 7, "CNF", "Y", 7, new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Y", "JKL1234567" },
+                    { 8, "CHI", "N", 8, new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "N", "OPQ9876543" },
+                    { 9, "CHK", "Y", 9, new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "N", "RST1234567" },
+                    { 10, "DIS", "Y", 10, new DateTime(2024, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Y", "UVW9876543" }
                 });
 
             migrationBuilder.CreateIndex(
