@@ -1,7 +1,10 @@
 using Lab5.Controllers.Middleware;
 using Lab6.Models;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using System.Text;
 
 namespace Lab5
@@ -13,12 +16,12 @@ namespace Lab5
             Console.OutputEncoding = Encoding.UTF8;
             DotNetEnv.Env.Load();
             // For debugging purposes
-            using (var context = new BookingContext())
-            {
-                BookingStatus customer = new BookingStatus { booking_status_code = "CON", booking_status_description = "Confirmed" };
-                context.BookingStatuses.Add(customer);
-                context.SaveChanges();
-            }
+            //using (var context = new BookingContext())
+            //{
+            //    BookingStatus customer = new BookingStatus { booking_status_code = "CON", booking_status_description = "Confirmed" };
+            //    context.BookingStatuses.Add(customer);
+            //    context.SaveChanges();
+            //}
             using (var context = new BookingContext())
             {
                 var bookingStatuses = context.BookingStatuses.ToList();

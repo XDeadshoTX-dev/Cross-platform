@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Lab5.Pages
+namespace Lab6.Pages
 {
     public class ProfileModel : PageModel
     {

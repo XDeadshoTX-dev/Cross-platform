@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Lab6.Pages
 {
-    public class ControlModel : PageModel
+    public class VehicleCategoryInformationModel : PageModel
     {
         public void OnGet()
         {
