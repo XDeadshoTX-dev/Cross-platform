@@ -14,47 +14,58 @@ namespace Lab6.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<string> GetBookingInformation(int id)
+        public async Task<string> GetBookingInformation([FromBody] BookingRequest request)
         {
             using (var context = new BookingContext())
             {
-                var _list = await context.Bookings.Include(b => b.Vehicle).Include(b => b.Customer).FirstOrDefaultAsync(b => b.booking_id == id);
-                var response = JsonConvert.SerializeObject(new
+                var date = new DateTime(request.year, request.month, request.day);
+                var _list = await context.Bookings.Include(b => b.Vehicle).Include(b => b.Customer).Where(b => b.customer_id == request.customerId && b.date_from.Date == date.Date).ToListAsync();
+                var response = JsonConvert.SerializeObject(_list.Select(b => new
                 {
-                    customer_id = _list.customer_id,
-                    customer_name = _list.Customer.customer_name,
-                    customer_details = _list.Customer.customer_details,
-                    reg_number = _list.reg_number,
-                    manufacturer_code = _list.Vehicle.manufacturer_code,
-                    model_code = _list.Vehicle.model_code
-                });
+                    booking_id = b.booking_id,
+                    booking_status_code = b.booking_status_code,
+                    customer_id = b.customer_id,
+                    reg_number = b.reg_number,
+                    date_from = b.date_from,
+                    date_to = b.date_to,
+                    confirmation_letter_sent_yn = b.confirmation_letter_sent_yn,
+                    payment_received_yn = b.payment_received_yn
+                }));
+
                 return response;
             }
         }
+        public class BookingRequest
+        {
+            public int customerId { get; set; }
+            public int day { get; set; }
+            public int month { get; set; }
+            public int year { get; set; }
+        }
         [HttpPost]
-        public async Task<string> VehicleCategoryInformation(string id)
+        public async Task<string> VehicleCategoryInformation(string vehicle_category_code)
         {
             using(var context = new BookingContext())
             {
-                var _list = await context.VehicleCategories.FirstOrDefaultAsync(v => v.vehicle_category_code == id);
-                var response = JsonConvert.SerializeObject(new
+                var _list = await context.VehicleCategories.Where(v => v.vehicle_category_code == vehicle_category_code).ToListAsync();
+                var response = JsonConvert.SerializeObject(_list.Select(b => new
                 {
-                    vehicle_category_description = _list.vehicle_category_description
-                });
+                    vehicle_category_description = b.vehicle_category_description
+                }));
                 return response;
             }
         }
         [HttpPost]
-        public async Task<string> ModelInformation(string id)
+        public async Task<string> ModelInformation(string model_code)
         {
             using (var context = new BookingContext())
             {
-                var _list = await context.Models.FirstOrDefaultAsync(m => m.model_code == id);
-                var response = JsonConvert.SerializeObject(new
+                var _list = await context.Models.Where(m => m.model_code == model_code).ToListAsync();
+                var response = JsonConvert.SerializeObject(_list.Select(b => new
                 {
-                    model_name = _list.model_name,
-                    daily_hire_rate = _list.daily_hire_rate
-                });
+                    model_name = b.model_name,
+                    daily_hire_rate = b.daily_hire_rate
+                }));
                 return response;
             }
         }
