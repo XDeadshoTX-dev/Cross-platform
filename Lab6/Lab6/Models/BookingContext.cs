@@ -15,7 +15,7 @@ namespace Lab6.Models
         public DbSet<BookingStatus> BookingStatuses { get; set; }
         public DbSet<Customer> Customers { get; set; }
 
-        private readonly int db_choice = 3;
+        private readonly int db_choice = 2;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
