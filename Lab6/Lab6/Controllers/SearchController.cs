@@ -60,11 +60,11 @@ namespace Lab6.Controllers
             public string vehicle_category_code { get; set; }
         }
         [HttpPost]
-        public async Task<string> ModelInformation(string model_code)
+        public async Task<string> ModelInformation([FromBody] ModelInformationRequest request)
         {
             using (var context = new BookingContext())
             {
-                var _list = await context.Models.Where(m => m.model_code == model_code).ToListAsync();
+                var _list = await context.Models.Where(m => m.model_code == request.model_code).ToListAsync();
                 var response = JsonConvert.SerializeObject(_list.Select(b => new
                 {
                     model_name = b.model_name,
@@ -72,6 +72,10 @@ namespace Lab6.Controllers
                 }));
                 return response;
             }
+        }
+        public class ModelInformationRequest
+        {
+            public string model_code { get; set; }
         }
     }
 }
