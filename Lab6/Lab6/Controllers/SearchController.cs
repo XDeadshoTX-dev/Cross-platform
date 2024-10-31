@@ -43,17 +43,21 @@ namespace Lab6.Controllers
             public int year { get; set; }
         }
         [HttpPost]
-        public async Task<string> VehicleCategoryInformation(string vehicle_category_code)
+        public async Task<string> VehicleCategoryInformation([FromBody] VehicleCategoryRequest request)
         {
             using(var context = new BookingContext())
             {
-                var _list = await context.VehicleCategories.Where(v => v.vehicle_category_code == vehicle_category_code).ToListAsync();
+                var _list = await context.VehicleCategories.Where(v => v.vehicle_category_code == request.vehicle_category_code).ToListAsync();
                 var response = JsonConvert.SerializeObject(_list.Select(b => new
                 {
                     vehicle_category_description = b.vehicle_category_description
                 }));
                 return response;
             }
+        }
+        public class VehicleCategoryRequest
+        {
+            public string vehicle_category_code { get; set; }
         }
         [HttpPost]
         public async Task<string> ModelInformation(string model_code)
