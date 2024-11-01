@@ -10,7 +10,6 @@ namespace Lab6.Controllers
 {
     [ApiController]
     [Route("api/search")]
-    [Authorize]
     public class SearchController : Controller
     {
         public IActionResult Index()
