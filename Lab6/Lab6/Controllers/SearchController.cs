@@ -7,13 +7,15 @@ using System.Text;
 
 namespace Lab6.Controllers
 {
+    [ApiController]
+    [Route("api/search")]
     public class SearchController : Controller
     {
         public IActionResult Index()
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost("GetBookingInformation")]
         public async Task<string> GetBookingInformation([FromBody] BookingRequest request)
         {
             using (var context = new BookingContext())
@@ -42,7 +44,7 @@ namespace Lab6.Controllers
             public int month { get; set; }
             public int year { get; set; }
         }
-        [HttpPost]
+        [HttpPost("VehicleCategoryInformation")]
         public async Task<string> VehicleCategoryInformation([FromBody] VehicleCategoryRequest request)
         {
             using(var context = new BookingContext())
@@ -59,7 +61,7 @@ namespace Lab6.Controllers
         {
             public string vehicle_category_code { get; set; }
         }
-        [HttpPost]
+        [HttpPost("ModelInformation")]
         public async Task<string> ModelInformation([FromBody] ModelInformationRequest request)
         {
             using (var context = new BookingContext())
