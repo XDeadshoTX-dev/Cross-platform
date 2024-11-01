@@ -6,6 +6,9 @@ using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Lab5.Controllers.Managements;
 
 namespace Lab5
 {
@@ -37,10 +40,33 @@ namespace Lab5
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
+            AuthManagements authManagements = new AuthManagements();
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.Authority = $"https://{authManagements.GetAuth0Domain}/";
+                options.Audience = authManagements.GetAudience;
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = $"https://{authManagements.GetAuth0Domain}/",
+                    ValidateAudience = true,
+                    ValidAudience = authManagements.GetAudience,
+                    ValidateLifetime = true
+                };
+            });
+
             var app = builder.Build();
 
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseMiddleware<TokenAuthenticationMiddleware>();

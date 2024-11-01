@@ -1,4 +1,5 @@
 ﻿using Lab6.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -9,6 +10,7 @@ namespace Lab6.Controllers
 {
     [ApiController]
     [Route("api/search")]
+    [Authorize]
     public class SearchController : Controller
     {
         public IActionResult Index()

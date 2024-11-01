@@ -1,3 +1,9 @@
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 document.getElementById('send-btn').addEventListener('click', async () => {
     const customerId = document.getElementById('customer-id-input').value;
     const day = document.getElementById('day-input').value;
@@ -9,11 +15,17 @@ document.getElementById('send-btn').addEventListener('click', async () => {
         return;
     }
     try {
+        const authToken = getCookie("AuthToken");
         const response = await axios.post('/api/search/GetBookingInformation', {
             customerId: parseInt(customerId),
             day: parseInt(day),
             month: parseInt(month),
             year: parseInt(year)
+        }, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            }
         });
 
         const bookings = response.data;

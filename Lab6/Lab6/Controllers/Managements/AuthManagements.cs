@@ -17,6 +17,14 @@ namespace Lab5.Controllers.Managements
         private readonly string _clientId = Environment.GetEnvironmentVariable("ClientID");
         private readonly string _clientSecret = Environment.GetEnvironmentVariable("ClientSecret");
         private readonly string _audience = $"https://{_auth0Domain}/api/v2/";
+        public string GetAuth0Domain
+        {
+            get { return _auth0Domain; }
+        }
+        public string GetAudience
+        {
+            get { return _audience; }
+        }
         private class TokenResponse
         {
             public string access_token { get; set; }

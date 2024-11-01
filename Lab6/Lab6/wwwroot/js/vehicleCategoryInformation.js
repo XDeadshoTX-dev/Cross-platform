@@ -1,3 +1,9 @@
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
 document.getElementById('send-btn').addEventListener('click', async () => {
     const categoryCode = document.getElementById('category-code-input').value;
 
@@ -7,7 +13,16 @@ document.getElementById('send-btn').addEventListener('click', async () => {
     }
 
     try {
-        const response = await axios.post('/api/search/VehicleCategoryInformation', { vehicle_category_code: categoryCode });
+        const authToken = getCookie("AuthToken");
+        const response = await axios.post('/api/search/VehicleCategoryInformation',
+            {
+                vehicle_category_code: categoryCode
+            }, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            }
+        });
         const description = response.data[0]?.vehicle_category_description || "No description found";
         document.getElementById('category-description').innerText = description;
     } catch (error) {

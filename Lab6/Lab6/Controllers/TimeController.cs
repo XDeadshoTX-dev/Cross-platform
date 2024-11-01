@@ -3,11 +3,13 @@ using System.Globalization;
 using System;
 using TimeZoneConverter;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lab6.Controllers
 {
     [ApiController]
     [Route("api/search")]
+    [Authorize]
     public class TimeController : Controller
     {
         public IActionResult Index()
