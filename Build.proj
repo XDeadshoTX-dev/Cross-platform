@@ -41,12 +41,18 @@
     <Exec Command="$(RunCommand)" />
   </Target>
 
-	<Target Name="RunWeb" DependsOnTargets="CheckOS">
+  <Target Name="RunWeb" DependsOnTargets="CheckOS">
   <PropertyGroup>
     <RunCommand Condition="'$(IsMacOS)' == 'true'">dotnet run --project $(Solution)/$(Solution)/$(Solution).csproj --framework netcoreapp2.2 --urls "http://0.0.0.0:5232"</RunCommand>
     <RunCommand Condition="'$(IsMacOS)' != 'true'">dotnet run --project $(Solution)/$(Solution)/$(Solution).csproj --framework net8.0 --urls "http://0.0.0.0:5232"</RunCommand>
   </PropertyGroup>
     <Exec Command="$(RunCommand)" />
+  </Target>
+  
+  <Target Name="Migrations" DependsOnTargets="CheckOS">
+    <Exec Command="dotnet ef migrations remove --project $(Solution)/$(Solution)/$(Solution).csproj" />
+	<Exec Command="dotnet ef migrations add DataSeed --project $(Solution)/$(Solution)/$(Solution).csproj" />
+	<Exec Command="dotnet ef database update --project $(Solution)/$(Solution)/$(Solution).csproj" />
   </Target>
 
   <Target Name="Test" DependsOnTargets="CheckOS">

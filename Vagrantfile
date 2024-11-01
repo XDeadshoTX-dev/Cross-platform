@@ -215,4 +215,39 @@ EOF
 	sudo dotnet build /vagrant/Build.proj -p:Solution=Lab5 -t:RunWeb
 SHELL
   end
+  config.vm.define "lab6" do |lab6|
+    lab6.vm.box = "ubuntu/jammy64"
+    lab6.vm.hostname = "lab6-vm"
+    lab6.vm.network "public_network"
+    lab6.vm.network "forwarded_port", guest: 5232, host: 5232
+    lab6.vm.provider "virtualbox" do |vb|
+      vb.memory = "4096"
+      vb.cpus = 4
+    end
+
+    # Provisioning .NET Core 8.0 installation on Ubuntu
+    lab6.vm.provision "shell", run: "always", inline: <<-SHELL
+      sudo snap install dotnet-runtime-80
+      sudo snap alias dotnet-runtime-80.dotnet dotnet
+      export DOTNET_ROOT=/snap/dotnet-runtime-80/current
+      sudo apt-get update && sudo apt-get install -y dotnet-sdk-8.0
+      sudo timedatectl set-timezone Asia/Bangkok
+
+      # Install PostgreSQL
+      sudo apt-get update
+      sudo apt-get install -y wget gnupg2
+      wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+      echo "deb http://apt.postgresql.org/pub/repos/apt/ jammy-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+      sudo apt-get update
+      sudo apt-get install -y postgresql postgresql-contrib
+	  
+	  sudo dotnet tool install --global dotnet-ef
+	  export PATH="$PATH:/root/.dotnet/tools"
+	  
+	  sudo dotnet build /vagrant/Build.proj -p:Solution=Lab6 -t:Migrations
+	  sudo dotnet build /vagrant/Build.proj -p:Solution=Lab6 -t:Build
+	  sudo dotnet build /vagrant/Build.proj -p:Solution=Lab6 -t:Publish
+	  sudo dotnet build /vagrant/Build.proj -p:Solution=Lab6 -t:RunWeb
+    SHELL
+  end
 end
