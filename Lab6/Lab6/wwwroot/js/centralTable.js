@@ -9,7 +9,7 @@ document.getElementById('send-btn').addEventListener('click', async () => {
         return;
     }
     try {
-        const response = await axios.post('/Search/GetBookingInformation', {
+        const response = await axios.post('/api/search/GetBookingInformation', {
             customerId: parseInt(customerId),
             day: parseInt(day),
             month: parseInt(month),

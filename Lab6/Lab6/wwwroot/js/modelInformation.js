@@ -7,7 +7,7 @@ document.getElementById('send-btn').addEventListener('click', async () => {
     }
 
     try {
-        const response = await axios.post('/Search/ModelInformation', { model_code: modelCode });
+        const response = await axios.post('/api/search/ModelInformation', { model_code: modelCode });
         const modelDetails = response.data;
 
         const tableBody = document.getElementById('model-details');

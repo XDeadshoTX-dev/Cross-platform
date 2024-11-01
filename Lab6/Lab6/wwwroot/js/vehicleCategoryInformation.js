@@ -7,7 +7,7 @@ document.getElementById('send-btn').addEventListener('click', async () => {
     }
 
     try {
-        const response = await axios.post('/Search/VehicleCategoryInformation', { vehicle_category_code: categoryCode });
+        const response = await axios.post('/api/search/VehicleCategoryInformation', { vehicle_category_code: categoryCode });
         const description = response.data[0]?.vehicle_category_description || "No description found";
         document.getElementById('category-description').innerText = description;
     } catch (error) {
