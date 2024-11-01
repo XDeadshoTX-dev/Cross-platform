@@ -1,0 +1,52 @@
+﻿@page
+@model Lab6.Pages.ConvertToUkraineTimeModel
+@{
+    ViewData["Title"] = "ConvertToUkraineTime";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="~/css/centralTable.css" />
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<header>
+    <h1><a href="Control">Лабораторна робота №5</a></h1>
+    <ul>
+        <li><a href="Lab1">Лабораторна робота №1</a></li>
+        <li><a href="Lab2">Лабораторна робота №2</a></li>
+        <li><a href="Lab3">Лабораторна робота №3</a></li>
+        <li><a href="CentralTable">Центральна таблица</a></li>
+        <li><a href="VehicleCategoryInformation">VehicleCategoryInformation</a></li>
+        <li><a href="ModelInformation">ModelInformation</a></li>
+        <li><a href="ConvertToUkraineTime">ConvertToUkraineTime</a></li>
+    </ul>
+    <div id="profile-icon">
+        <a href="Profile">
+            <img src="~/images/profile-white.png" id="profile-img">
+        </a>
+    </div>
+</header>
+
+<main>
+        <div id="panel">
+            <div id="input-section">
+                <h2>Convert Date and Time to Ukraine Time</h2>
+                <label for="datetime-input">Enter Date and Time:</label>
+                <input type="text" id="datetime-input" placeholder="e.g., 2024-11-01T15:30:00Z" required>
+
+                <button id="convert-btn">Convert to Ukraine Time</button>
+            </div>
+
+            <div id="output-section">
+                <h2>Converted Date and Time</h2>
+                <p id="result"></p>
+            </div>
+        </div>
+</main>
+</body>
+<script src="~/js/convertToUkraineTime.js"></script>
+</html>
