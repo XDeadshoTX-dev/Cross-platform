@@ -16,12 +16,12 @@ namespace Lab5
             Console.OutputEncoding = Encoding.UTF8;
             DotNetEnv.Env.Load();
             // For debugging purposes
-            using (var context = new BookingContext())
-            {
-                BookingStatus customer = new BookingStatus { booking_status_code = "CON", booking_status_description = "Confirmed" };
-                context.BookingStatuses.Add(customer);
-                context.SaveChanges();
-            }
+            //using (var context = new BookingContext())
+            //{
+            //    BookingStatus customer = new BookingStatus { booking_status_code = "CON", booking_status_description = "Confirmed" };
+            //    context.BookingStatuses.Add(customer);
+            //    context.SaveChanges();
+            //}
             using (var context = new BookingContext())
             {
                 var bookingStatuses = context.BookingStatuses.ToList();
