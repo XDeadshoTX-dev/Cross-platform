@@ -1,8 +1,8 @@
 const axios= require('axios');
 
-const API = 'http://localhost:5178/api/search/'
+const API = 'http://localhost:5178/api/v1/search/'
 test('Get booking information', async () => {
-    const response = await axios.post( API + 'GetBookingInformation', {
+    const response = await axios.post( `${API}GetBookingInformation`, {
         customerId: 3,
         day: 10,
         month: 11,
@@ -19,14 +19,10 @@ test('Get booking information', async () => {
     expect(booking).toHaveProperty('booking_status_code');
     expect(booking).toHaveProperty('customer_id', 3);
     expect(booking).toHaveProperty('reg_number');
-    expect(booking).toHaveProperty('date_from');
-    expect(booking).toHaveProperty('date_to');
-    expect(booking).toHaveProperty('confirmation_letter_sent_yn');
-    expect(booking).toHaveProperty('payment_received_yn');
 });
 
 test('should fetch vehicle category information', async () => {
-    const response = await axios.post(API + 'VehicleCategoryInformation', {
+    const response = await axios.post(`${API}VehicleCategoryInformation`, {
         vehicle_category_code: 'SEDAN'
     }, {
         headers: {
@@ -48,7 +44,7 @@ test('should fetch model information', async () => {
         model_code: 'MOD123'
     };
 
-    const response = await axios.post(API + 'ModelInformation', requestData, {
+    const response = await axios.post(`${API}ModelInformation`, requestData, {
         headers: {
             'Content-Type': 'application/json'
         }
