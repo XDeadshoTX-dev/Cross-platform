@@ -16,7 +16,7 @@ document.getElementById('send-btn').addEventListener('click', async () => {
     }
     try {
         const authToken = getCookie("AuthToken");
-        const response = await axios.post('/api/search/GetBookingInformation', {
+        const response = await axios.post('/api/v2/search/GetBookingInformation', {
             customerId: parseInt(customerId),
             day: parseInt(day),
             month: parseInt(month),

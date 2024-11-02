@@ -14,7 +14,7 @@ document.getElementById('send-btn').addEventListener('click', async () => {
 
     try {
         const authToken = getCookie("AuthToken");
-        const response = await axios.post('/api/search/ModelInformation',
+        const response = await axios.post('/api/v1/search/ModelInformation',
             {
                 model_code: modelCode
             }, {

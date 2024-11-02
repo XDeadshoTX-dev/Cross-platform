@@ -5,11 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Diagnostics.Eventing.Reader;
 using System.Text;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 namespace Lab6.Controllers
 {
     [ApiController]
-    [Route("api/search")]
+    [Route("api/v{version:apiVersion}/search")]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     public class SearchController : Controller
     {
         public IActionResult Index()
@@ -17,7 +20,27 @@ namespace Lab6.Controllers
             return View();
         }
         [HttpPost("GetBookingInformation")]
-        public async Task<string> GetBookingInformation([FromBody] BookingRequest request)
+        [MapToApiVersion("1.0")]
+        public async Task<string> GetBookingInformationV1([FromBody] BookingRequest request)
+        {
+            using (var context = new BookingContext())
+            {
+                var date = new DateTime(request.year, request.month, request.day);
+                var _list = await context.Bookings.Include(b => b.Vehicle).Include(b => b.Customer).Where(b => b.customer_id == request.customerId && b.date_from.Date == date.Date).ToListAsync();
+                var response = JsonConvert.SerializeObject(_list.Select(b => new
+                {
+                    booking_id = b.booking_id,
+                    booking_status_code = b.booking_status_code,
+                    customer_id = b.customer_id,
+                    reg_number = b.reg_number
+                }));
+
+                return response;
+            }
+        }
+        [HttpPost("GetBookingInformation")]
+        [MapToApiVersion("2.0")]
+        public async Task<string> GetBookingInformationV2([FromBody] BookingRequest request)
         {
             using (var context = new BookingContext())
             {
@@ -46,6 +69,7 @@ namespace Lab6.Controllers
             public int year { get; set; }
         }
         [HttpPost("VehicleCategoryInformation")]
+        [MapToApiVersion("1.0")]
         public async Task<string> VehicleCategoryInformation([FromBody] VehicleCategoryRequest request)
         {
             using(var context = new BookingContext())
@@ -63,6 +87,7 @@ namespace Lab6.Controllers
             public string vehicle_category_code { get; set; }
         }
         [HttpPost("ModelInformation")]
+        [MapToApiVersion("1.0")]
         public async Task<string> ModelInformation([FromBody] ModelInformationRequest request)
         {
             using (var context = new BookingContext())
