@@ -42,6 +42,15 @@ namespace Lab5
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    policy => policy.WithOrigins("http://localhost:5232")
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader());
+            });
+
+
             AuthManagements authManagements = new AuthManagements();
 
             builder.Services.AddAuthentication(options =>
@@ -76,6 +85,7 @@ namespace Lab5
 
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseCors("AllowSpecificOrigin");
             app.UseAuthentication();
             app.UseAuthorization();
 
@@ -89,7 +99,7 @@ namespace Lab5
             });
 
             app.MapRazorPages();
-             
+
             app.Run();
 
         }
