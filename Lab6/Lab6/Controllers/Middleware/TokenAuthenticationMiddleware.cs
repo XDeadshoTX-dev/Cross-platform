@@ -12,7 +12,7 @@
         public async Task InvokeAsync(HttpContext context)
         {
             var path = context.Request.Path.Value.ToLower();
-            if (path.Contains("/control") || path.Contains("/lab1") || path.Contains("/lab2") || path.Contains("/lab3") || path.Contains("/profile") || path.Contains("/centraltable") || path.Contains("/converttoukrainetime") || path.Contains("/modelinformation") || path.Contains("/vehiclecategoryinformation"))
+            if (path.ToString() == "/control" || path.ToString() == "/lab1" || path.ToString() == "/lab2" || path.ToString() == "/lab3" || path.ToString() == "/profile" || path.ToString() == "/centraltable" || path.ToString() == "/converttoukrainetime" || path.ToString() == "/modelinformation" || path.ToString() == "/vehiclecategoryinformation")
             {
                 var token = context.Request.Cookies["AuthToken"];
 
