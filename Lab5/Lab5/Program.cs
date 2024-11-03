@@ -55,11 +55,24 @@ namespace Lab5
 
             app.Use(async (context, next) =>
             {
-                await next.Invoke();
+                var tracer = app.Services.GetRequiredService<TracerProvider>().GetTracer("lab5");
 
-                var metrics = CollectMetrics();
+                using (var span = tracer.StartActiveSpan("request_pipeline"))
+                {
+                    span.SetAttribute("user_id", "12345");
+                    span.SetAttribute("transaction_id", "TX-6789");
 
-                await SendMetricsToElasticsearch(metrics);
+                    using (var longRunningSpan = tracer.StartActiveSpan("long_running_process"))
+                    {
+                        longRunningSpan.SetAttribute("description", "Simulating a long task");
+                        await Task.Delay(5000);
+                    }
+
+                    await next.Invoke();
+
+                    var metrics = CollectMetrics();
+                    await SendMetricsToElasticsearch(metrics);
+                }
             });
 
             app.UseStaticFiles();
