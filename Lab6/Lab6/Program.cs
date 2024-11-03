@@ -106,7 +106,7 @@ namespace Lab5
 
             app.Use(async (context, next) =>
             {
-                var tracer = app.Services.GetRequiredService<TracerProvider>().GetTracer("lab5");
+                var tracer = app.Services.GetRequiredService<TracerProvider>().GetTracer("lab6");
 
                 using (var span = tracer.StartActiveSpan("request_pipeline"))
                 {
