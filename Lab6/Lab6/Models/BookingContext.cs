@@ -150,18 +150,56 @@ namespace Lab6.Models
                 new Customer { customer_id = 10, customer_name = "Hannah Adams", customer_details = "Seasonal renter", gender = "F", email_address = "hannah@example.com", phone_number = "777777777", address_line_1 = "555 Cedar St", address_line_2 = "", address_line_3 = "", town = "Cedarville", county = "Samplecounty", country = "Sampleland" }
             );
 
-            modelBuilder.Entity<Booking>().HasData(
-                new Booking { booking_id = 1, booking_status_code = "PND", customer_id = 1, reg_number = "ABC1234567", date_from = new DateTime(2024, 12, 1), date_to = new DateTime(2024, 12, 10), confirmation_letter_sent_yn = "Y", payment_received_yn = "N" },
-                new Booking { booking_id = 2, booking_status_code = "PND", customer_id = 2, reg_number = "XYZ9876543", date_from = new DateTime(2024, 11, 1), date_to = new DateTime(2024, 11, 7), confirmation_letter_sent_yn = "Y", payment_received_yn = "Y" },
-                new Booking { booking_id = 3, booking_status_code = "CNL", customer_id = 3, reg_number = "JKL1237890", date_from = new DateTime(2024, 11, 10), date_to = new DateTime(2024, 11, 17), confirmation_letter_sent_yn = "Y", payment_received_yn = "Y" },
-                new Booking { booking_id = 4, booking_status_code = "RNT", customer_id = 3, reg_number = "MNO4561234", date_from = new DateTime(2024, 10, 1), date_to = new DateTime(2024, 10, 5), confirmation_letter_sent_yn = "N", payment_received_yn = "N" },
-                new Booking { booking_id = 5, booking_status_code = "OVD", customer_id = 5, reg_number = "DEF4567890", date_from = new DateTime(2024, 12, 15), date_to = new DateTime(2024, 12, 20), confirmation_letter_sent_yn = "Y", payment_received_yn = "N" },
-                new Booking { booking_id = 6, booking_status_code = "PPD", customer_id = 6, reg_number = "GHI9876543", date_from = new DateTime(2024, 11, 20), date_to = new DateTime(2024, 11, 25), confirmation_letter_sent_yn = "Y", payment_received_yn = "Y" },
-                new Booking { booking_id = 7, booking_status_code = "CNF", customer_id = 7, reg_number = "JKL1234567", date_from = new DateTime(2024, 11, 15), date_to = new DateTime(2024, 11, 22), confirmation_letter_sent_yn = "Y", payment_received_yn = "Y" },
-                new Booking { booking_id = 8, booking_status_code = "CHI", customer_id = 8, reg_number = "OPQ9876543", date_from = new DateTime(2024, 10, 10), date_to = new DateTime(2024, 10, 12), confirmation_letter_sent_yn = "N", payment_received_yn = "N" },
-                new Booking { booking_id = 9, booking_status_code = "CHK", customer_id = 9, reg_number = "RST1234567", date_from = new DateTime(2024, 12, 5), date_to = new DateTime(2024, 12, 12), confirmation_letter_sent_yn = "Y", payment_received_yn = "N" },
-                new Booking { booking_id = 10, booking_status_code = "DIS", customer_id = 10, reg_number = "UVW9876543", date_from = new DateTime(2024, 11, 25), date_to = new DateTime(2024, 12, 2), confirmation_letter_sent_yn = "Y", payment_received_yn = "Y" }
-            );
+            //modelBuilder.Entity<Booking>().HasData(
+            //    new Booking { booking_id = 1, booking_status_code = "PND", customer_id = 1, reg_number = "ABC1234567", date_from = new DateTime(2024, 12, 1), date_to = new DateTime(2024, 12, 10), confirmation_letter_sent_yn = "Y", payment_received_yn = "N" },
+            //    new Booking { booking_id = 2, booking_status_code = "PND", customer_id = 2, reg_number = "XYZ9876543", date_from = new DateTime(2024, 11, 1), date_to = new DateTime(2024, 11, 7), confirmation_letter_sent_yn = "Y", payment_received_yn = "Y" },
+            //    new Booking { booking_id = 3, booking_status_code = "CNL", customer_id = 3, reg_number = "JKL1237890", date_from = new DateTime(2024, 11, 10), date_to = new DateTime(2024, 11, 17), confirmation_letter_sent_yn = "Y", payment_received_yn = "Y" },
+            //    new Booking { booking_id = 4, booking_status_code = "RNT", customer_id = 3, reg_number = "MNO4561234", date_from = new DateTime(2024, 10, 1), date_to = new DateTime(2024, 10, 5), confirmation_letter_sent_yn = "N", payment_received_yn = "N" },
+            //    new Booking { booking_id = 5, booking_status_code = "OVD", customer_id = 5, reg_number = "DEF4567890", date_from = new DateTime(2024, 12, 15), date_to = new DateTime(2024, 12, 20), confirmation_letter_sent_yn = "Y", payment_received_yn = "N" },
+            //    new Booking { booking_id = 6, booking_status_code = "PPD", customer_id = 6, reg_number = "GHI9876543", date_from = new DateTime(2024, 11, 20), date_to = new DateTime(2024, 11, 25), confirmation_letter_sent_yn = "Y", payment_received_yn = "Y" },
+            //    new Booking { booking_id = 7, booking_status_code = "CNF", customer_id = 7, reg_number = "JKL1234567", date_from = new DateTime(2024, 11, 15), date_to = new DateTime(2024, 11, 22), confirmation_letter_sent_yn = "Y", payment_received_yn = "Y" },
+            //    new Booking { booking_id = 8, booking_status_code = "CHI", customer_id = 8, reg_number = "OPQ9876543", date_from = new DateTime(2024, 10, 10), date_to = new DateTime(2024, 10, 12), confirmation_letter_sent_yn = "N", payment_received_yn = "N" },
+            //    new Booking { booking_id = 9, booking_status_code = "CHK", customer_id = 9, reg_number = "RST1234567", date_from = new DateTime(2024, 12, 5), date_to = new DateTime(2024, 12, 12), confirmation_letter_sent_yn = "Y", payment_received_yn = "N" },
+            //    new Booking { booking_id = 10, booking_status_code = "DIS", customer_id = 10, reg_number = "UVW9876543", date_from = new DateTime(2024, 11, 25), date_to = new DateTime(2024, 12, 2), confirmation_letter_sent_yn = "Y", payment_received_yn = "Y" }
+            //);
+            modelBuilder.Entity<Booking>().HasData(GenerateBookings(10000));
+        }
+        private Booking[] GenerateBookings(int count)
+        {
+            var bookings = new List<Booking>();
+            var random = new Random();
+
+            for (int i = 1; i <= count; i++)
+            {
+                var booking = new Booking
+                {
+                    booking_id = i,
+                    booking_status_code = GetRandomBookingStatusCode(random),
+                    customer_id = random.Next(1, 11),
+                    reg_number = GetRandomVehicleRegNumber(random),
+                    date_from = DateTime.Now.AddDays(random.Next(0, 30)),
+                    date_to = DateTime.Now.AddDays(random.Next(31, 60)),
+                    confirmation_letter_sent_yn = random.Next(0, 2) == 0 ? "Y" : "N",
+                    payment_received_yn = random.Next(0, 2) == 0 ? "Y" : "N"
+                };
+
+                bookings.Add(booking);
+            }
+
+            return bookings.ToArray();
+        }
+
+        private string GetRandomBookingStatusCode(Random random)
+        {
+            string[] statusCodes = { "PND", "CMP", "CNL", "RNT", "OVD", "PPD", "CNF", "CHI", "CHK", "DIS" };
+            return statusCodes[random.Next(statusCodes.Length)];
+        }
+
+        private string GetRandomVehicleRegNumber(Random random)
+        {
+            string[] vehicleRegNumbers = { "ABC1234567", "XYZ9876543", "JKL1237890", "MNO4561234", "DEF4567890",
+                                            "GHI9876543", "JKL1234567", "OPQ9876543", "RST1234567", "UVW9876543" };
+            return vehicleRegNumbers[random.Next(vehicleRegNumbers.Length)];
         }
     }
 }
