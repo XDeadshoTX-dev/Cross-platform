@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -14,6 +13,9 @@ using Microsoft.AspNetCore.Mvc.Versioning;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
+using Microsoft.Identity.Client;
+using System.Diagnostics;
+using System.Text.Json;
 
 namespace Lab5
 {
@@ -102,6 +104,58 @@ namespace Lab5
 
             var app = builder.Build();
 
+            app.Use(async (context, next) =>
+            {
+                await next.Invoke();
+
+                var metrics = CollectMetrics();
+
+                await SendMetricsToElasticsearch(metrics);
+            });
+
+            Metrics CollectMetrics()
+            {
+                var gcCount = GC.CollectionCount(0);
+                var usedMemory = GC.GetTotalMemory(false);
+                var cpuUsage = GetCpuUsage();
+
+                return new Metrics
+                {
+                    GcCount = gcCount,
+                    UsedMemory = usedMemory,
+                    CpuUsage = cpuUsage,
+                    Timestamp = DateTime.UtcNow
+                };
+            }
+            double GetCpuUsage()
+            {
+                using (var process = Process.GetCurrentProcess())
+                {
+                    return (process.TotalProcessorTime.TotalMilliseconds / Environment.ProcessorCount) * 100 / (Environment.TickCount / 1000);
+                }
+            }
+            async Task SendMetricsToElasticsearch(Metrics metrics)
+            {
+                using var client = new HttpClient();
+
+                var username = Environment.GetEnvironmentVariable("ElasticSearchUsername");
+                var password = Environment.GetEnvironmentVariable("ElasticSearchPassword");
+
+                var byteArray = Encoding.ASCII.GetBytes($"{username}:{password}");
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
+
+                var elasticsearchUrl = "http://localhost:9200/my-index/_doc";
+                var json = JsonSerializer.Serialize(metrics);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync(elasticsearchUrl, content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    Console.WriteLine($"Error sending metrics to Elasticsearch: {response.StatusCode}");
+                }
+            }
+
             app.UseStaticFiles();
             app.UseRouting();
             app.UseCors("AllowSpecificOrigin");
@@ -122,6 +176,13 @@ namespace Lab5
 
             app.Run();
 
+        }
+        public class Metrics
+        {
+            public int GcCount { get; set; }
+            public long UsedMemory { get; set; }
+            public double CpuUsage { get; set; }
+            public DateTime Timestamp { get; set; }
         }
     }
 }
