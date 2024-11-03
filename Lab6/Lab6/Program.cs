@@ -11,6 +11,9 @@ using Microsoft.IdentityModel.Tokens;
 using Lab5.Controllers.Managements;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 namespace Lab5
 {
@@ -80,6 +83,22 @@ namespace Lab5
                 options.ReportApiVersions = true;
             });
 
+            builder.Services.AddOpenTelemetry()
+            .WithTracing(tracerProviderBuilder => tracerProviderBuilder
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("lab6"))
+                .AddAspNetCoreInstrumentation()
+                .AddSqlClientInstrumentation()
+                .AddZipkinExporter(options =>
+                {
+                    options.Endpoint = new Uri("http://localhost:9411/api/v2/spans");
+                }))
+            .WithMetrics(metricsProviderBuilder => metricsProviderBuilder
+                .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService("lab6"))
+                .AddAspNetCoreInstrumentation()
+                .AddHttpClientInstrumentation()
+                .AddRuntimeInstrumentation()
+                .AddPrometheusExporter());
+
 
             var app = builder.Build();
 
@@ -98,6 +117,7 @@ namespace Lab5
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
+            app.UseOpenTelemetryPrometheusScrapingEndpoint();
             app.MapRazorPages();
 
             app.Run();
