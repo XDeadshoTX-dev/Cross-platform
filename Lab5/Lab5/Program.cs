@@ -53,27 +53,27 @@ namespace Lab5
 
             var app = builder.Build();
 
-            app.Use(async (context, next) =>
-            {
-                var tracer = app.Services.GetRequiredService<TracerProvider>().GetTracer("lab5");
+            //app.Use(async (context, next) =>
+            //{
+            //    var tracer = app.Services.GetRequiredService<TracerProvider>().GetTracer("lab5");
 
-                using (var span = tracer.StartActiveSpan("request_pipeline"))
-                {
-                    span.SetAttribute("user_id", "12345");
-                    span.SetAttribute("transaction_id", "TX-6789");
+            //    using (var span = tracer.StartActiveSpan("request_pipeline"))
+            //    {
+            //        span.SetAttribute("user_id", "12345");
+            //        span.SetAttribute("transaction_id", "TX-6789");
 
-                    using (var longRunningSpan = tracer.StartActiveSpan("long_running_process"))
-                    {
-                        longRunningSpan.SetAttribute("description", "Simulating a long task");
-                        await Task.Delay(5000);
-                    }
+            //        using (var longRunningSpan = tracer.StartActiveSpan("long_running_process"))
+            //        {
+            //            longRunningSpan.SetAttribute("description", "Simulating a long task");
+            //            await Task.Delay(5000);
+            //        }
 
-                    await next.Invoke();
+            //        await next.Invoke();
 
-                    var metrics = CollectMetrics();
-                    await SendMetricsToElasticsearch(metrics);
-                }
-            });
+            //        var metrics = CollectMetrics();
+            //        await SendMetricsToElasticsearch(metrics);
+            //    }
+            //});
 
             app.UseStaticFiles();
             app.UseRouting();
@@ -132,8 +132,8 @@ namespace Lab5
             }
 
 
-            app.UseOpenTelemetryPrometheusScrapingEndpoint();
-            app.UseSerilogRequestLogging();
+            //app.UseOpenTelemetryPrometheusScrapingEndpoint();
+            //app.UseSerilogRequestLogging();
             app.MapRazorPages();
              
             app.Run();

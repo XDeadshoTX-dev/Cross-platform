@@ -104,27 +104,31 @@ namespace Lab5
 
             var app = builder.Build();
 
-            app.Use(async (context, next) =>
-            {
-                var tracer = app.Services.GetRequiredService<TracerProvider>().GetTracer("lab6");
+            //app.Use(async (context, next) =>
+            //{
+            //    // Zipkin enable lab8
+            //    //await Task.Delay(5000);
+            //    //await next.Invoke();
+            //    // tracing for ElasticSearch
+            //    var tracer = app.Services.GetRequiredService<TracerProvider>().GetTracer("lab6");
 
-                using (var span = tracer.StartActiveSpan("request_pipeline"))
-                {
-                    span.SetAttribute("user_id", "12345");
-                    span.SetAttribute("transaction_id", "TX-6789");
+            //    using (var span = tracer.StartActiveSpan("request_pipeline"))
+            //    {
+            //        span.SetAttribute("user_id", "12345");
+            //        span.SetAttribute("transaction_id", "TX-6789");
 
-                    using (var longRunningSpan = tracer.StartActiveSpan("long_running_process"))
-                    {
-                        longRunningSpan.SetAttribute("description", "Simulating a long task");
-                        await Task.Delay(5000);
-                    }
+            //        using (var longRunningSpan = tracer.StartActiveSpan("long_running_process"))
+            //        {
+            //            longRunningSpan.SetAttribute("description", "Simulating a long task");
+            //            await Task.Delay(5000);
+            //        }
 
-                    await next.Invoke();
+            //        await next.Invoke();
 
-                    var metrics = CollectMetrics();
-                    await SendMetricsToElasticsearch(metrics);
-                }
-            });
+            //        var metrics = CollectMetrics();
+            //        await SendMetricsToElasticsearch(metrics);
+            //    }
+            //});
 
             Metrics CollectMetrics()
             {
