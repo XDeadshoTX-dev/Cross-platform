@@ -49,8 +49,8 @@ namespace Lab5
 
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowSpecificOrigin",
-                    policy => policy.WithOrigins("http://localhost:5232")
+                options.AddPolicy("AllowAllOrigins",
+                    policy => policy.AllowAnyOrigin()
                                     .AllowAnyMethod()
                                     .AllowAnyHeader());
             });
@@ -175,7 +175,7 @@ namespace Lab5
 
             app.UseStaticFiles();
             app.UseRouting();
-            app.UseCors("AllowSpecificOrigin");
+            app.UseCors("AllowAllOrigins");
             app.UseAuthentication();
             app.UseAuthorization();
 
