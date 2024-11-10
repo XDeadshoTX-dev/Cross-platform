@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
-using System.IO;
 using System.Runtime.InteropServices;
+using System;
+using System.IO;
 
-namespace Lab4
+namespace Lab4.LabsLibrary
 {
     public class LabsLibrary
     {
+        public static void Main(string[] args)
+        {
 
+        }
         public static void RunCommand(string command)
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))

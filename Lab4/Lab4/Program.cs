@@ -1,8 +1,8 @@
-﻿using static Lab4.LabsLibrary;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System;
 using System.IO;
 using McMaster.Extensions.CommandLineUtils;
+using static Lab4.LabsLibrary.LabsLibrary;
 
 namespace Lab4
 {
