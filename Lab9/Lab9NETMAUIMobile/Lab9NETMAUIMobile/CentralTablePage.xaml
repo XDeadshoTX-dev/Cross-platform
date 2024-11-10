@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab9NETMAUIMobile.CentralTablePage"
+             Title="CentralTablePage"
+             xmlns:vm="clr-namespace:Lab9NETMAUIMobile.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:SearchViewModel />
+    </ContentPage.BindingContext>
+    <Grid Padding="20">
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Label Text="Customer ID"/>
+                <Entry Placeholder="Customer ID" Text="{Binding GetBookingRequest.CustomerId}" Keyboard="Numeric"/>
+                <Label Text="Day from"/>
+                <Entry Placeholder="Day from" Text="{Binding GetBookingRequest.Day}" Keyboard="Numeric"/>
+                <Label Text="Month from"/>
+                <Entry Placeholder="Month from" Text="{Binding GetBookingRequest.Month}" Keyboard="Numeric"/>
+                <Label Text="Year from"/>
+                <Entry Placeholder="Year frrom" Text="{Binding GetBookingRequest.Year}" Keyboard="Numeric"/>
+                <Button Text="Search" Command="{Binding SearchBookingCommand}" />
+
+                <CollectionView ItemsSource="{Binding GetBookingResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding booking_id}" FontAttributes="Bold" />
+                                <Label Text="{Binding booking_status_code}" />
+                                <Label Text="{Binding customer_id}" />
+                                <Label Text="{Binding reg_number}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Label Text="Enter Central Table to Send" FontAttributes="Bold" Margin="0,20,0,10" />
+                <Label Text="Booking Status Code"/>
+                <Entry Placeholder="Booking Status Code" Text="{Binding SendBookingRequest.booking_status_code}" Keyboard="Text" />
+                <Label Text="Customer ID"/>
+                <Entry Placeholder="Customer ID" Text="{Binding SendBookingRequest.customer_id}" Keyboard="Numeric" />
+                <Label Text="Registration Number"/>
+                <Entry Placeholder="Registration Number" Text="{Binding SendBookingRequest.reg_number}" Keyboard="Text" />
+                <Label Text="Day from"/>
+                <Entry Placeholder="Day from" Text="{Binding SendBookingDate.Day_from}" Keyboard="Numeric"/>
+                <Label Text="Month from"/>
+                <Entry Placeholder="Month from" Text="{Binding SendBookingDate.Month_from}" Keyboard="Numeric"/>
+                <Label Text="Year from"/>
+                <Entry Placeholder="Year from" Text="{Binding SendBookingDate.Year_from}" Keyboard="Numeric"/>
+                <Label Text="Day to"/>
+                <Entry Placeholder="Day to" Text="{Binding SendBookingDate.Day_to}" Keyboard="Numeric"/>
+                <Label Text="Month to"/>
+                <Entry Placeholder="Month to" Text="{Binding SendBookingDate.Month_to}" Keyboard="Numeric"/>
+                <Label Text="Year to"/>
+                <Entry Placeholder="Year to" Text="{Binding SendBookingDate.Year_to}" Keyboard="Numeric"/>
+                <Label Text="Confirmation Letter Sent (Y/N)"/>
+                <Entry Placeholder="Y/N" Text="{Binding SendBookingRequest.confirmation_letter_sent_yn}" Keyboard="Text" />
+                <Label Text="Payment Received (Y/N)"/>
+                <Entry Placeholder="Y/N" Text="{Binding SendBookingRequest.payment_received_yn}" Keyboard="Text" />
+                <Button Text="Send Booking Information" Command="{Binding SendBookingCommand}" Margin="0,10,0,0" />
+                <Label Text="Result" FontAttributes="Bold" Margin="0,20,0,10" />
+                <Label Text="{Binding AddResponse}"/>
+            </StackLayout>
+        </ScrollView>
+        
+        <BoxView 
+            IsVisible="{Binding IsLoading}"
+            BackgroundColor="Black"
+            Opacity="0.3"
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand"
+            ZIndex="1" />
+
+        <ActivityIndicator 
+            IsVisible="{Binding IsLoading}" 
+            IsRunning="{Binding IsLoading}" 
+            HorizontalOptions="Center" 
+            VerticalOptions="Center"
+            Color="Blue"
+            WidthRequest="50"
+            HeightRequest="50"
+            ZIndex="2" />
+    </Grid>
+</ContentPage>

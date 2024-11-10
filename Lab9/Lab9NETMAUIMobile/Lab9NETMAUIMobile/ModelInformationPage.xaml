@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab9NETMAUIMobile.ModelInformationPage"
+             Title="ModelInformationPage"
+             xmlns:vm="clr-namespace:Lab9NETMAUIMobile.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:SearchViewModel />
+    </ContentPage.BindingContext>
+    <Grid Padding="20">
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Label Text="Model code"/>
+                <Entry Placeholder="Model code" Text="{Binding GetModelRequest.model_code}" Keyboard="Text"/>
+                <Button Text="Search" Command="{Binding SearchModelCommand}" />
+
+                <CollectionView ItemsSource="{Binding GetModelResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding model_name}" FontAttributes="Bold" />
+                                <Label Text="{Binding daily_hire_rate}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Label Text="Enter model information to Send" FontAttributes="Bold" Margin="0,20,0,10" />
+
+                <Label Text="Model Code" />
+                <Entry Placeholder="Model code" Text="{Binding SendModelRequest.model_code}" Keyboard="Text" />
+
+                <Label Text="Daily Hire Rate" />
+                <Entry Placeholder="Daily hire rate" Text="{Binding SendModelRequest.daily_hire_rate}" Keyboard="Numeric" />
+
+                <Label Text="Model Name" />
+                <Entry Placeholder="Model name" Text="{Binding SendModelRequest.model_name}" Keyboard="Text" />
+                <Button Text="Send Model Information" Command="{Binding SendModelCommand}" Margin="0,10,0,0" />
+                <Label Text="Result" FontAttributes="Bold" Margin="0,20,0,10" />
+                <Label Text="{Binding AddResponse}"/>
+            </StackLayout>
+        </ScrollView>
+
+        <BoxView 
+            IsVisible="{Binding IsLoading}"
+            BackgroundColor="Black"
+            Opacity="0.3"
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand"
+            ZIndex="1" />
+
+        <ActivityIndicator 
+            IsVisible="{Binding IsLoading}" 
+            IsRunning="{Binding IsLoading}" 
+            HorizontalOptions="Center" 
+            VerticalOptions="Center"
+            Color="Blue"
+            WidthRequest="50"
+            HeightRequest="50"
+            ZIndex="2" />
+    </Grid>
+</ContentPage>

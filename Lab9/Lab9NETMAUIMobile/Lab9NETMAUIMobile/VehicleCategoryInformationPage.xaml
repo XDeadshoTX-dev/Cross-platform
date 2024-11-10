@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab9NETMAUIMobile.VehicleCategoryInformationPage"
+             Title="VehicleCategoryInformationPage"
+             xmlns:vm="clr-namespace:Lab9NETMAUIMobile.ViewModels">
+    <ContentPage.BindingContext>
+        <vm:SearchViewModel />
+    </ContentPage.BindingContext>
+    <Grid Padding="20">
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Label Text="Vehicle category code"/>
+                <Entry Placeholder="Vehicle category code" Text="{Binding GetVehicleCategoryRequest.vehicle_category_code}" Keyboard="Text"/>
+                <Button Text="Search" Command="{Binding SearchVehicleCommand}" />
+
+                <CollectionView ItemsSource="{Binding GetVehicleResults}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding vehicle_category_description}" FontAttributes="Bold" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Text="Enter vehicle category to Send" FontAttributes="Bold" Margin="0,20,0,10" />
+
+                <Label Text="Vehicle category Code" />
+                <Entry Placeholder="Vehicle category Code" Text="{Binding SendVehicleRequest.vehicle_category_code}" Keyboard="Text" />
+
+                <Label Text="Vehicle category description" />
+                <Entry Placeholder="Vehicle category description" Text="{Binding SendVehicleRequest.vehicle_category_description}" Keyboard="Text" />
+
+                <Button Text="Send vehicle category" Command="{Binding SendVehicleCommand}" Margin="0,10,0,0" />
+                <Label Text="Result" FontAttributes="Bold" Margin="0,20,0,10" />
+                <Label Text="{Binding AddResponse}"/>
+            </StackLayout>
+        </ScrollView>
+
+        <BoxView 
+           IsVisible="{Binding IsLoading}"
+           BackgroundColor="Black"
+           Opacity="0.3"
+           HorizontalOptions="FillAndExpand" 
+           VerticalOptions="FillAndExpand"
+           ZIndex="1" />
+
+        <ActivityIndicator 
+           IsVisible="{Binding IsLoading}" 
+           IsRunning="{Binding IsLoading}" 
+           HorizontalOptions="Center" 
+           VerticalOptions="Center"
+           Color="Blue"
+           WidthRequest="50"
+           HeightRequest="50"
+           ZIndex="2" />
+    </Grid>
+</ContentPage>

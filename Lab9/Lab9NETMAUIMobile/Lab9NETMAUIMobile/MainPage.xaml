@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab9NETMAUIMobile.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Button
+                x:Name="CentralTableBtn"
+                Text="Central table (Booking)"
+                HorizontalOptions="Fill" 
+                Margin="0,10,0,0"
+                Clicked="OnCentralTableClicked"/>
+
+            <Button
+                x:Name="VehicleCategoryInformationBtn"
+                Text="Vehicle category information"
+                HorizontalOptions="Fill" 
+                Margin="0,10,0,0"
+                Clicked="OnVehicleCategoryInformationClicked"/>
+
+            <Button
+                x:Name="ModelInformationBtn"
+                Text="Model information"
+                HorizontalOptions="Fill" 
+                Margin="0,10,0,0"
+                Clicked="OnModelInformationClicked"/>
+
+            <Button
+                x:Name="GraphicData"
+                Text="Graphic data"
+                HorizontalOptions="Fill" 
+                Margin="0,10,0,0"
+                Clicked="OnGraphicClicked"/>
+
+            <Button
+                x:Name="AboutBtn"
+                Text="About"
+                HorizontalOptions="Fill"
+                Margin="0,20,0,0"
+                Clicked="OnAboutClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

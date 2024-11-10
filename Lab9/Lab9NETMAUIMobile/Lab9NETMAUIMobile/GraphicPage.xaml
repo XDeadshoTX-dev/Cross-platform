@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab9NETMAUIMobile.GraphicPage"
+             Title="GraphicPage"
+             xmlns:vm="clr-namespace:Lab9NETMAUIMobile.ViewModels"
+             xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui">
+
+    <ContentPage.BindingContext>
+        <vm:GraphicViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid>
+        <VerticalStackLayout Padding="20" VerticalOptions="Center">
+            <Label Text="Model Hire Rate Chart" FontSize="Large" HorizontalOptions="Center" />
+
+            <microcharts:ChartView Chart="{Binding Chart}" HeightRequest="300" WidthRequest="300" />
+
+            <ActivityIndicator 
+                IsVisible="{Binding IsLoading}" 
+                IsRunning="{Binding IsLoading}" 
+                HorizontalOptions="Center" 
+                VerticalOptions="Center" 
+                Color="Blue" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

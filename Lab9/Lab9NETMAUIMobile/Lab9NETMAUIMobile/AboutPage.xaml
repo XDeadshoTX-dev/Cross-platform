@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Lab9NETMAUIMobile.AboutPage"
+             Title="About">
+
+    <VerticalStackLayout Padding="20">
+        <Label Text="Ім'я розробника: Денис Св."
+               FontSize="20"
+               HorizontalOptions="Center"
+               Margin="0,10"/>
+
+        <Label Text="Опис: Це демонстраційний застосунок для роботи з .NET MAUI."
+               FontSize="18"
+               HorizontalOptions="Center"
+               Margin="0,10"/>
+
+        <Label Text="Версія: 1.0.0"
+               FontSize="18"
+               HorizontalOptions="Center"
+               Margin="0,10"/>
+    </VerticalStackLayout>
+
+</ContentPage>
