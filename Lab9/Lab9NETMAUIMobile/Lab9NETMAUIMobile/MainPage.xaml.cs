@@ -32,7 +32,7 @@ namespace Lab9NETMAUIMobile
 
             try
             {
-                var authorizeUrl = new Uri($"{_identityServerUrl}/connect/authorize?response_type=code&client_id={_clientId}&redirect_uri={Uri.EscapeDataString(_redirectUri)}&scope=openid%20profile%20email");
+                var authorizeUrl = new Uri($"{_identityServerUrl}/authorize?response_type=code&client_id={_clientId}&redirect_uri={Uri.EscapeDataString(_redirectUri)}&scope=openid%20profile%20email");
 
                 var result = await WebAuthenticator.AuthenticateAsync(authorizeUrl, new Uri(_redirectUri));
 
