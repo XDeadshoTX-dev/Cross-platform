@@ -6,11 +6,15 @@
 	<PackAsTool>true</PackAsTool>
 	<ToolCommandName>dsvynarchuk</ToolCommandName>
 	<PackageId>DSvynarchuk</PackageId>
-	<Version>1.0.1</Version>
+	<Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Lab4.LabsLibrary\Lab4.LabsLibrary.csproj" />
   </ItemGroup>
 
 </Project>
