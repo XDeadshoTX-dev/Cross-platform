@@ -30,6 +30,40 @@ namespace Lab4.LabsLibrary
             return output;
         }
 
+        public static void CreateFileWithPath(string path, string content)
+        {
+            try
+            {
+                File.WriteAllText(path, content);
+                Console.WriteLine($"File {path} content: {content}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error {path}: {ex.Message}");
+            }
+        }
+
+        public static string ReadFileContent(string fileName)
+        {
+            try
+            {
+                if (File.Exists(fileName))
+                {
+                    return File.ReadAllText(fileName);
+                }
+                else
+                {
+                    Console.WriteLine($"File {fileName} doesn't exist.");
+                    return string.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error {fileName}: {ex.Message}");
+                return string.Empty;
+            }
+        }
+
         private static string ExecuteCommand(string shell, string arguments)
         {
             var processInfo = new ProcessStartInfo

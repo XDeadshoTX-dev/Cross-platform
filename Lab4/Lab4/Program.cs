@@ -56,10 +56,16 @@ namespace Lab4
                 inputPath = InputFile ?? Environment.GetEnvironmentVariable("LAB_PATH", EnvironmentVariableTarget.User) + "\\INPUT.TXT";
                 outputPath = OutputFile ?? "OUTPUT.TXT";
             }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
             {
                 string EnvironmentVariableUnix = RunCommand("echo $LAB_PATH");
                 inputPath = InputFile ?? $"{EnvironmentVariableUnix.Trim()}/INPUT.TXT";
+                outputPath = OutputFile ?? "OUTPUT.TXT";
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                string pathMacOS = ReadFileContent("pathMacOS.txt");
+                inputPath = InputFile ?? $"{pathMacOS.Trim()}/INPUT.TXT";
                 outputPath = OutputFile ?? "OUTPUT.TXT";
             }
 
@@ -120,7 +126,7 @@ namespace Lab4
                 {
                     Environment.SetEnvironmentVariable("LAB_PATH", Path, EnvironmentVariableTarget.User);
                 }
-                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
                 {
                     string addToBashrcCommand = $"echo 'export LAB_PATH={Path}' >> ~/.bashrc";
                     RunCommand(addToBashrcCommand);
@@ -130,6 +136,17 @@ namespace Lab4
 
                     string setInShellCommand = $"export LAB_PATH={Path} && echo $LAB_PATH";
                     RunCommand(setInShellCommand);
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    string addToBashProfileCommand = $"echo 'export LAB_PATH={Path}' >> ~/.bash_profile";
+                    RunCommand(addToBashProfileCommand);
+                    string sourceBashProfileCommand = "source ~/.bash_profile";
+                    RunCommand(sourceBashProfileCommand);
+                    string setInShellCommand = $"export LAB_PATH={Path} && echo $LAB_PATH";
+                    RunCommand(setInShellCommand);
+
+                    CreateFileWithPath("pathMacOS.txt", Path);
                 }
                 else
                 {
