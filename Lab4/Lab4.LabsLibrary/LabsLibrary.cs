@@ -49,7 +49,9 @@ namespace Lab4.LabsLibrary
             {
                 if (File.Exists(fileName))
                 {
-                    return File.ReadAllText(fileName);
+                    string data = File.ReadAllText(fileName);
+                    Console.WriteLine($"File {fileName} content: {data}");
+                    return data;
                 }
                 else
                 {
