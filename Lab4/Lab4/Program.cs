@@ -49,9 +49,8 @@ namespace Lab4
                 return;
             }
 
-            string inputPath = InputFile ?? Environment.GetEnvironmentVariable("LAB_PATH");
+            string inputPath = InputFile ?? Environment.GetEnvironmentVariable("LAB_PATH", EnvironmentVariableTarget.User) + "\\INPUT.TXT";
             string outputPath = OutputFile ?? "OUTPUT.TXT";
-
 
             if (string.IsNullOrEmpty(inputPath))
             {
@@ -104,7 +103,7 @@ namespace Lab4
             Console.WriteLine($"[Debug] {Path}");
             if (!string.IsNullOrEmpty(Path))
             {
-                Environment.SetEnvironmentVariable("LAB_PATH", Path);
+                Environment.SetEnvironmentVariable("LAB_PATH", Path, EnvironmentVariableTarget.User);
                 console.WriteLine($"LAB_PATH set to: {Path}");
             }
             else
