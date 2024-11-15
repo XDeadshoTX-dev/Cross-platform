@@ -12,23 +12,25 @@ namespace Lab4.LabsLibrary
         {
 
         }
-        public static void RunCommand(string command)
+        public static string RunCommand(string command)
         {
+            string output = string.Empty;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                ExecuteCommand("cmd.exe", $"/c {command}");
+                output = ExecuteCommand("cmd.exe", $"/c {command}");
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                ExecuteCommand("/bin/bash", $"-c \"{command}\"");
+                output = ExecuteCommand("/bin/bash", $"-c \"{command}\"");
             }
             else
             {
                 Console.WriteLine("Unsupported operating system");
             }
+            return output;
         }
 
-        private static void ExecuteCommand(string shell, string arguments)
+        private static string ExecuteCommand(string shell, string arguments)
         {
             var processInfo = new ProcessStartInfo
             {
@@ -46,12 +48,13 @@ namespace Lab4.LabsLibrary
                 string error = process.StandardError.ReadToEnd();
                 process.WaitForExit();
 
-                Console.WriteLine(output);
+                Console.WriteLine("Result Execute: " + output);
 
                 if (!string.IsNullOrEmpty(error))
                 {
                     Console.WriteLine($"Error: {error}");
                 }
+                return output;
             }
         }
         public class Lab1
