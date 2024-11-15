@@ -49,10 +49,21 @@ namespace Lab4
                 return;
             }
 
-            string inputPath = InputFile ?? Environment.GetEnvironmentVariable("LAB_PATH", EnvironmentVariableTarget.User) + "\\INPUT.TXT";
-            string outputPath = OutputFile ?? "OUTPUT.TXT";
+            string inputPath = string.Empty;
+            string outputPath = string.Empty;
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+                inputPath = InputFile ?? Environment.GetEnvironmentVariable("LAB_PATH", EnvironmentVariableTarget.User) + "\\INPUT.TXT";
+                outputPath = OutputFile ?? "OUTPUT.TXT";
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                string EnvironmentVariableUnix = RunCommand("echo $LAB_PATH");
+                inputPath = InputFile ?? $"{EnvironmentVariableUnix.Trim()}/INPUT.TXT";
+                outputPath = OutputFile ?? "OUTPUT.TXT";
+            }
 
-            if (string.IsNullOrEmpty(inputPath))
+            if (string.IsNullOrEmpty(inputPath) || inputPath == "\\INPUT.TXT" || inputPath == "/INPUT.TXT")
             {
                 inputPath = "INPUT.TXT";
             }
@@ -103,7 +114,26 @@ namespace Lab4
             Console.WriteLine($"[Debug] {Path}");
             if (!string.IsNullOrEmpty(Path))
             {
-                Environment.SetEnvironmentVariable("LAB_PATH", Path, EnvironmentVariableTarget.User);
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    Environment.SetEnvironmentVariable("LAB_PATH", Path, EnvironmentVariableTarget.User);
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    string addToBashrcCommand = $"echo 'export LAB_PATH={Path}' >> ~/.bashrc";
+                    RunCommand(addToBashrcCommand);
+
+                    string sourceBashrcCommand = "source ~/.bashrc";
+                    RunCommand(sourceBashrcCommand);
+
+                    string setInShellCommand = $"export LAB_PATH={Path} && echo $LAB_PATH";
+                    RunCommand(setInShellCommand);
+                }
+                else
+                {
+                    Console.WriteLine("Unsupported operating system");
+                    return;
+                }
                 console.WriteLine($"LAB_PATH set to: {Path}");
             }
             else
