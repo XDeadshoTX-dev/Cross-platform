@@ -65,6 +65,9 @@ namespace Lab4
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
                 string pathMacOS = ReadFileContent("pathMacOS.txt");
+                string systemPath = Environment.GetEnvironmentVariable("LAB_PATH", EnvironmentVariableTarget.User);
+                string pathEcho = RunCommand("echo $LAB_PATH");
+                Console.WriteLine($"[Debug] {pathMacOS} | {systemPath} | {pathEcho}");
                 inputPath = InputFile ?? $"{pathMacOS.Trim()}/INPUT.TXT";
                 outputPath = OutputFile ?? "OUTPUT.TXT";
             }
