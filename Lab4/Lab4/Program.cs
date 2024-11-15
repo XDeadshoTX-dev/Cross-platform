@@ -63,6 +63,8 @@ namespace Lab4
                 outputPath = OutputFile ?? "OUTPUT.TXT";
             }
 
+            Console.WriteLine($"[Debug] {inputPath} | {outputPath}");
+
             if (string.IsNullOrEmpty(inputPath) || inputPath == "\\INPUT.TXT" || inputPath == "/INPUT.TXT")
             {
                 inputPath = "INPUT.TXT";
