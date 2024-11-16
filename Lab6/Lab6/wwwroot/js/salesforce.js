@@ -29,6 +29,7 @@ document.getElementById('send-btn').addEventListener('click', async () => {
         });
 
         const bookings = response.data;
+        console.log(bookings);
 
         const tableBody = document.getElementById('result-table').querySelector('tbody');
         tableBody.innerHTML = '';
