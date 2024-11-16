@@ -1,5 +1,6 @@
 ﻿using static Lab11.LabsLibrary.Labs;
 using Microsoft.Office.Tools.Ribbon;
+using Microsoft.Office.Interop.Word;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,29 +22,45 @@ namespace Lab11
             Lab1 lab1 = new Lab1();
             Lab2 lab2 = new Lab2();
             Lab3 lab3 = new Lab3();
+
+            Microsoft.Office.Interop.Word.Application wordApp = Globals.ThisAddIn.Application; // Access Word application
+            Document activeDoc = wordApp.ActiveDocument;
+
+            if (activeDoc == null)
+            {
+                MessageBox.Show("Please open a Word document before running the program.", "Error");
+                return;
+            }
+
             for (int indexLab = 1; indexLab <= 3; indexLab++)
             {
                 string inputPath = $"../../FilesInput/INPUTLab{indexLab}.TXT";
                 string outputPath = $"../../FilesOutput/OUTPUTLab{indexLab}.TXT";
+                string results = $"Results for Lab {indexLab}:\n";
+
                 switch (indexLab)
                 {
                     case 1:
-                        string lab1_resultBuild = lab1.Build();
-                        string lab1_resultTest = lab1.Test();
-                        string lab1_resultRun = lab1.Run(inputPath, outputPath);
+                        results += $"Build: {lab1.Build()}\n";
+                        results += $"Test: {lab1.Test()}\n";
+                        results += $"Run: {lab1.Run(inputPath, outputPath)}\n";
                         break;
                     case 2:
-                        string lab2_resultBuild = lab2.Build();
-                        string lab2_resultTest = lab2.Test();
-                        string lab2_resultRun = lab2.Run(inputPath, outputPath);
+                        results += $"Build: {lab2.Build()}\n";
+                        results += $"Test: {lab2.Test()}\n";
+                        results += $"Run: {lab2.Run(inputPath, outputPath)}\n";
                         break;
                     case 3:
-                        string lab3_resultBuild = lab3.Build();
-                        string lab3_resultTest = lab3.Test();
-                        string lab3_resultRun = lab3.Run(inputPath, outputPath);
+                        results += $"Build: {lab3.Build()}\n";
+                        results += $"Test: {lab3.Test()}\n";
+                        results += $"Run: {lab3.Run(inputPath, outputPath)}\n";
                         break;
                 }
+
+                activeDoc.Content.Text += results + "\n";
             }
+
+            MessageBox.Show("Results have been added to the current document.", "Success");
         }
     }
 }
