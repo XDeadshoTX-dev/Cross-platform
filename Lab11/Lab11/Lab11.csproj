@@ -231,10 +231,11 @@
     <Content Include="FilesInput\INPUTLab1.TXT" />
     <Content Include="FilesInput\INPUTLab2.TXT" />
     <Content Include="FilesInput\INPUTLab3.TXT" />
+    <Content Include="FilesOutput\OUTPUTLab1.TXT" />
+    <Content Include="FilesOutput\OUTPUTLab2.TXT" />
+    <Content Include="FilesOutput\OUTPUTLab3.TXT" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="FilesOutput\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
