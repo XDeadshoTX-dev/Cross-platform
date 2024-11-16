@@ -227,6 +227,14 @@
     </Compile>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="FilesInput\INPUTLab1.TXT" />
+    <Content Include="FilesInput\INPUTLab2.TXT" />
+    <Content Include="FilesInput\INPUTLab3.TXT" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FilesOutput\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
