@@ -191,6 +191,7 @@
     <Compile Include="Lab11Ribbon.Designer.cs">
       <DependentUpon>Lab11Ribbon.cs</DependentUpon>
     </Compile>
+    <Compile Include="LabsLibrary\Labs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
