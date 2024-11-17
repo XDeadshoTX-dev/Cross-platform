@@ -7,17 +7,17 @@ import { Lab2Component } from './lab2/lab2.component';
 import { Lab3Component } from './lab3/lab3.component';
 import { ControlapiComponent } from './controlapi/controlapi.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: 'Login', component: LoginComponent },
-  { path: 'Control', component: ControlComponent },
-  { path: 'Lab1', component: Lab1Component },
-  { path: 'Lab2', component: Lab2Component },
-  { path: 'Lab3', component: Lab3Component },
-  { path: 'ControlAPI', component: ControlapiComponent },
-  { path: 'Profile', component: ProfileComponent },
+  { path: 'Login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'Control', component: ControlComponent, canActivate: [AuthGuard] },
+  { path: 'Lab1', component: Lab1Component, canActivate: [AuthGuard] },
+  { path: 'Lab2', component: Lab2Component, canActivate: [AuthGuard] },
+  { path: 'Lab3', component: Lab3Component, canActivate: [AuthGuard] },
+  { path: 'ControlAPI', component: ControlapiComponent, canActivate: [AuthGuard] },
+  { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: '/Login', pathMatch: 'full' }
-  /*{ path: '**', redirectTo: '/Login' }*/
 ];
 
 @NgModule({
