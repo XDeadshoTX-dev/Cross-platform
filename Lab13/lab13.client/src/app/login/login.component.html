@@ -37,15 +37,15 @@
 
       <input type="submit" value="Зареєструватися">
     </form>
-    <form id="login-form" action="/Home/LoginAuth0" method="post">
+    <form (ngSubmit)="onSubmitLogin()">
       <h2>Форма входу</h2>
       <label for="username-login">Ім'я користувача:</label><br>
-      <input type="text" id="username-login" name="username" required><br>
+      <input type="text" id="username-login" [(ngModel)]="username" name="username" required><br>
 
       <label for="password-login">Пароль:</label><br>
-      <input type="password" id="password-login" name="password" required><br>
+      <input type="password" id="password-login" [(ngModel)]="password" name="password" required><br>
 
-      <input type="submit" value="Увійти">
+      <button type="submit">Увійти</button>
     </form>
   </body>
 </html>
