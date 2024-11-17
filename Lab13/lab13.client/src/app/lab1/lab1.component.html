@@ -12,3 +12,73 @@
     </a>
   </div>
 </header>
+
+<main>
+  <section id="welcome">
+    <h1>Ласкаво просимо до панелі управління!</h1>
+    <p>Ця панель управління призначена для управління різними підпрограмами та користувачами.</p>
+  </section>
+  <p>Шаблоном розміру <strong>n</strong> назвемо рядок довжини <strong>n</strong>, кожен із символів якого входить до множини:</p>
+  <p>{{ '{' }}0, 1, 2, 3, 4, 5, 6, 7, 8, 9, a, b, c, d, e, f, g, ?{{ '}' }}</p>
+  <p>Шаблони перетворюються на рядки з цифр за такими правилами:</p>
+  <ul>
+    <li>Символи від <strong>0</strong> до <strong>9</strong> можуть бути перетворені лише в себе;</li>
+    <li>Символ <strong>a</strong> може бути перетворений на будь-який із символів <strong>0, 1, 2, 3</strong>;</li>
+    <li>Символ <strong>b</strong> може бути перетворений на будь-який із символів <strong>1, 2, 3, 4</strong>;</li>
+    <li>Символ <strong>c</strong> може бути перетворений на будь-який із символів <strong>2, 3, 4, 5</strong>;</li>
+    <li>Символ <strong>d</strong> може бути перетворений на будь-який із символів <strong>3, 4, 5, 6</strong>;</li>
+    <li>Символ <strong>e</strong> може бути перетворений на будь-який із символів <strong>4, 5, 6, 7</strong>;</li>
+    <li>Символ <strong>f</strong> може бути перетворений на будь-який із символів <strong>5, 6, 7, 8</strong>;</li>
+    <li>Символ <strong>g</strong> може бути перетворений на будь-який із символів <strong>6, 7, 8, 9</strong>;</li>
+    <li>Символ <strong>?</strong> може перетворитися у будь-який із символів від <strong>0</strong> до <strong>9</strong>.</li>
+  </ul>
+
+  <h2>Завдання</h2>
+  <p>Дано два шаблони: <strong>p1</strong> і <strong>p2</strong>. Розглянемо безліч <strong>S1</strong> рядків, які можуть бути отримані з <strong>p1</strong> за описаними правилами, і безліч <strong>S2</strong> рядків, які можуть бути отримані з <strong>p2</strong>. Необхідно знайти кількість рядків, що входять до обох цих множин.</p>
+
+  <h2>Вхідні дані</h2>
+  <p>Перший рядок вхідного файлу <strong>INPUT.TXT</strong> містить шаблон <strong>p1</strong>, другий — шаблон <strong>p2</strong>. Шаблони мають однаковий позитивний розмір не більше <strong>9</strong>.</p>
+
+  <h2>Вихідні дані</h2>
+  <p>У вихідний файл <strong>OUTPUT.TXT</strong> виведіть відповідь на завдання.</p>
+
+  <h2>Приклади</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>№</th>
+        <th>INPUT.TXT</th>
+        <th>OUTPUT.TXT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>???<br>abc</td>
+        <td>64</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>???<br>000</td>
+        <td>1</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>abc<br>999</td>
+        <td>0</td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="panel">
+    <form enctype="multipart/form-data">
+      <label for="inputFile">Завантажити файл <strong>INPUT.TXT</strong>:</label>
+      <input type="file" id="inputFile" name="inputFile" accept=".txt" required><br><br>
+      <input type="hidden" id="lab" name="lab" value="Lab1">
+      <small>Будь ласка, завантажте файл з назвою <strong>INPUT.TXT</strong>.</small><br><br>
+      <input id="sendButton" type="submit" value="Обробити файл">
+    </form>
+    <div id="output-section">
+      <h4>Output</h4>
+    </div>
+  </div>
+</main>
