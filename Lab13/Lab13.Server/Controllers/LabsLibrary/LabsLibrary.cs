@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 
 namespace Lab13.Server.Controllers.LabsLibrary
 {
-    public class LabsLibrary
+    public class Labs
     {
         private string lab;
         private string output = "";
@@ -20,7 +20,7 @@ namespace Lab13.Server.Controllers.LabsLibrary
                 return output;
             }
         }
-        public LabsLibrary(string lab)
+        public Labs(string lab)
         {
             this.lab = lab;
         }
