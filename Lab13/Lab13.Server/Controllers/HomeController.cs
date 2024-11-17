@@ -15,7 +15,7 @@ namespace Lab13.Server.Controllers
     public class HomeController : ControllerBase
     {
         AuthManagements authManagements = new AuthManagements();
-        [HttpPost]
+        [HttpPost("RegistrationAuth0")]
         public async Task<IActionResult> RegistrationAuth0(string username, string fullname, string password, string passwordConfirm, string phone, string email)
         {
             try
@@ -44,14 +44,6 @@ namespace Lab13.Server.Controllers
                 }
                 string userToken = await authManagements.GetUserTokenAsync(loginData.username, loginData.password);
 
-                Response.Cookies.Append("AuthToken", userToken, new CookieOptions
-                {
-                    HttpOnly = false,
-                    Secure = true,
-                    SameSite = SameSiteMode.Strict,
-                    Expires = DateTime.UtcNow.AddHours(1)
-                });
-
                 return Ok(new { message = "Успішний вхід", token = userToken });
             }
             catch(Exception ex) 
@@ -64,7 +56,7 @@ namespace Lab13.Server.Controllers
             public string username { get; set; }
             public string password { get; set; }
         }
-        [HttpGet]
+        [HttpGet("GetProfile")]
         public async Task<string> GetProfile()
         {
             try
@@ -88,7 +80,7 @@ namespace Lab13.Server.Controllers
             }
         }
         Labs labsLibrary;
-        [HttpPost]
+        [HttpPost("StartLab")]
         public async Task<string> StartLab(IFormFile inputFile, string lab)
         {
             try
