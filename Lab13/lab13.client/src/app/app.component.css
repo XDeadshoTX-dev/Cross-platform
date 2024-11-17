@@ -1,14 +1,49 @@
-﻿:host {
-    max-width: 1280px;
-    padding: 2rem;
-    text-align: center;
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-th, td {
-    padding-left: 1rem;
-    padding-right: 1rem;
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #414141;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  height: 60px;
 }
 
-table {
-    margin: 0 auto;
+header a {
+  color: white;
+  text-decoration: none;
+}
+
+header > ul {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
+
+header > ul > li {
+  cursor: pointer;
+}
+
+header h1 a {
+  font-size: 24px;
+}
+
+#profile-icon {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+#profile-img {
+  width: 40px;
+  height: 40px;
+  transition: filter 0.3s ease-in-out;
+}
+
+#profile-icon:hover #profile-img {
+  filter: invert(1);
 }

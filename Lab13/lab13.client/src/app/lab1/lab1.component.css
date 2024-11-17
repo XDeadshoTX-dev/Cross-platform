@@ -1,4 +1,6 @@
 body {
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   margin: 0;
@@ -14,20 +16,20 @@ header {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-  header > ul {
-    display: flex;
-    list-style: none;
-    gap: 15px;
-  }
+header > ul {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
 
-    header > ul > li > a, #profile-icon > a, header > h1 > a {
-      color: white;
-      text-decoration: none;
-    }
+header > ul > li > a, #profile-icon > a, header > h1 > a {
+  color: white;
+  text-decoration: none;
+}
 
-    header > ul > li, header > h1 {
-      cursor: pointer;
-    }
+header > ul > li, header > h1 {
+  cursor: pointer;
+}
 
 main {
   color: white;
@@ -48,9 +50,9 @@ main {
   background-color: white;
 }
 
-  #profile-icon:hover #profile-img {
-    filter: invert(1);
-  }
+#profile-icon:hover #profile-img {
+  filter: invert(1);
+}
 
 table {
   justify-self: center;
@@ -67,7 +69,8 @@ table {
   border-radius: 10px;
 }
 
-  #output-section p {
-    text-align: left;
-    padding-left: 2%;
-  }
+#output-section p {
+  text-align: left;
+  padding-left: 2%;
+}
+
