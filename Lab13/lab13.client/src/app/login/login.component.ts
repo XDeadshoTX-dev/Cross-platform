@@ -9,13 +9,16 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   username: string = '';
+  fullname: string = '';
   password: string = '';
+  passwordConfirm: string = '';
+  phone: string = '';
+  email: string = '';
 
   constructor(private http: HttpClient, private router: Router) { }
 
   onSubmitLogin() {
     const loginData = { username: this.username, password: this.password };
-    console.log('Login data', loginData);
     this.http.post('http://localhost:5278/api/Home/LoginAuth0', loginData)
       .subscribe(
         response => {
@@ -23,6 +26,18 @@ export class LoginComponent {
           const parsedResponse = JSON.parse(responseString);
           this.setCookie('AuthToken', parsedResponse.token, 1);
           this.router.navigate(['/Control']);
+        },
+        error => {
+          console.error('Login failed', error);
+        }
+      );
+  }
+  onSubmitRegister() {
+    const registerData = { username: this.username, fullname: this.fullname, password: this.password, passwordConfirm: this.passwordConfirm, phone: this.phone, email: this.email };
+    this.http.post('http://localhost:5278/api/Home/RegistrationAuth0', registerData)
+      .subscribe(
+        response => {
+          console.log(response);
         },
         error => {
           console.error('Login failed', error);

@@ -16,22 +16,31 @@ namespace Lab13.Server.Controllers
     {
         AuthManagements authManagements = new AuthManagements();
         [HttpPost("RegistrationAuth0")]
-        public async Task<IActionResult> RegistrationAuth0(string username, string fullname, string password, string passwordConfirm, string phone, string email)
+        public async Task<IActionResult> RegistrationAuth0([FromBody] RegistrationModel registrationData)
         {
             try
             {
-                if (password != passwordConfirm)
+                if (registrationData.password != registrationData.passwordConfirm)
                 {
                     return BadRequest("Паролі не збігаються!");
                 }
                 string clientToken = await authManagements.GetClientTokenAsync();
-                await authManagements.CreateUserAsync(username, fullname, password, phone, email, clientToken);
+                await authManagements.CreateUserAsync(registrationData.username, registrationData.fullname, registrationData.password, registrationData.phone, registrationData.email, clientToken);
                 return Ok("Користувача успішно створено!");
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+        }
+        public class RegistrationModel
+        {
+            public string username { get; set; }
+            public string fullname { get; set; }
+            public string password { get; set; }
+            public string passwordConfirm { get; set; }
+            public string phone { get; set; }
+            public string email { get; set; }
         }
         [HttpPost("LoginAuth0")]
         public async Task<IActionResult> LoginAuth0([FromBody] LoginModel loginData)

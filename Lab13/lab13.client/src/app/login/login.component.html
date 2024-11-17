@@ -5,35 +5,35 @@
     <title>Login Auth0</title>
   </head>
   <body>
-    <form id="registration-form" action="/Home/RegistrationAuth0" method="post">
+    <form (ngSubmit)="onSubmitRegister()">
       <h2>Форма реєстрації</h2>
       <label for="username-reg">Ім'я користувача:</label><br>
-      <input type="text" id="username-reg" name="username" maxlength="50" required><br>
+      <input type="text" id="username-reg" [(ngModel)]="username" name="username" maxlength="50" required><br>
 
       <label for="fullname-reg">ФІО:</label><br>
-      <input type="text" id="fullname-reg" name="fullname" maxlength="500" required><br>
+      <input type="text" id="fullname-reg" [(ngModel)]="fullname" name="fullname" maxlength="500" required><br>
 
       <label for="password-reg">Пароль:</label><br>
-      <input type="password" id="password-reg" name="password"
+      <input type="password" id="password-reg" [(ngModel)]="password" name="password"
              pattern="(?=.*\d)(?=.*[@@_$!%*?&])(?=.*[A-Z]).{8,16}"
              title="Пароль повинен містити 1 цифру, 1 спеціальний знак, 1 велику літеру і бути довжиною від 8 до 16 символів"
              required><br>
 
       <label for="passwordConfirm-reg">Підтвердження паролю:</label><br>
-      <input type="password" id="passwordConfirm-reg" name="passwordConfirm"
+      <input type="password" id="passwordConfirm-reg" [(ngModel)]="passwordConfirm" name="passwordConfirm"
              pattern="(?=.*\d)(?=.*[@@_$!%*?&])(?=.*[A-Z]).{8,16}"
              title="Пароль повинен містити 1 цифру, 1 спеціальний знак, 1 велику літеру і бути довжиною від 8 до 16 символів"
              required><br>
 
       <label for="phone-reg">Телефон (формат Україна):</label><br>
-      <input type="tel" id="phone-reg" name="phone"
+      <input type="tel" id="phone-reg" [(ngModel)]="phone" name="phone"
              pattern="\+?38[0-9]{10}"
              placeholder="+380XXXXXXXXX"
              title="Введіть телефон у форматі +380XXXXXXXXX"
              required><br>
 
       <label for="email-reg">Електронна адреса:</label><br>
-      <input type="email" id="email-reg" name="email" required><br>
+      <input type="email" id="email-reg" [(ngModel)]="email" name="email" required><br>
 
       <input type="submit" value="Зареєструватися">
     </form>
