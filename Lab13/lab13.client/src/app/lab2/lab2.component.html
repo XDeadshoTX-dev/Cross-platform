@@ -1,68 +1,76 @@
-<body>
-  <header>
-    <h1><a routerLink="/Control">Лабораторна робота №5</a></h1>
-    <ul>
-      <li><a routerLink="/Lab1">Лабораторна робота №1</a></li>
-      <li><a routerLink="/Lab2">Лабораторна робота №2</a></li>
-      <li><a routerLink="/Lab3">Лабораторна робота №3</a></li>
-      <li><a routerLink="/ControlAPI">ControlAPI</a></li>
-    </ul>
-    <div id="profile-icon">
-      <a routerLink="/Profile">
-        <img src="assets/resources/profile-white.png" id="profile-img" alt="Profile">
-      </a>
-    </div>
-  </header>
-
-  <main>
-    <p>Знайдіть <strong>n</strong>-й елемент послідовності, що строго зростає, яка описується наступними правилами:</p>
-    <ol>
-      <li>Число <strong>1</strong> є елементом послідовності.</li>
-      <li>Якщо <strong>a</strong> — елемент послідовності, то <strong>2a</strong>, <strong>3a</strong>, <strong>5a</strong> також є елементами послідовності.</li>
-      <li>Послідовності належать лише елементи, задані правилами 1 та 2.</li>
-    </ol>
-
-    <h2>Вхідні дані</h2>
-    <p>Вхідний файл <strong>INPUT.TXT</strong> містить одне натуральне число <strong>n</strong> (<strong>n &lt; 10 000</strong>).</p>
-
-    <h2>Вихідні дані</h2>
-    <p>У вихідний файл <strong>OUTPUT.TXT</strong> виведіть одне число — <strong>n</strong>-й елемент послідовності.</p>
-
-    <h2>Приклади</h2>
-    <table border="1">
-      <thead>
-        <tr>
-          <th>№</th>
-          <th>INPUT.TXT</th>
-          <th>OUTPUT.TXT</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>2</td>
-          <td>2</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>9</td>
-          <td>10</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div id="panel">
-      <form>
-        <label for="inputFile">Завантажити файл <strong>INPUT.TXT</strong>:</label>
-        <input type="file" id="inputFile" accept=".txt" required><br><br>
-        <input type="hidden" id="lab" name="lab" value="Lab2">
-        <small>Будь ласка, завантажте файл з назвою <strong>INPUT.TXT</strong>.</small><br><br>
-        <button id="sendButton" type="submit">Обробити файл</button>
-      </form>
-      <div id="output-section">
-        <h4>Output</h4>
-        <!--<pre>{{ outputData }}</pre>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторна робота №2</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+  <body>
+    <header>
+      <h1><a routerLink="/Control">Лабораторна робота №5</a></h1>
+      <ul>
+        <li><a routerLink="/Lab1">Лабораторна робота №1</a></li>
+        <li><a routerLink="/Lab2">Лабораторна робота №2</a></li>
+        <li><a routerLink="/Lab3">Лабораторна робота №3</a></li>
+        <li><a routerLink="/ControlAPI">ControlAPI</a></li>
+      </ul>
+      <div id="profile-icon">
+        <a routerLink="/Profile">
+          <img src="assets/resources/profile-white.png" id="profile-img" alt="Profile">
+        </a>
       </div>
-    </div>
-  </main>
-</body>
+    </header>
+
+    <main>
+      <p>Знайдіть <strong>n</strong>-й елемент послідовності, що строго зростає, яка описується наступними правилами:</p>
+      <ol>
+        <li>Число <strong>1</strong> є елементом послідовності.</li>
+        <li>Якщо <strong>a</strong> — елемент послідовності, то <strong>2a</strong>, <strong>3a</strong>, <strong>5a</strong> також є елементами послідовності.</li>
+        <li>Послідовності належать лише елементи, задані правилами 1 та 2.</li>
+      </ol>
+
+      <h2>Вхідні дані</h2>
+      <p>Вхідний файл <strong>INPUT.TXT</strong> містить одне натуральне число <strong>n</strong> (<strong>n &lt; 10 000</strong>).</p>
+
+      <h2>Вихідні дані</h2>
+      <p>У вихідний файл <strong>OUTPUT.TXT</strong> виведіть одне число — <strong>n</strong>-й елемент послідовності.</p>
+
+      <h2>Приклади</h2>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>INPUT.TXT</th>
+            <th>OUTPUT.TXT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>9</td>
+            <td>10</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div id="panel">
+        <form>
+          <label for="inputFile">Завантажити файл <strong>INPUT.TXT</strong>:</label>
+          <input type="file" id="inputFile" accept=".txt" required><br><br>
+          <input type="hidden" id="lab" name="lab" value="Lab2">
+          <small>Будь ласка, завантажте файл з назвою <strong>INPUT.TXT</strong>.</small><br><br>
+          <button id="sendButton" type="submit">Обробити файл</button>
+        </form>
+        <div id="output-section">
+          <h4>Output</h4>
+          <!--<pre>{{ outputData }}</pre>-->
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

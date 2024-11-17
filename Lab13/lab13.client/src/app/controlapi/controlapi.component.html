@@ -1,48 +1,56 @@
-<body>
-  <header>
-    <h1><a href="Control">Лабораторна робота №5</a></h1>
-    <ul>
-      <li><a href="Lab1">Лабораторна робота №1</a></li>
-      <li><a href="Lab2">Лабораторна робота №2</a></li>
-      <li><a href="Lab3">Лабораторна робота №3</a></li>
-      <li><a href="ControlAPI">ControlAPI</a></li>
-    </ul>
-    <div id="profile-icon">
-      <a href="Profile">
-        <img src="assets/resources/profile-white.png" id="profile-img">
-      </a>
-    </div>
-  </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Контроль API</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+  <body>
+    <header>
+      <h1><a href="Control">Лабораторна робота №5</a></h1>
+      <ul>
+        <li><a href="Lab1">Лабораторна робота №1</a></li>
+        <li><a href="Lab2">Лабораторна робота №2</a></li>
+        <li><a href="Lab3">Лабораторна робота №3</a></li>
+        <li><a href="ControlAPI">ControlAPI</a></li>
+      </ul>
+      <div id="profile-icon">
+        <a href="Profile">
+          <img src="assets/resources/profile-white.png" id="profile-img">
+        </a>
+      </div>
+    </header>
 
-  <main>
-    <h2>Booking Information - Version 1</h2>
-    <form id="bookingFormV1">
-      <label for="customer-id-input-v1">Customer ID:</label>
-      <input type="number" id="customer-id-input-v1" min="1" placeholder="Enter customer ID" required>
-      <h3>Select Date</h3>
-      <label for="day-input-v1">Day:</label>
-      <input type="number" id="day-input-v1" min="1" max="31" required>
-      <label for="month-input-v1">Month:</label>
-      <input type="number" id="month-input-v1" min="1" max="12" required>
-      <label for="year-input-v1">Year:</label>
-      <input type="number" id="year-input-v1" min="1900" required>
-      <button type="button" onclick="getBookingInfo('v1')">Get Booking Info (v1)</button>
-    </form>
-    <pre id="responseV1"></pre>
+    <main>
+      <h2>Booking Information - Version 1</h2>
+      <form id="bookingFormV1">
+        <label for="customer-id-input-v1">Customer ID:</label>
+        <input type="number" id="customer-id-input-v1" min="1" placeholder="Enter customer ID" required>
+        <h3>Select Date</h3>
+        <label for="day-input-v1">Day:</label>
+        <input type="number" id="day-input-v1" min="1" max="31" required>
+        <label for="month-input-v1">Month:</label>
+        <input type="number" id="month-input-v1" min="1" max="12" required>
+        <label for="year-input-v1">Year:</label>
+        <input type="number" id="year-input-v1" min="1900" required>
+        <button type="button" onclick="getBookingInfo('v1')">Get Booking Info (v1)</button>
+      </form>
+      <pre id="responseV1"></pre>
 
-    <h2>Booking Information - Version 2</h2>
-    <form id="bookingFormV2">
-      <label for="customer-id-input-v2">Customer ID:</label>
-      <input type="number" id="customer-id-input-v2" min="1" placeholder="Enter customer ID" required>
-      <h3>Select Date</h3>
-      <label for="day-input-v2">Day:</label>
-      <input type="number" id="day-input-v2" min="1" max="31" required>
-      <label for="month-input-v2">Month:</label>
-      <input type="number" id="month-input-v2" min="1" max="12" required>
-      <label for="year-input-v2">Year:</label>
-      <input type="number" id="year-input-v2" min="1900" required>
-      <button type="button" onclick="getBookingInfo('v2')">Get Booking Info (v2)</button>
-    </form>
-    <pre id="responseV2"></pre>
-  </main>
-</body>
+      <h2>Booking Information - Version 2</h2>
+      <form id="bookingFormV2">
+        <label for="customer-id-input-v2">Customer ID:</label>
+        <input type="number" id="customer-id-input-v2" min="1" placeholder="Enter customer ID" required>
+        <h3>Select Date</h3>
+        <label for="day-input-v2">Day:</label>
+        <input type="number" id="day-input-v2" min="1" max="31" required>
+        <label for="month-input-v2">Month:</label>
+        <input type="number" id="month-input-v2" min="1" max="12" required>
+        <label for="year-input-v2">Year:</label>
+        <input type="number" id="year-input-v2" min="1900" required>
+        <button type="button" onclick="getBookingInfo('v2')">Get Booking Info (v2)</button>
+      </form>
+      <pre id="responseV2"></pre>
+    </main>
+  </body>
+</html>
