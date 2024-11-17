@@ -9,6 +9,8 @@ import { Lab2Component } from './lab2/lab2.component';
 import { Lab3Component } from './lab3/lab3.component';
 import { ControlapiComponent } from './controlapi/controlapi.component';
 import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
+import { ControlComponent } from './control/control.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { ProfileComponent } from './profile/profile.component';
     Lab2Component,
     Lab3Component,
     ControlapiComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginComponent,
+    ControlComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
