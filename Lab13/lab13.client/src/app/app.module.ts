@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { Lab1Component } from './lab1/lab1.component';
 import { Lab2Component } from './lab2/lab2.component';
 import { Lab3Component } from './lab3/lab3.component';
+import { ControlapiComponent } from './controlapi/controlapi.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     Lab1Component,
     Lab2Component,
-    Lab3Component
+    Lab3Component,
+    ControlapiComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule, HttpClientModule,
