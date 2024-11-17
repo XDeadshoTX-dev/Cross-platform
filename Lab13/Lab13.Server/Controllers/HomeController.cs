@@ -8,16 +8,12 @@ using System.Threading.Tasks;
 using Lab13.Server.Controllers.Managements;
 using Lab13.Server.Controllers.LabsLibrary;
 
-namespace Lab5.Controllers
+namespace Lab13.Server.Controllers
 {
-    public class HomeController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class HomeController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         AuthManagements authManagements = new AuthManagements();
         [HttpPost]
         public async Task<IActionResult> RegistrationAuth0(string username, string fullname, string password, string passwordConfirm, string phone, string email)
@@ -26,31 +22,27 @@ namespace Lab5.Controllers
             {
                 if (password != passwordConfirm)
                 {
-                    ViewBag.Error = "Паролі не збігаються!";
-                    return View("Index");
+                    return BadRequest("Паролі не збігаються!");
                 }
                 string clientToken = await authManagements.GetClientTokenAsync();
                 await authManagements.CreateUserAsync(username, fullname, password, phone, email, clientToken);
-                ViewBag.Message = "Користувача успішно створено!";
-                return View("Index");
+                return Ok("Користувача успішно створено!");
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
-                return View("Index");
+                return BadRequest(ex.Message);
             }
         }
-        [HttpPost]
-        public async Task<IActionResult> LoginAuth0(string username, string password)
+        [HttpPost("LoginAuth0")]
+        public async Task<IActionResult> LoginAuth0([FromBody] LoginModel loginData)
         {
             try
             {
-                if(string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+                if (loginData == null || string.IsNullOrEmpty(loginData.username) || string.IsNullOrEmpty(loginData.password))
                 {
-                    ViewBag.Error = "Введіть логін та пароль!";
-                    return View("Index");
+                    return BadRequest("Введіть логін та пароль!");
                 }
-                string userToken = await authManagements.GetUserTokenAsync(username, password);
+                string userToken = await authManagements.GetUserTokenAsync(loginData.username, loginData.password);
 
                 Response.Cookies.Append("AuthToken", userToken, new CookieOptions
                 {
@@ -60,13 +52,17 @@ namespace Lab5.Controllers
                     Expires = DateTime.UtcNow.AddHours(1)
                 });
 
-                return Redirect("/Control");
+                return Ok(new { message = "Успішний вхід", token = userToken });
             }
             catch(Exception ex) 
             {
-                ViewBag.Error = ex.Message;
-                return View("Index");
+                return BadRequest(new { message = ex.Message });
             }
+        }
+        public class LoginModel
+        {
+            public string username { get; set; }
+            public string password { get; set; }
         }
         [HttpGet]
         public async Task<string> GetProfile()
@@ -91,7 +87,7 @@ namespace Lab5.Controllers
                 return null;
             }
         }
-        LabsLibrary labsLibrary;
+        Labs labsLibrary;
         [HttpPost]
         public async Task<string> StartLab(IFormFile inputFile, string lab)
         {
@@ -108,7 +104,7 @@ namespace Lab5.Controllers
                 }
 
 
-                labsLibrary = new LabsLibrary(lab);
+                labsLibrary = new Labs(lab);
                 labsLibrary.Build();
                 labsLibrary.Test();
                 labsLibrary.Run();
