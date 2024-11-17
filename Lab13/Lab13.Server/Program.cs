@@ -16,6 +16,13 @@ namespace Lab13.Server
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    policy => policy.AllowAnyOrigin()
+                                    .AllowAnyMethod()
+                                    .AllowAnyHeader());
+            });
 
             var app = builder.Build();
 
@@ -33,6 +40,7 @@ namespace Lab13.Server
 
 
             app.MapControllers();
+            app.UseCors("AllowAllOrigins");
 
             app.MapFallbackToFile("/index.html");
 
