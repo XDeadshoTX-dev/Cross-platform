@@ -17,7 +17,8 @@ const routes: Routes = [
   { path: 'Lab3', component: Lab3Component, canActivate: [AuthGuard] },
   { path: 'ControlAPI', component: ControlapiComponent, canActivate: [AuthGuard] },
   { path: 'Profile', component: ProfileComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/Login', pathMatch: 'full' }
+  { path: '', redirectTo: '/Login', pathMatch: 'full' },
+  { path: '**', redirectTo: '/Login' }
 ];
 
 @NgModule({
