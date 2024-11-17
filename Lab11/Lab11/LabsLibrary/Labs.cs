@@ -97,7 +97,7 @@ namespace Lab11.LabsLibrary
             public string Build()
             {
                 Console.WriteLine("Building Lab1...");
-                return RunCommand("dotnet build ../../../../../../../../Build.proj -p:Solution=Lab1 -t:Build");
+                return RunCommand("dotnet build ../../../../Build.proj -p:Solution=Lab1 -t:Build");
             }
             public string Test()
             {
