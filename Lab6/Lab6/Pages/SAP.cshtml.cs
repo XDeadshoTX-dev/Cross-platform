@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Lab6.Pages
 {
-    public class SalesforceModel : PageModel
+    public class SAPModel : PageModel
     {
         public void OnGet()
         {
