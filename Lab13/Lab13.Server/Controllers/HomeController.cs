@@ -5,8 +5,10 @@ using System.Net.Http.Headers;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
 using Lab13.Server.Controllers.Managements;
 using Lab13.Server.Controllers.LabsLibrary;
+using Newtonsoft.Json;
 
 namespace Lab13.Server.Controllers
 {
@@ -66,7 +68,7 @@ namespace Lab13.Server.Controllers
             public string password { get; set; }
         }
         [HttpGet("GetProfile")]
-        public async Task<string> GetProfile()
+        public async Task<IActionResult> GetProfile()
         {
             try
             {
@@ -81,7 +83,9 @@ namespace Lab13.Server.Controllers
                 string userID = await authManagements.GetUserID(token);
                 string jsonResponse = await authManagements.GetUserInfo(userID);
 
-                return jsonResponse;
+                var userInfo = System.Text.Json.JsonSerializer.Deserialize<object>(jsonResponse);
+
+                return Ok(userInfo);
             }
             catch (Exception ex)
             {

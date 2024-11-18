@@ -18,11 +18,12 @@
     <section id="user-profile">
       <h2>Профіль користувача</h2>
       <div class="profile-info">
-        <p><strong>Ім'я користувача:</strong> <span id="username-display"></span></p>
-        <p><strong>ФІО:</strong> <span id="fullname-display"></span></p>
-        <p><strong>Телефон:</strong> <span id="phone-display"></span></p>
-        <p><strong>Електронна адреса:</strong> <span id="email-display"></span></p>
+        <p><strong>Ім'я користувача:</strong> <span id="username-display">{{ username }}</span></p>
+        <p><strong>ФІО:</strong> <span id="fullname-display">{{ name }}</span></p>
+        <p><strong>Телефон:</strong> <span id="phone-display">{{ phone_number }}</span></p>
+        <p><strong>Електронна адреса:</strong> <span id="email-display">{{ email }}</span></p>
       </div>
+      <p *ngIf="error" style="color: red">{{ error }}</p>
     </section>
   </main>
 </body>
