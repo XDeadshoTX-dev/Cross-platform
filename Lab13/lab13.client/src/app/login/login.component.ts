@@ -15,6 +15,9 @@ export class LoginComponent {
   phone: string = '';
   email: string = '';
 
+  public success: string = '';
+  public error: string = '';
+
   constructor(private http: HttpClient, private router: Router) { }
 
   onSubmitLogin() {
@@ -28,19 +31,32 @@ export class LoginComponent {
           this.router.navigate(['/Control']);
         },
         error => {
-          console.error('Login failed', error);
+          const responseString = JSON.stringify(error);
+          const parsedResponse = JSON.parse(responseString);
+          this.error = `Login failed: ${parsedResponse.message}`;
         }
       );
   }
   onSubmitRegister() {
-    const registerData = { username: this.username, fullname: this.fullname, password: this.password, passwordConfirm: this.passwordConfirm, phone: this.phone, email: this.email };
+    const registerData = {
+      username: this.username,
+      fullname: this.fullname,
+      password: this.password,
+      passwordConfirm: this.passwordConfirm,
+      phone: this.phone,
+      email: this.email
+    };
     this.http.post('http://localhost:5278/api/Home/RegistrationAuth0', registerData)
       .subscribe(
         response => {
-          console.log(response);
+          const responseString = JSON.stringify(response);
+          const parsedResponse = JSON.parse(responseString);
+          this.success = parsedResponse.message;
         },
         error => {
-          console.error('Login failed', error);
+          const responseString = JSON.stringify(error);
+          const parsedResponse = JSON.parse(responseString);
+          this.error = `Register failed: ${parsedResponse.message}`;
         }
       );
   }

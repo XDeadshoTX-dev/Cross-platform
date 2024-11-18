@@ -26,11 +26,11 @@ namespace Lab13.Server.Controllers
                 }
                 string clientToken = await authManagements.GetClientTokenAsync();
                 await authManagements.CreateUserAsync(registrationData.username, registrationData.fullname, registrationData.password, registrationData.phone, registrationData.email, clientToken);
-                return Ok("Користувача успішно створено!");
+                return Ok(new { message = "Користувача успішно створено!" });
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(new { message = ex.Message} );
             }
         }
         public class RegistrationModel
