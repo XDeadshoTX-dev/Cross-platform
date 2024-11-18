@@ -94,13 +94,13 @@ namespace Lab13.Server.Controllers
         }
         Labs labsLibrary;
         [HttpPost("StartLab")]
-        public async Task<string> StartLab(IFormFile inputFile, string lab)
+        public async Task<IActionResult> StartLab([FromForm] IFormFile inputFile, [FromForm] string lab)
         {
             try
             {
                 if (inputFile == null || inputFile.Length == 0 || inputFile.FileName != "INPUT.TXT")
                 {
-                    return "The file was not uploaded!";
+                    return BadRequest(new { message = "The file was not uploaded!" });
                 }
                 string directory = $"../../{lab}/INPUT.TXT";
                 using (var stream = new FileStream(directory, FileMode.Create))
@@ -113,7 +113,7 @@ namespace Lab13.Server.Controllers
                 labsLibrary.Build();
                 labsLibrary.Test();
                 labsLibrary.Run();
-                return labsLibrary.GetOutputConsole;
+                return Ok(new { message = labsLibrary.GetOutputConsole });
             }
             catch (Exception ex)
             {

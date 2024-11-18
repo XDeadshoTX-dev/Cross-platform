@@ -78,16 +78,20 @@
       </tbody>
     </table>
     <div id="panel">
-      <form enctype="multipart/form-data">
-        <label for="inputFile">Завантажити файл <strong>INPUT.TXT</strong>:</label>
-        <input type="file" id="inputFile" name="inputFile" accept=".txt" required><br><br>
-        <input type="hidden" id="lab" name="lab" value="Lab1">
-        <small>Будь ласка, завантажте файл з назвою <strong>INPUT.TXT</strong>.</small><br><br>
-
-        <input id="sendButton" type="submit" value="Обробити файл">
+      <form (ngSubmit)="onSubmit()">
+        <label for="inputFile">Завантажити файл INPUT.TXT:</label>
+        <input type="file" id="inputFile" (change)="onFileSelected($event)" accept=".txt" required>
+        <input type="hidden" id="lab" [(ngModel)]="labName" [ngModelOptions]="{standalone: true}">
+        <button type="submit">Обробити файл</button>
       </form>
+
       <div id="output-section">
         <h4>Output</h4>
+        <pre>{{ output }}</pre>
+      </div>
+
+      <div *ngIf="error" class="error">
+        <p>{{ error }}</p>
       </div>
     </div>
   </main>
