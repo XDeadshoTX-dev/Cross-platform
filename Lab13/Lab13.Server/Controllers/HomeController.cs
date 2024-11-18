@@ -93,32 +93,32 @@ namespace Lab13.Server.Controllers
             }
         }
         Labs labsLibrary;
-        [HttpPost("StartLab")]
-        public async Task<IActionResult> StartLab([FromForm] IFormFile inputFile, [FromForm] string lab)
-        {
-            try
-            {
-                if (inputFile == null || inputFile.Length == 0 || inputFile.FileName != "INPUT.TXT")
-                {
-                    return BadRequest(new { message = "The file was not uploaded!" });
-                }
-                string directory = $"../../{lab}/INPUT.TXT";
-                using (var stream = new FileStream(directory, FileMode.Create))
-                {
-                    await inputFile.CopyToAsync(stream);
-                }
+        //[HttpPost("StartLab")]
+        //public async Task<IActionResult> StartLab([FromForm] IFormFile inputFile, [FromForm] string lab)
+        //{
+        //    try
+        //    {
+        //        if (inputFile == null || inputFile.Length == 0 || inputFile.FileName != "INPUT.TXT")
+        //        {
+        //            return BadRequest(new { message = "The file was not uploaded!" });
+        //        }
+        //        string directory = $"../../{lab}/INPUT.TXT";
+        //        using (var stream = new FileStream(directory, FileMode.Create))
+        //        {
+        //            await inputFile.CopyToAsync(stream);
+        //        }
 
 
-                labsLibrary = new Labs(lab);
-                labsLibrary.Build();
-                labsLibrary.Test();
-                labsLibrary.Run();
-                return Ok(new { message = labsLibrary.GetOutputConsole });
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //        labsLibrary = new Labs(lab);
+        //        labsLibrary.Build();
+        //        labsLibrary.Test();
+        //        labsLibrary.Run();
+        //        return Ok(new { message = labsLibrary.GetOutputConsole });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
     }
 }

@@ -22,35 +22,31 @@
     </header>
 
     <main>
-      <h2>Booking Information - Version 1</h2>
-      <form id="bookingFormV1">
-        <label for="customer-id-input-v1">Customer ID:</label>
-        <input type="number" id="customer-id-input-v1" min="1" placeholder="Enter customer ID" required>
-        <h3>Select Date</h3>
-        <label for="day-input-v1">Day:</label>
-        <input type="number" id="day-input-v1" min="1" max="31" required>
-        <label for="month-input-v1">Month:</label>
-        <input type="number" id="month-input-v1" min="1" max="12" required>
-        <label for="year-input-v1">Year:</label>
-        <input type="number" id="year-input-v1" min="1900" required>
-        <button type="button" onclick="getBookingInfo('v1')">Get Booking Info (v1)</button>
-      </form>
-      <pre id="responseV1"></pre>
+      <h2>Booking Information</h2>
 
-      <h2>Booking Information - Version 2</h2>
-      <form id="bookingFormV2">
-        <label for="customer-id-input-v2">Customer ID:</label>
-        <input type="number" id="customer-id-input-v2" min="1" placeholder="Enter customer ID" required>
+      <label for="api-version">Select API Version:</label>
+      <select id="api-version" [(ngModel)]="apiVersion">
+        <option value="v1">Version 1</option>
+        <option value="v2">Version 2</option>
+      </select>
+
+      <form id="bookingForm">
+        <label for="customer-id-input">Customer ID:</label>
+        <input type="number" id="customer-id-input" min="1" placeholder="Enter customer ID" [(ngModel)]="customerId" [ngModelOptions]="{standalone: true}" required>
+
         <h3>Select Date</h3>
-        <label for="day-input-v2">Day:</label>
-        <input type="number" id="day-input-v2" min="1" max="31" required>
-        <label for="month-input-v2">Month:</label>
-        <input type="number" id="month-input-v2" min="1" max="12" required>
-        <label for="year-input-v2">Year:</label>
-        <input type="number" id="year-input-v2" min="1900" required>
-        <button type="button" onclick="getBookingInfo('v2')">Get Booking Info (v2)</button>
+        <label for="day-input">Day:</label>
+        <input type="number" id="day-input" min="1" max="31" [(ngModel)]="day" [ngModelOptions]="{standalone: true}" required>
+
+        <label for="month-input">Month:</label>
+        <input type="number" id="month-input" min="1" max="12" [(ngModel)]="month" [ngModelOptions]="{standalone: true}" required>
+
+        <label for="year-input">Year:</label>
+        <input type="number" id="year-input" min="1900" [(ngModel)]="year" [ngModelOptions]="{standalone: true}"required>
+
+        <button type="button" (click)="getBookingInfo()">Get Booking Info</button>
       </form>
-      <pre id="responseV2"></pre>
+      <pre *ngIf="response" id="response">{{ response }}</pre>
     </main>
   </body>
 </html>
