@@ -12,8 +12,10 @@ namespace Lab9NETMAUIMobile.Services
     class APIService
     {
         private readonly HttpClient _httpClient;
-        private string ApiSearchUrl = DeviceInfo.Current.Platform == DevicePlatform.Android ? "http://10.0.2.2:5178/api/v1/search" : "http://localhost:5178/api/v1/search";
-        private string ApiAddUrl = DeviceInfo.Current.Platform == DevicePlatform.Android ? "http://10.0.2.2:5178/api/add" : "http://localhost:5178/api/add";
+        //private string ApiSearchUrl = DeviceInfo.Current.Platform == DevicePlatform.Android ? "http://10.0.2.2:5178/api/v1/search" : "http://192.168.50.62:5178/api/v1/search";
+        //private string ApiAddUrl = DeviceInfo.Current.Platform == DevicePlatform.Android ? "http://10.0.2.2:5178/api/add" : "http://192.168.50.62:5178/api/add";
+        private string ApiSearchUrl = "http://192.168.50.62:5178/api/v1/search";
+        private string ApiAddUrl = "http://192.168.50.62:5178/api/add";
         public APIService()
         {
             _httpClient = new HttpClient();
