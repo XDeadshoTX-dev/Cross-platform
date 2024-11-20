@@ -55,9 +55,16 @@ namespace Lab9NETMAUIMobile.ViewModels
             {
                 var modelCodes = new List<string>
                 {
-                    "MOD012", "MOD111", "MOD112", "MOD123", "MOD234",
-                    "MOD345", "MOD456", "MOD567", "MOD678", "MOD789",
-                    "MOD890", "MOD901"
+                    "MOD012",
+                    "MOD123",
+                    "MOD234",
+                    "MOD345",
+                    "MOD456",
+                    "MOD567",
+                    "MOD678",
+                    "MOD789",
+                    "MOD890",
+                    "MOD901"
                 };
                 List<GetModelInformationResponse> results = new List<GetModelInformationResponse>();
                 foreach (var code in modelCodes)
