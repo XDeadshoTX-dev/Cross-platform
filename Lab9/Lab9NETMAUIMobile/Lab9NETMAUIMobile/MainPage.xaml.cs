@@ -11,7 +11,7 @@ namespace Lab9NETMAUIMobile
         public MainPage()
         {
             InitializeComponent();
-            InitializeAuth0();
+            //InitializeAuth0();
         }
 
         private async void InitializeAuth0()
