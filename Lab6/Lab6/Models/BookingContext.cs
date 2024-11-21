@@ -2,6 +2,7 @@
 using System.Reflection.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Data.SqlClient;
 
 namespace Lab6.Models
 {
@@ -40,7 +41,7 @@ namespace Lab6.Models
                     break;
                 case 6:
                     string passwordAzure = Environment.GetEnvironmentVariable("MicrosoftAzureSQLServerPassword");
-                    optionsBuilder.UseSqlServer(@$"Server=tcp:laboratory12.database.windows.net,1433;Initial Catalog=Lab6;Persist Security Info=False;User ID=laboratory12;Password={passwordAzure};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+                    optionsBuilder.UseSqlServer($"Server=tcp:laboratory12.database.windows.net,1433;Initial Catalog=Lab6;Persist Security Info=False;User ID=user;Password={passwordAzure};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=60;");
                     break;
             }
         }
