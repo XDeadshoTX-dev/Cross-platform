@@ -15,7 +15,7 @@ namespace Lab6.Models
         public DbSet<BookingStatus> BookingStatuses { get; set; }
         public DbSet<Customer> Customers { get; set; }
 
-        private readonly int db_choice = 2;
+        private readonly int db_choice = 6;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,6 +37,10 @@ namespace Lab6.Models
                     break;
                 case 5: // In-memory database
                     optionsBuilder.UseInMemoryDatabase("Lab6");
+                    break;
+                case 6:
+                    string passwordAzure = Environment.GetEnvironmentVariable("MicrosoftAzureSQLServerPassword");
+                    optionsBuilder.UseSqlServer(@$"Server=tcp:laboratory12.database.windows.net,1433;Initial Catalog=Lab6;Persist Security Info=False;User ID=laboratory12;Password={passwordAzure};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
                     break;
             }
         }
